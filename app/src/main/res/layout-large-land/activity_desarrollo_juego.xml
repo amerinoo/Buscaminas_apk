@@ -60,12 +60,14 @@
                 android:id="@+id/textView6"
                 android:layout_gravity="right"/>
 
-            <GridView
+            <fragment
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tablero"
+                android:layout_height="match_parent"
+                android:name="com.example.especials.buscaminas.FragmentParrilla"
+                android:id="@+id/fragmentParrilla"
+                tools:layout="@layout/fragmentparrilla" />
 
-                />
+
         </LinearLayout>
 
         <LinearLayout
@@ -77,8 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:name="com.example.especials.buscaminas.FragmentLog"
-                android:id="@+id/fragment"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/fragmentLog"
                 tools:layout="@layout/fragmentlog" />
         </LinearLayout>
     </LinearLayout>

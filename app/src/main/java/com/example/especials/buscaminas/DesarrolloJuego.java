@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +14,9 @@ import java.util.List;
 import java.util.Random;
 
 
-public class DesarrolloJuego extends Activity {
+public class DesarrolloJuego extends Activity implements FragmentParrilla.CasillaListener{
     private Bundle b;
     public static List<Casilla> casillas;
-    private boolean isGameOver;
     public static int porcientominas;
     public static String alias;
 
@@ -26,7 +24,6 @@ public class DesarrolloJuego extends Activity {
     public static int totalNumberOfMines;
     public static int numCasillas;
 
-    public GridView tablero;
     public static Context context;
 
 
@@ -49,16 +46,25 @@ public class DesarrolloJuego extends Activity {
             CasillaAdapter.isFirtsClick = true;
             CasillaAdapter.secondsPassed = 0;
             startNewGame();
+            activarTablero();
+            TextView textView = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
+            textView.setText("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines);
         }
         textView = (TextView) findViewById(R.id.textoMinas);
-        tablero = (GridView) findViewById(R.id.tablero);
-        tablero.setNumColumns(numberOfColumnsInMineField);
-        CasillaAdapter adapter = new CasillaAdapter(this,casillas);
-        tablero.setAdapter(adapter);
         context = this;
 
     }
 
+    private void activarTablero(){
+        GridView tablero;
+        FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
+
+        tablero = (GridView) fgpar.getView().findViewById(R.id.tablero);
+        CasillaAdapter adapter = new CasillaAdapter(this,casillas);
+        tablero.setAdapter(adapter);
+
+
+    }
 
     private void startNewGame()
     {
@@ -85,22 +91,8 @@ public class DesarrolloJuego extends Activity {
 
     }
 
-    private void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    @Override
+    public void onCorreoSeleccionado(Casilla c) {
+
     }
-
-    public void fin(View v){
-        Intent in = new Intent(DesarrolloJuego.this,Resultados.class);
-        Bundle b = new Bundle();
-
-        b.putString("alias",alias);
-        b.putInt("bombas", totalNumberOfMines);
-        b.putInt("casillas",numCasillas);
-        b.putInt("bombasTotales",numBombs);
-        b.putInt("porciento",porcientominas);
-        in.putExtras(b);
-        startActivity(in);
-        finish();
-    }
-
 }
