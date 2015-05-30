@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.especials.buscaminas.Resultados">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:id="@+id/linearLayout3">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="43dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/disquet"
+            android:layout_weight="0.07" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/titulo_log"
+            android:textSize="32dp"
+            android:id="@+id/titulo_principal"
+            android:clickable="false"
+            android:editable="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearLayout4">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Día y hora"
+                android:id="@+id/textView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/diaYHora"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout6">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valores del log"
+                android:id="@+id/textView4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/log"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/linearLayout6"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout5" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-mail destinatario"
+                android:id="@+id/textView5" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:id="@+id/editText"
+                android:hint="emaildeprueba@gmail.com"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar e-mail"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="10dp"
+        android:id="@+id/button2"
+        android:layout_marginTop="10dp"
+        android:onClick="sendEmail"
+        android:layout_below="@+id/linearLayout5"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nueva partida"
+        android:drawableLeft="@drawable/flecha"
+        android:drawablePadding="10dp"
+        android:id="@+id/button3"
+        android:onClick="goNuevaPartida"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignEnd="@+id/linearLayout5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salir"
+        android:drawableLeft="@drawable/salir"
+        android:drawablePadding="10dp"
+        android:id="@+id/button4"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:onClick="goSalirResultados"/>
+
+
+</RelativeLayout>
