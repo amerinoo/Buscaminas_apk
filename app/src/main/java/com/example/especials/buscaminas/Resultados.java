@@ -42,12 +42,13 @@ public class Resultados extends Activity {
         bo = b.getInt("bombasRestantes");
         date = fecha.toLocaleString();
         String t = (tiempo == 0) ? "No usado" : String.valueOf(tiempo) + " segundos";
-        log = "Resultados partida:"
-                + "\n\tAlias: " + alias
-                + "\n\tCasillas: " + String.valueOf(casillas) + " Abiertas: " + n
-                + "\n\t% Minas: " + String.valueOf(porciento) + "% Banderas OK: " + bo
-                + "\n\tTiempo: " + t
-                + "\n\tVictoria? " + resultado;
+        if(log == null)
+            log = "Resultados partida:"
+                    + "\n\tAlias: " + alias
+                    + "\n\tCasillas: " + String.valueOf(casillas) + " Abiertas: " + n
+                    + "\n\t% Minas: " + String.valueOf(porciento) + "% Banderas OK: " + bo
+                    + "\n\tTiempo: " + t
+                    + "\n\tVictoria? " + resultado;
         ((TextView) findViewById(R.id.diaYHora)).setText(date);
         ((TextView) findViewById(R.id.log)).setText(log);
 

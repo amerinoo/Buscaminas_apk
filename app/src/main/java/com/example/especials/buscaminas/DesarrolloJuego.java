@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class DesarrolloJuego extends Activity implements FragmentParrilla.CasillaListener{
+public class DesarrolloJuego extends Activity{
     private Bundle b;
     public static List<Casilla> casillas;
     public static int porcientominas;
@@ -48,12 +48,16 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             startNewGame();
         }
         activarTablero();
-        if(savedInstanceState == null)log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines);
+        if(savedInstanceState == null)firstLog();
         textView = (TextView) findViewById(R.id.textoMinas);
         context = this;
 
     }
-
+    private void firstLog(){
+        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
+        if(fglog != null && fglog.isInLayout())
+            fglog.log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
+    }
     private void activarTablero(){
         GridView tablero;
         FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
@@ -91,17 +95,4 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
 
     }
 
-    @Override
-    public void onCorreoSeleccionado(Casilla c) {
-
-    }
-    private void log(String text){
-        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
-        TextView tv;
-        if (fglog != null && fglog.isInLayout()) {
-            tv = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
-            tv.setText(tv.getText().toString() + "\n" + text);
-        }
-
-    }
 }

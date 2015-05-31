@@ -11,19 +11,19 @@ import android.widget.TextView;
 public class FragmentLog extends Fragment {
 
 
-        @Override
-        public View onCreateView(LayoutInflater inflater,
-                                 ViewGroup container,
-                                 Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
 
-            return inflater.inflate(R.layout.fragmentlog, container, false);
-        }
+        return inflater.inflate(R.layout.fragmentlog, container, false);
+    }
 
-        public void mostrarDetalle(String texto) {
+    public void log(String text){
 
+        TextView tv = ((TextView) getView().findViewById(R.id.TxtLog));
+        tv.setText(tv.getText().toString() + text);
 
-            TextView txtDetalle = (TextView) getView().findViewById(R.id.TxtLog);
-            txtDetalle.setText(texto);
-        }
+    }
 }
 

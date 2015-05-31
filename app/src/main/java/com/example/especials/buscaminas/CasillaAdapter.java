@@ -261,7 +261,6 @@ public class CasillaAdapter extends BaseAdapter {
          */
         @Override
         public boolean onLongClick(View v) { //Estados casilla "vacio" "bandera" "?"
-            System.out.println("entro onLongClick");
             if(isFirtsClick){
                 putBombs(c);
                 isFirtsClick = false;
