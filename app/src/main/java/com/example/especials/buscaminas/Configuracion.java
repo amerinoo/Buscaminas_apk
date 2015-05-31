@@ -29,7 +29,7 @@ public class Configuracion extends Activity  implements RadioGroup.OnCheckedChan
     }
     public void goDesarroloJuego(View v){
         editText = (EditText) findViewById(R.id.editTextAlias);
-        if(editText.getText().toString().trim().isEmpty()) {
+        if(!editText.getText().toString().trim().isEmpty()) {
             Intent in = new Intent(this, DesarrolloJuego.class);
             Bundle b = new Bundle();
 
