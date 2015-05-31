@@ -1,7 +1,6 @@
 package com.example.especials.buscaminas;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +27,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     private Tablero tablero;
 
 
-    public int secondsPassed = 0;
+    public int secondsPassed;
     private boolean isTimerStarted = false;
     public boolean isFirtsClick = true;
     private Handler timer = new Handler();
@@ -39,28 +38,30 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desarrollo_juego);
+        tablero = Tablero.getTablero();
+        b = getIntent().getExtras();
+        porcientominas = b.getInt("minas");
+        numberOfColumnsInMineField = b.getInt("tamañoParrilla");
+        alias = b.getString("alias");
+        useTimer = b.getBoolean("tiempo");
+        numCasillas = numberOfColumnsInMineField * numberOfColumnsInMineField;
+        txtTimer = (TextView) findViewById(R.id.textView6);
+        totalNumberOfMines = (int)((porcientominas / 100.0) * numCasillas);
         if(savedInstanceState == null){
-            b = getIntent().getExtras();
-            porcientominas = b.getInt("minas");
-            numberOfColumnsInMineField = b.getInt("tamañoParrilla");
-            alias = b.getString("alias");
-            useTimer = b.getBoolean("tiempo");
-            numCasillas = numberOfColumnsInMineField * numberOfColumnsInMineField;
             isFirtsClick = true;
             secondsPassed = 0;
             startNewGame();
             log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
-        }else activarTablero();
+        }else{
+            activarTablero();
+        }
         textView = (TextView) findViewById(R.id.textoMinas);
 
     }
 
     private void startNewGame()
     {
-        tablero = Tablero.getTablero();
-        txtTimer = (TextView) findViewById(R.id.textView6);
         createMineField();
-        totalNumberOfMines = (int)((porcientominas / 100.0) * numCasillas);
         activarTablero();
         stopTimer();
     }
