@@ -157,6 +157,7 @@ public class CasillaAdapter extends BaseAdapter {
                 isTimerStarted = true;
             }
             if(c.isClickable()){
+                log(String.valueOf(c.getPosition()));
                 c.openBlock();
                 if (c.isMined())  gameOver("No, has perdido");
                 if(checkWin()) gameOver("Si, has ganado");
@@ -223,15 +224,22 @@ public class CasillaAdapter extends BaseAdapter {
         Intent in = new Intent(context,Resultados.class);
         Bundle b = new Bundle();
 
-        b.putString("alias",DesarrolloJuego.alias);
-        b.putInt("bombas", DesarrolloJuego.totalNumberOfMines);
-        b.putInt("casillas",DesarrolloJuego.numCasillas);
-        b.putInt("bombasTotales",DesarrolloJuego.numBombs);
-        b.putInt("porciento",DesarrolloJuego.porcientominas);
-        b.putInt("tiempo",secondsPassed);
-        b.putString("resultado", s);
-        b.putInt("casillasRestantes", n);
-        b.putInt("bombasRestantes",bo);
+        FragmentLog fglog = (FragmentLog) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog);
+        TextView tv;
+        if (fglog != null && fglog.isInLayout()) {
+            tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
+            b.putString("log", tv.getText().toString());
+        }else {
+            b.putString("alias", DesarrolloJuego.alias);
+            b.putInt("bombas", DesarrolloJuego.totalNumberOfMines);
+            b.putInt("casillas", DesarrolloJuego.numCasillas);
+            b.putInt("bombasTotales", DesarrolloJuego.numBombs);
+            b.putInt("porciento", DesarrolloJuego.porcientominas);
+            b.putInt("tiempo", secondsPassed);
+            b.putString("resultado", s);
+            b.putInt("casillasRestantes", n);
+            b.putInt("bombasRestantes", bo);
+        }
         in.putExtras(b);
         a.startActivity(in);
         a.finish();
@@ -321,6 +329,15 @@ public class CasillaAdapter extends BaseAdapter {
             timer.postDelayed(updateTimeElasped, 1000);
         }
     };
+    private void log(String text){
+        FragmentLog fglog = (FragmentLog) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog);
+        TextView tv;
+        if (fglog != null && fglog.isInLayout()) {
+            tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
+            tv.setText(tv.getText().toString() + "\n" + text);
+        }
+
+    }
 
 }
 

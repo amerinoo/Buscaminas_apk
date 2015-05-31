@@ -60,6 +60,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
 
         tablero = (GridView) fgpar.getView().findViewById(R.id.tablero);
+        tablero.setNumColumns(numberOfColumnsInMineField);
         CasillaAdapter adapter = new CasillaAdapter(this,casillas);
         tablero.setAdapter(adapter);
 

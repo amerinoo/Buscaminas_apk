@@ -31,6 +31,8 @@ public class Resultados extends Activity {
         setContentView(R.layout.activity_resultados);
         Date fecha = new Date();
         Bundle b = getIntent().getExtras();
+        log = b.getString("log");
+        System.out.println(log);
         alias = b.getString("alias");
         casillas = b.getInt("casillas");
         porciento = b.getInt("porciento");
