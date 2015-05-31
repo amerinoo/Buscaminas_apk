@@ -15,4 +15,6 @@ public class Tablero {
     private Tablero(){
         casillas  = new ArrayList<>();
     }
+
+    public void clearTablero(){casillas.clear();}
 }

@@ -3,45 +3,34 @@ package com.example.especials.buscaminas;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.List;
-import java.util.Random;
 
-/**
- * Created by Especials on 27/03/2015.
- */
 public class CasillaAdapter extends BaseAdapter {
 
     private final List<Casilla> casillas;
     private final Context context;
     private Button firstButton;
 
-    private Handler timer = new Handler();
-    private static TextView txtTimer;
-    public static int secondsPassed = 0;
-    private boolean isTimerStarted = false;
-    public static boolean isFirtsClick = true;
-    private boolean useTimer;
+
+
+
+
 
     FragmentParrilla fgpar;
 
     public CasillaAdapter(Context context, List<Casilla> casillas) {
         this.casillas = casillas;
         this.context=context;
-        txtTimer = (TextView)((Activity) context).getWindow().findViewById(R.id.textView6);
+
         fgpar = (FragmentParrilla) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentParrilla);
         createFirtsButton();
-        useTimer = DesarrolloJuego.temporitzador;
 
-        stopTimer();
+
     }
 
     private void createFirtsButton(){
@@ -150,102 +139,7 @@ public class CasillaAdapter extends BaseAdapter {
         @Override
         public void onClick(View v) {
             fgpar.onItemClick(c,false);
-            if(isFirtsClick){
-                putBombs(c);
-                isFirtsClick = false;
-            }
-            if (useTimer && !isTimerStarted)
-            {
-                startTimer();
-                isTimerStarted = true;
-            }
-            if(c.isClickable()){
-                log(String.valueOf(c.getPosition()));
-                c.openBlock();
-                if (c.isMined())  gameOver("No, has perdido");
-                if(checkWin()) gameOver("Si, has ganado");
-            }else{
-                System.out.println("No es clicable");
-            }
         }
-    }
-    private void putBombs(Casilla casilla) {
-        int numBombs = DesarrolloJuego.totalNumberOfMines;
-        Casilla ca;
-        casillas.get(0).setNumBombes(numBombs);
-        casillas.get(0).updateBombs();
-        System.out.println("numBombs"+numBombs);
-        Random randomGenerator = new Random();
-        int i =0;
-        while (i<numBombs){
-            int randomInt = randomGenerator.nextInt(casillas.size());
-            ca = casillas.get(randomInt);
-            if(!ca.isMined() && !ca.equals(casilla) ) {
-                casillas.get(randomInt).setMined();
-                i+=1;
-            }
-        }
-        for (Casilla c: casillas){
-            c.calculateCellsSurrounding();
-        }
-    }
-    private boolean checkWin() {
-        for (Casilla c:casillas){
-            if(c.isCovered() && !c.isMined())  return false;
-        }
-        return true;
-    }
-
-    private void gameOver(String s) {
-        stopTimer();
-        int n = casillasCovered();
-        int b = bombasFlagged();
-        fin(s,n,b);
-
-
-    }
-
-    private int bombasFlagged() {
-        int i = 0;
-        for (Casilla c:casillas){
-            if(c.isMined() && c.isFlagged())  i+=1;
-        }
-        return i;
-    }
-
-    private int casillasCovered() {
-        int i = 0;
-        for (Casilla c:casillas){
-            if(!c.isCovered() && !c.isMined())  i+=1;
-        }
-        return i;
-    }
-
-
-    public void fin(String s, int n, int bo){
-        Activity a = (Activity) context;
-        Intent in = new Intent(context,Resultados.class);
-        Bundle b = new Bundle();
-
-        FragmentLog fglog = (FragmentLog) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog);
-        TextView tv;
-        if (fglog != null && fglog.isInLayout()) {
-            tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
-            b.putString("log", tv.getText().toString());
-        }else {
-            b.putString("alias", DesarrolloJuego.alias);
-            b.putInt("bombas", DesarrolloJuego.totalNumberOfMines);
-            b.putInt("casillas", DesarrolloJuego.numCasillas);
-            b.putInt("bombasTotales", DesarrolloJuego.numBombs);
-            b.putInt("porciento", DesarrolloJuego.porcientominas);
-            b.putInt("tiempo", secondsPassed);
-            b.putString("resultado", s);
-            b.putInt("casillasRestantes", n);
-            b.putInt("bombasRestantes", bo);
-        }
-        in.putExtras(b);
-        a.startActivity(in);
-        a.finish();
     }
 
 
@@ -265,72 +159,10 @@ public class CasillaAdapter extends BaseAdapter {
         @Override
         public boolean onLongClick(View v) { //Estados casilla "vacio" "bandera" "?"
             fgpar.onItemClick(c,true);
-            if(isFirtsClick){
-                putBombs(c);
-                isFirtsClick = false;
-                System.out.println("isFirstClick");
-            }
-            if (useTimer && !isTimerStarted)
-            {
-                startTimer();
-                isTimerStarted = true;
-            }
-            if(c.isCovered()) {
-                if (!c.isFlagged() && !c.isQuestionMarked()) {//Poso "bandera"
-                    if (c.getNumBombes() > 0) c.putFlag();
-                    else c.putQuestionMarked();
-                } else if (c.isFlagged()) {//Poso "?"
-                    c.putQuestionMarked();
-                } else {
-                    c.clean();
-                }
-            }
             return true;
         }
     }
-    public void startTimer()
-    {
-        if(secondsPassed==0) {
-            timer.removeCallbacks(updateTimeElasped);
-            // tell timer to run call back after 1 second
-            timer.postDelayed(updateTimeElasped, 1000);
-        }
-    }
 
-    public void stopTimer(){
-        // disable call backs
-        timer.removeCallbacks(updateTimeElasped);
-    }
-
-
-    // timer call back when timer is ticked
-    private Runnable updateTimeElasped = new Runnable()
-    {
-        public void run()
-        {
-            long currentMilliseconds = System.currentTimeMillis();
-            ++secondsPassed;
-
-            if (secondsPassed < 10) txtTimer.setText("00" + Integer.toString(secondsPassed));
-            else if (secondsPassed < 100) txtTimer.setText("0" + Integer.toString(secondsPassed));
-            else txtTimer.setText(Integer.toString(secondsPassed));
-
-            // add notification
-            timer.postAtTime(this, currentMilliseconds);
-            // notify to call back after 1 seconds
-            // basically to remain in the timer loop
-            timer.postDelayed(updateTimeElasped, 1000);
-        }
-    };
-    private void log(String text){
-        FragmentLog fglog = (FragmentLog) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog);
-        TextView tv;
-        if (fglog != null && fglog.isInLayout()) {
-            tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
-            tv.setText(tv.getText().toString() + "\n" + text);
-        }
-
-    }
 
 }
 

@@ -3,8 +3,6 @@ package com.example.especials.buscaminas;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,6 +27,7 @@ public class Resultados extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
+        Tablero.getTablero().clearTablero();
         Date fecha = new Date();
         Bundle b = getIntent().getExtras();
         log = b.getString("log");
