@@ -46,10 +46,9 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             CasillaAdapter.isFirtsClick = true;
             CasillaAdapter.secondsPassed = 0;
             startNewGame();
-            activarTablero();
-            TextView textView = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
-            textView.setText("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines);
         }
+        activarTablero();
+        if(savedInstanceState == null)log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines);
         textView = (TextView) findViewById(R.id.textoMinas);
         context = this;
 
@@ -94,6 +93,15 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
 
     @Override
     public void onCorreoSeleccionado(Casilla c) {
+
+    }
+    private void log(String text){
+        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
+        TextView tv;
+        if (fglog != null && fglog.isInLayout()) {
+            tv = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
+            tv.setText(tv.getText().toString() + "\n" + text);
+        }
 
     }
 }
