@@ -229,7 +229,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public void stopTimer(){
         // disable call backs
         if(secondsPassed != 0){
-            log("Tiempo usado " + secondsPassed + "\n");
+            log("Tiempo usado " + secondsPassed + "");
         }
         timer.removeCallbacks(updateTimeElasped);
     }
