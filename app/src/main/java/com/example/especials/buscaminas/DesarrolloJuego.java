@@ -115,10 +115,10 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     private void onClick(Casilla c) {
 
         if(c.isClickable()){
-            log(String.valueOf(c.getPosition()));
+            log("Casilla " + toCoordenate(c.getPosition()) + " abierta\n");
             c.openBlock();
-            if (c.isMined())  gameOver("No, has perdido");
-            if(checkWin()) gameOver("Si, has ganado");
+            if (c.isMined())  gameOver(false,c.getPosition());
+            if(checkWin()) gameOver(true,c.getPosition());
         }else{
             System.out.println("No es clicable");
         }
@@ -165,11 +165,11 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         return true;
     }
 
-    private void gameOver(String s) {
+    private void gameOver(boolean victoria, int position) {
         stopTimer();
         int n = casillasCovered();
         int b = bombasFlagged();
-        fin(s,n,b);
+        fin(victoria,n,b,position);
     }
 
     private int bombasFlagged() {
@@ -188,13 +188,15 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         return i;
     }
 
-    public void fin(String s, int n, int bo){
+    public void fin(boolean victoria, int n, int bo, int position){
         Intent in = new Intent(this,Resultados.class);
         Bundle b = new Bundle();
-
+        String s = (victoria) ? "Si, has ganado" : "No, has perdido" ;
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         TextView tv;
         if (fglog != null && fglog.isInLayout()) {
+            s = (victoria) ? "Has ganado" : "Has perdido." + " Bomba en casilla " + toCoordenate(position) ;
+            log(s + "\n");
             tv = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
             b.putString("log", tv.getText().toString());
         }else {
@@ -217,6 +219,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public void startTimer()
     {
         if(secondsPassed==0) {
+            log("Timer engegat\n");
             timer.removeCallbacks(updateTimeElasped);
             // tell timer to run call back after 1 second
             timer.postDelayed(updateTimeElasped, 1000);
@@ -254,4 +257,22 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         }
 
     }
+
+    private String toCoordenate(int position){
+        String s = "(";
+        s += getX(position)+", ";
+        s += getY(position) + ")";
+        return s;
+
+    }
+
+    private String getX(int position) {
+        return String.valueOf(position%numberOfColumnsInMineField);
+    }
+
+    private String getY(int position) {
+        return String.valueOf(position/numberOfColumnsInMineField);
+    }
+
+
 }
