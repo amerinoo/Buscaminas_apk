@@ -127,7 +127,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     private void onLongClick(Casilla c) {
         if(c.isCovered()) {
             if (!c.isFlagged() && !c.isQuestionMarked()) {//Poso "bandera"
-                if (c.getNumBombes() > 0) c.putFlag();
+                if (tablero.numBombes > 0) c.putFlag();
                 else c.putQuestionMarked();
             } else if (c.isFlagged()) {//Poso "?"
                 c.putQuestionMarked();
@@ -140,7 +140,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     private void putBombs(Casilla casilla) {
         int numBombs = totalNumberOfMines;
         Casilla ca;
-        tablero.casillas.get(0).setNumBombes(numBombs);
+        tablero.numBombes = numBombs;
         tablero.casillas.get(0).updateBombs();
         System.out.println("numBombs"+numBombs);
         Random randomGenerator = new Random();

@@ -23,7 +23,6 @@ public class Casilla {
     private List<Casilla> minesInSurrounding;
     private int position=-1;
     private Button imThis;
-    private static int numBombes;
 
     private int numberOfColumnsInMineField;
     private int numCasillas;
@@ -154,7 +153,7 @@ public class Casilla {
 
 
     public void updateBombs() {
-        String message = String.format(context.getString(R.string.infoBombes), numBombes);
+        String message = String.format(context.getString(R.string.infoBombes), tablero.numBombes);
         DesarrolloJuego.textView.setText(message);
     }
     private void destaparCeldasSinBombas() {
@@ -182,7 +181,7 @@ public class Casilla {
 
     public void putFlag(){
         imThis.setBackgroundResource(R.drawable.prova);
-        if (!isFlagged)numBombes-=1;
+        if (!isFlagged)tablero.numBombes-=1;
         setFlagged(true);
         imThis.setClickable(false);
 
@@ -192,7 +191,7 @@ public class Casilla {
     public void putQuestionMarked(){
         setBlockAsDisabled(false);
         imThis.setText("?");
-        if ((numBombes > 0 || isFlagged) && !isQuestionMarked) numBombes+=1;
+        if ((tablero.numBombes > 0 || isFlagged) && !isQuestionMarked) tablero.numBombes+=1;
         setFlagged(false);
         setQuestionMarked(true);
 
@@ -225,10 +224,6 @@ public class Casilla {
 
     public void setQuestionMarked(boolean isQuestionMarked) {
         this.isQuestionMarked = isQuestionMarked;
-    }
-    public int getNumBombes(){ return numBombes;}
-    public void setNumBombes(int numBombes){
-        Casilla.numBombes = numBombes;
     }
 
     public void addMineInSurrounding() {
