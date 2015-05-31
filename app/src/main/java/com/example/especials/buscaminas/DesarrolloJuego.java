@@ -29,7 +29,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
 
     public int secondsPassed;
     private boolean isTimerStarted = false;
-    public boolean isFirtsClick = true;
+    public boolean isFirtsClick = false;
     private Handler timer = new Handler();
     private TextView txtTimer;
     private boolean useTimer;
@@ -49,6 +49,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         totalNumberOfMines = (int)((porcientominas / 100.0) * numCasillas);
         if(savedInstanceState == null){
             isFirtsClick = true;
+            tablero.clearTablero();
             secondsPassed = 0;
             startNewGame();
             log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
