@@ -28,7 +28,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
 
 
     public int secondsPassed;
-    private boolean isTimerStarted = false;
+    private boolean isTimerStarted = true;
     public boolean isFirtsClick = false;
     private Handler timer = new Handler();
     private TextView txtTimer;
@@ -49,15 +49,24 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         totalNumberOfMines = (int)((porcientominas / 100.0) * numCasillas);
         if(savedInstanceState == null){
             isFirtsClick = true;
+            isTimerStarted=false;
             tablero.clearTablero();
             secondsPassed = 0;
             startNewGame();
             log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
         }else{
+            secondsPassed = savedInstanceState.getInt("secondsPassed");
             activarTablero();
+            startTimer();
         }
         textView = (TextView) findViewById(R.id.textoMinas);
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("secondsPassed",secondsPassed);
     }
 
     private void startNewGame()
@@ -115,7 +124,9 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     private void onClick(Casilla c) {
 
         if(c.isClickable()){
-            log("Casilla " + toCoordenate(c.getPosition()) + " abierta\n");
+            String s = "Casilla " + toCoordenate(c.getPosition()) + " abierta";
+            if(useTimer) s += " en el segundo " + secondsPassed;
+            log(s+"\n");
             c.openBlock();
             if (c.isMined())  gameOver(false,c.getPosition());
             if(checkWin()) gameOver(true,c.getPosition());
@@ -222,14 +233,14 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             log("Timer engegat\n");
             timer.removeCallbacks(updateTimeElasped);
             // tell timer to run call back after 1 second
-            timer.postDelayed(updateTimeElasped, 1000);
         }
+        timer.postDelayed(updateTimeElasped, 1000);
     }
 
     public void stopTimer(){
         // disable call backs
         if(secondsPassed != 0){
-            log("Tiempo usado " + secondsPassed + "");
+            log("Tiempo usado " + secondsPassed + "\n");
         }
         timer.removeCallbacks(updateTimeElasped);
     }

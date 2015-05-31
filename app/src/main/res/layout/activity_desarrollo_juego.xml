@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:name="com.example.especials.buscaminas.FragmentParrilla"
         android:id="@+id/fragmentParrilla"
-        android:layout_below="@id/textView6"
+        android:layout_below="@+id/textView6"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         tools:layout="@layout/fragmentparrilla" />
