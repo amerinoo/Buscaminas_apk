@@ -20,7 +20,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public int totalNumberOfMines;
     public int numCasillas;
 
-    public Context context;
 
 
 
@@ -50,20 +49,11 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             isFirtsClick = true;
             secondsPassed = 0;
             startNewGame();
-        }
-
-        if(savedInstanceState == null)firstLog();
+            log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
+        }else activarTablero();
         textView = (TextView) findViewById(R.id.textoMinas);
-        context = this;
 
     }
-
-    private void firstLog(){
-        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
-        if(fglog != null && fglog.isInLayout())
-            fglog.log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
-    }
-
 
     private void startNewGame()
     {
@@ -79,7 +69,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         try {
             GridView parrilla;
             FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
-
             parrilla = (GridView) fgpar.getView().findViewById(R.id.tablero);
             parrilla.setNumColumns(numberOfColumnsInMineField);
             CasillaAdapter adapter = new CasillaAdapter(this, tablero.casillas);
@@ -90,7 +79,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         }
 
     }
-
 
     private void createMineField() {
         Random randomGenerator = new Random();
@@ -167,6 +155,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             c.calculateCellsSurrounding();
         }
     }
+
     private boolean checkWin() {
         for (Casilla c: tablero.casillas){
             if(c.isCovered() && !c.isMined())  return false;
@@ -179,8 +168,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         int n = casillasCovered();
         int b = bombasFlagged();
         fin(s,n,b);
-
-
     }
 
     private int bombasFlagged() {
@@ -199,16 +186,14 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         return i;
     }
 
-
     public void fin(String s, int n, int bo){
-        Activity a = (Activity) context;
-        Intent in = new Intent(context,Resultados.class);
+        Intent in = new Intent(this,Resultados.class);
         Bundle b = new Bundle();
 
-        FragmentLog fglog = (FragmentLog) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog);
+        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         TextView tv;
         if (fglog != null && fglog.isInLayout()) {
-            tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
+            tv = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
             b.putString("log", tv.getText().toString());
         }else {
             b.putString("alias", alias);
@@ -223,8 +208,8 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         }
 
         in.putExtras(b);
-        a.startActivity(in);
-        a.finish();
+        startActivity(in);
+        finish();
     }
 
     public void startTimer()
@@ -241,12 +226,10 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         timer.removeCallbacks(updateTimeElasped);
     }
 
-
     // timer call back when timer is ticked
     private Runnable updateTimeElasped = new Runnable()
     {
-        public void run()
-        {
+        public void run(){
             long currentMilliseconds = System.currentTimeMillis();
             ++secondsPassed;
 
@@ -261,12 +244,11 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             timer.postDelayed(updateTimeElasped, 1000);
         }
     };
+
     private void log(String text){
-        FragmentLog fglog = (FragmentLog) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog);
-        TextView tv;
+        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         if (fglog != null && fglog.isInLayout()) {
-            tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
-            tv.setText(tv.getText().toString() + "\n" + text);
+            fglog.log(text);
         }
 
     }
