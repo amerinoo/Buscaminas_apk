@@ -1,5 +1,6 @@
 package com.example.especials.buscaminas;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ public class Casilla {
 
     private final int bombStyle;
     private final Tablero tablero;
+    private final Context context;
     private boolean isCovered; // is block covered yet
     private boolean isMined; // does the block has a mine underneath
     private boolean isFlagged; // is block flagged as a potential mine
@@ -27,12 +29,13 @@ public class Casilla {
     private int numCasillas;
 
 
-    public Casilla(int bombStyle) {
+    public Casilla(int bombStyle, int numberOfColumnsInMineField, int numCasillas, Context context) {
         this.isMined = false;
         this.bombStyle = bombStyle;
         tablero = Tablero.getTablero();
-        this.numberOfColumnsInMineField = DesarrolloJuego.numberOfColumnsInMineField;
-        this.numCasillas = DesarrolloJuego.numCasillas;
+        this.numberOfColumnsInMineField = numberOfColumnsInMineField;
+        this.numCasillas = numCasillas;
+        this.context = context;
 
         minesInSurrounding = new ArrayList<>();
         setDefaults();
@@ -151,7 +154,7 @@ public class Casilla {
 
 
     public void updateBombs() {
-        String message = String.format(DesarrolloJuego.context.getString(R.string.infoBombes), numBombes);
+        String message = String.format(context.getString(R.string.infoBombes), numBombes);
         DesarrolloJuego.textView.setText(message);
     }
     private void destaparCeldasSinBombas() {
@@ -253,7 +256,7 @@ public class Casilla {
         return imThis.isClickable();
     }
     private void showToast(String text) {
-        Toast.makeText(DesarrolloJuego.context, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

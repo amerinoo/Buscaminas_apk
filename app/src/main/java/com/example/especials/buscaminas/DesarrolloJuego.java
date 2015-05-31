@@ -13,25 +13,25 @@ import java.util.Random;
 
 public class DesarrolloJuego extends Activity implements FragmentParrilla.CasillaListener{
     private Bundle b;
-    public static int porcientominas;
-    public static String alias;
+    public int porcientominas;
+    public String alias;
 
-    public static int numberOfColumnsInMineField;
-    public static int totalNumberOfMines;
-    public static int numCasillas;
+    public int numberOfColumnsInMineField;
+    public int totalNumberOfMines;
+    public int numCasillas;
 
-    public static Context context;
+    public Context context;
 
 
 
     static TextView textView;
-    public static int numBombs;
+    public int numBombs;
     private Tablero tablero;
 
 
     public int secondsPassed = 0;
     private boolean isTimerStarted = false;
-    public static boolean isFirtsClick = true;
+    public boolean isFirtsClick = true;
     private Handler timer = new Handler();
     private TextView txtTimer;
     private boolean useTimer;
@@ -100,7 +100,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         else if (randomInt == 1) img = R.drawable.crazy_bomb;
         else  img = R.drawable.super_troll_bomb;
         for(int i = 0; i < numCasillas; i++){
-                Casilla c = new Casilla(img);
+                Casilla c = new Casilla(img,numberOfColumnsInMineField,numCasillas,this);
                 c.setPosition(i);
                 tablero.casillas.add(c);
         }
@@ -148,7 +148,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     }
 
     private void putBombs(Casilla casilla) {
-        int numBombs = DesarrolloJuego.totalNumberOfMines;
+        int numBombs = totalNumberOfMines;
         Casilla ca;
         tablero.casillas.get(0).setNumBombes(numBombs);
         tablero.casillas.get(0).updateBombs();
@@ -211,16 +211,17 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             tv = ((TextView) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
             b.putString("log", tv.getText().toString());
         }else {
-            b.putString("alias", DesarrolloJuego.alias);
-            b.putInt("bombas", DesarrolloJuego.totalNumberOfMines);
-            b.putInt("casillas", DesarrolloJuego.numCasillas);
-            b.putInt("bombasTotales", DesarrolloJuego.numBombs);
-            b.putInt("porciento", DesarrolloJuego.porcientominas);
+            b.putString("alias", alias);
+            b.putInt("bombas", totalNumberOfMines);
+            b.putInt("casillas", numCasillas);
+            b.putInt("bombasTotales", numBombs);
+            b.putInt("porciento", porcientominas);
             b.putInt("tiempo", secondsPassed);
             b.putString("resultado", s);
             b.putInt("casillasRestantes", n);
             b.putInt("bombasRestantes", bo);
         }
+
         in.putExtras(b);
         a.startActivity(in);
         a.finish();
