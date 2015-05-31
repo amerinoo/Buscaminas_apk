@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 public class FragmentParrilla extends Fragment {
 
 
-
+    private CasillaListener listener;
 
 
     @Override
@@ -25,7 +25,33 @@ public class FragmentParrilla extends Fragment {
 
     }
 
+    public void onItemClick(Casilla c, boolean longClick) {
+        if(listener != null)
+            listener.onCasillaSeleccionada(c,longClick);
+
+    }
+
+    @Override
+    public void onAttach(Activity ac) {
+        super.onAttach(ac);
+        try {
+
+            listener = (CasillaListener) ac;
+        }
+        catch (ClassCastException e) {
+            throw new ClassCastException(ac.toString() + " must implement CasillaListener");
+        }
+    }
 
 
 
+
+    public interface CasillaListener {
+        void onCasillaSeleccionada(Casilla c, boolean longClick);
+    }
+
+    public void setCasillaListener(CasillaListener listener) {
+
+        this.listener = listener;
+    }
 }

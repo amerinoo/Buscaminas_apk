@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class DesarrolloJuego extends Activity{
+public class DesarrolloJuego extends Activity implements FragmentParrilla.CasillaListener{
     private Bundle b;
     public static List<Casilla> casillas;
     public static int porcientominas;
@@ -95,4 +95,8 @@ public class DesarrolloJuego extends Activity{
 
     }
 
+    @Override
+    public void onCasillaSeleccionada(Casilla c, boolean longClick) {
+
+    }
 }

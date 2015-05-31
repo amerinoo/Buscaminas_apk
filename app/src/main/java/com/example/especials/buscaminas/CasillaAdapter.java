@@ -31,10 +31,13 @@ public class CasillaAdapter extends BaseAdapter {
     public static boolean isFirtsClick = true;
     private boolean useTimer;
 
+    FragmentParrilla fgpar;
+
     public CasillaAdapter(Context context, List<Casilla> casillas) {
         this.casillas = casillas;
         this.context=context;
         txtTimer = (TextView)((Activity) context).getWindow().findViewById(R.id.textView6);
+        fgpar = (FragmentParrilla) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentParrilla);
         createFirtsButton();
         useTimer = DesarrolloJuego.temporitzador;
 
@@ -146,7 +149,7 @@ public class CasillaAdapter extends BaseAdapter {
          */
         @Override
         public void onClick(View v) {
-
+            fgpar.onItemClick(c,false);
             if(isFirtsClick){
                 putBombs(c);
                 isFirtsClick = false;
@@ -261,6 +264,7 @@ public class CasillaAdapter extends BaseAdapter {
          */
         @Override
         public boolean onLongClick(View v) { //Estados casilla "vacio" "bandera" "?"
+            fgpar.onItemClick(c,true);
             if(isFirtsClick){
                 putBombs(c);
                 isFirtsClick = false;
@@ -293,8 +297,7 @@ public class CasillaAdapter extends BaseAdapter {
         }
     }
 
-    public void stopTimer()
-    {
+    public void stopTimer(){
         // disable call backs
         timer.removeCallbacks(updateTimeElasped);
     }
@@ -308,18 +311,9 @@ public class CasillaAdapter extends BaseAdapter {
             long currentMilliseconds = System.currentTimeMillis();
             ++secondsPassed;
 
-            if (secondsPassed < 10)
-            {
-                txtTimer.setText("00" + Integer.toString(secondsPassed));
-            }
-            else if (secondsPassed < 100)
-            {
-                txtTimer.setText("0" + Integer.toString(secondsPassed));
-            }
-            else
-            {
-                txtTimer.setText(Integer.toString(secondsPassed));
-            }
+            if (secondsPassed < 10) txtTimer.setText("00" + Integer.toString(secondsPassed));
+            else if (secondsPassed < 100) txtTimer.setText("0" + Integer.toString(secondsPassed));
+            else txtTimer.setText(Integer.toString(secondsPassed));
 
             // add notification
             timer.postAtTime(this, currentMilliseconds);
