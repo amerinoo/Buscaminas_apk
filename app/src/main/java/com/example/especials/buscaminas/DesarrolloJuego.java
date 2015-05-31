@@ -2,21 +2,15 @@ package com.example.especials.buscaminas;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
 public class DesarrolloJuego extends Activity implements FragmentParrilla.CasillaListener{
     private Bundle b;
-    public static List<Casilla> casillas;
     public static int porcientominas;
     public static String alias;
 
@@ -31,6 +25,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     static TextView textView;
     public static boolean temporitzador;
     public static int numBombs;
+    private Tablero tablero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,40 +42,46 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             CasillaAdapter.secondsPassed = 0;
             startNewGame();
         }
-        activarTablero();
+
         if(savedInstanceState == null)firstLog();
         textView = (TextView) findViewById(R.id.textoMinas);
         context = this;
 
     }
+
     private void firstLog(){
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         if(fglog != null && fglog.isInLayout())
             fglog.log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
     }
-    private void activarTablero(){
-        GridView tablero;
-        FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
 
-        tablero = (GridView) fgpar.getView().findViewById(R.id.tablero);
-        tablero.setNumColumns(numberOfColumnsInMineField);
-        CasillaAdapter adapter = new CasillaAdapter(this,casillas);
-        tablero.setAdapter(adapter);
-
-
-    }
 
     private void startNewGame()
     {
-        // plant mines and do rest of the calculations
+        tablero = Tablero.getTablero();
         createMineField();
         totalNumberOfMines = (int)((porcientominas / 100.0) * numCasillas);
+        activarTablero();
+    }
+
+    private void activarTablero() {
+        try {
+            GridView parrilla;
+            FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
+
+            parrilla = (GridView) fgpar.getView().findViewById(R.id.tablero);
+            parrilla.setNumColumns(numberOfColumnsInMineField);
+            CasillaAdapter adapter = new CasillaAdapter(this, tablero.casillas);
+            parrilla.setAdapter(adapter);
+        } catch (NullPointerException n){
+            n.printStackTrace();
+            throw new NullPointerException();
+        }
+
     }
 
 
-
     private void createMineField() {
-        casillas = new ArrayList<>();
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(3);
         int img;
@@ -90,7 +91,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         for(int i = 0; i < numCasillas; i++){
                 Casilla c = new Casilla(img);
                 c.setPosition(i);
-                casillas.add(c);
+                tablero.casillas.add(c);
         }
 
     }

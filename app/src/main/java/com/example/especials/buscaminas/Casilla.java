@@ -1,27 +1,17 @@
 package com.example.especials.buscaminas;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.AttributeSet;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.especials.buscaminas.DesarrolloJuego;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Especials on 27/03/2015.
- */
+
 public class Casilla {
 
     private final int bombStyle;
+    private final Tablero tablero;
     private boolean isCovered; // is block covered yet
     private boolean isMined; // does the block has a mine underneath
     private boolean isFlagged; // is block flagged as a potential mine
@@ -31,7 +21,6 @@ public class Casilla {
     private List<Casilla> minesInSurrounding;
     private int position=-1;
     private Button imThis;
-    private List<Casilla> casillas;
     private static int numBombes;
 
     private int numberOfColumnsInMineField;
@@ -41,9 +30,9 @@ public class Casilla {
     public Casilla(int bombStyle) {
         this.isMined = false;
         this.bombStyle = bombStyle;
-        this.casillas = DesarrolloJuego.casillas;
-        numberOfColumnsInMineField = DesarrolloJuego.numberOfColumnsInMineField;
-        numCasillas = DesarrolloJuego.numCasillas;
+        tablero = Tablero.getTablero();
+        this.numberOfColumnsInMineField = DesarrolloJuego.numberOfColumnsInMineField;
+        this.numCasillas = DesarrolloJuego.numCasillas;
 
         minesInSurrounding = new ArrayList<>();
         setDefaults();
@@ -106,7 +95,7 @@ public class Casilla {
     }
 
     private void putCellSurrounding(int pos){
-        Casilla casilla =  casillas.get(pos);
+        Casilla casilla =  tablero.casillas.get(pos);
         if(isMined)casilla.addMineInSurrounding();
         minesInSurrounding.add(casilla);
     }
@@ -236,10 +225,7 @@ public class Casilla {
     }
     public int getNumBombes(){ return numBombes;}
     public void setNumBombes(int numBombes){
-        this.numBombes = numBombes;
-    }
-    public int getNumberOfMinesInSurrounding() {
-        return numberOfMinesInSurrounding;
+        Casilla.numBombes = numBombes;
     }
 
     public void addMineInSurrounding() {
@@ -287,13 +273,9 @@ public class Casilla {
         if (numberOfColumnsInMineField != casilla.numberOfColumnsInMineField) return false;
         if (numberOfMinesInSurrounding != casilla.numberOfMinesInSurrounding) return false;
         if (position != casilla.position) return false;
-        if (casillas != null ? !casillas.equals(casilla.casillas) : casilla.casillas != null)
-            return false;
         if (imThis != null ? !imThis.equals(casilla.imThis) : casilla.imThis != null) return false;
-        if (minesInSurrounding != null ? !minesInSurrounding.equals(casilla.minesInSurrounding) : casilla.minesInSurrounding != null)
-            return false;
+        return !(minesInSurrounding != null ? !minesInSurrounding.equals(casilla.minesInSurrounding) : casilla.minesInSurrounding != null);
 
-        return true;
     }
 
 }
