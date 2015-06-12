@@ -32,4 +32,8 @@ public class Partida {
         this.resultado = resultado;
         this.bomba = bomba;
     }
+
+    public String getLog(){
+        return null;
+    }
 }

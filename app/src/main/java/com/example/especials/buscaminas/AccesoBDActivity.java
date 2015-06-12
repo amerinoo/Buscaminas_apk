@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class AccesoBDActivity extends Activity {
+public class AccesoBDActivity extends Activity implements QueryFrag.PartidasListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,4 +22,15 @@ public class AccesoBDActivity extends Activity {
         finish();
     }
 
+    @Override
+    public void onPartidaSeleccionada(Partida c) {
+        RegistroFrag registroFrag = (RegistroFrag) getFragmentManager().findFragmentById(R.id.fragmentRegistro);
+        if (registroFrag != null && registroFrag.isInLayout()){
+            registroFrag.mostrarRegistro(c.getLog());
+        }else{
+            Intent i = new Intent(this, DetalleActivity.class);
+            i.putExtra(DetalleActivity.EXTRA_TEXTO,c.getLog());
+            startActivity(i);
+        }
+    }
 }

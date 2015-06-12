@@ -8,6 +8,9 @@ import android.view.MenuItem;
 
 public class DetalleActivity extends Activity {
 
+    public static final String EXTRA_TEXTO =
+            "log";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

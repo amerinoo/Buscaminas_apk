@@ -90,7 +90,7 @@ public class QueryFrag extends Fragment {
         @Override
         public Partida getItem(int position) {
             Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
-            c.moveToPosition(position);
+            c.moveToPosition(position); // retorna un boolean
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             int i = 0;
             try {
