@@ -13,12 +13,23 @@ public class Partida {
     public int porCientoMinas;
     public int tiempo;
     public String resultado;
-    public Casilla bomba;
+    public String bomba;
 
 
     public Partida(String alias, int porCientoMinas, int numeroCasillas) {
         this.alias = alias;
         this.porCientoMinas = porCientoMinas;
         this.numeroCasillas = numeroCasillas;
+    }
+
+    public Partida(String alias, Date fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba) {
+        this.alias = alias;
+        this.fecha = fecha;
+        this.numeroCasillas = numeroCasillas;
+        this.numeroCasillasRestantes = numeroCasillasRestantes;
+        this.porCientoMinas = porCientoMinas;
+        this.tiempo = tiempo;
+        this.resultado = resultado;
+        this.bomba = bomba;
     }
 }

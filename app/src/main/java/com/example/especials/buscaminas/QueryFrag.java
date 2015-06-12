@@ -2,6 +2,8 @@ package com.example.especials.buscaminas;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +13,29 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class QueryFrag extends Fragment {
 
     private ListView lstListado;
     private PartidasListener listener;
 
+    private SQLiteDatabase db;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        UsuariosSQLiteHelper usdbh =
+                new UsuariosSQLiteHelper(getActivity(), "DBPartidas", null, 1);
+        db = usdbh.getReadableDatabase();
+
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -68,7 +87,28 @@ public class QueryFrag extends Fragment {
             this.context = fragmentListado.getActivity();
         }
 
+        @Override
+        public Partida getItem(int position) {
+            Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
+            c.moveToPosition(position);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            int i = 0;
+            try {
 
+                String alias = c.getString(i); i++;
+                Date fecha = format.parse(c.getString(i)); i++;
+                int numeroCasillas = c.getInt(i); i++;
+                int numeroCasillasRestantes = c.getInt(i); i++;
+                int porCientoMinas = c.getInt(i); i++;
+                int tiempo = c.getInt(i); i++;
+                String resultado = c.getString(i); i++;
+                String bomba = c.getString(i); i++;
+                return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = context.getLayoutInflater();
