@@ -24,6 +24,12 @@ public class MainActivity extends Activity {
         startActivity(in);
         finish();
     }
+
+    public void goConsultarBD(View v){
+        Intent in = new Intent(MainActivity.this,AccesoBDActivity.class);
+        startActivity(in);
+        finish();
+    }
     public void goSalir(View v){
         finish();
     }

@@ -32,6 +32,14 @@
             android:name=".Resultados"
             android:label="@string/title_activity_resultados" >
         </activity>
+        <activity
+            android:name=".AccesoBDActivity"
+            android:label="@string/title_activity_acceso_bd" >
+        </activity>
+        <activity
+            android:name=".DetalleActivity"
+            android:label="@string/title_activity_detalle" >
+        </activity>
     </application>
 
 </manifest>

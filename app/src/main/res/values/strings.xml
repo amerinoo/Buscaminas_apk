@@ -17,4 +17,9 @@
     <string name="alias">Nombre Usuario</string>
     <string name="infoBombes">%d bombas restantes</string>
     <string name="consultarPartidas">Consultar Partidas</string>
+    <string name="title_activity_acceso_bd">AccesoBDActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_detalle">DetalleActivity</string>
 </resources>

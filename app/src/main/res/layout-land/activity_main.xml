@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp">
+
 
         <Button
             android:layout_width="wrap_content"
@@ -29,6 +31,13 @@
             android:id="@+id/button_empezar_partida"
             android:layout_gravity="center_horizontal"
             android:onClick="goEmpezarPartida"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/consultarPartidas"
+            android:layout_gravity="center_horizontal"
+            android:onClick="goConsultarBD"
+            android:id="@+id/button" />
 
         <Button
             android:layout_width="wrap_content"

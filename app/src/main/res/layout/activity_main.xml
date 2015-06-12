@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/consultarPartidas"
             android:layout_gravity="center_horizontal"
+            android:onClick="goConsultarBD"
             android:id="@+id/button" />
 
         <Button
