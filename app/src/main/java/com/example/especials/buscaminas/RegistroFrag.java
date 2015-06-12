@@ -1,9 +1,24 @@
 package com.example.especials.buscaminas;
 
-import android.app.ListFragment;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * Created by Especials on 12/06/2015.
- */
-public class RegistroFrag extends ListFragment {
+public class RegistroFrag extends Fragment {
+
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.registrofrag, container, false);
+    }
+
+    public void mostrarRegistro(String texto) {
+        TextView txtDetalle = (TextView) getView().findViewById(R.id.textViewRegistroFrag);
+        txtDetalle.setText(texto);
+    }
 }
