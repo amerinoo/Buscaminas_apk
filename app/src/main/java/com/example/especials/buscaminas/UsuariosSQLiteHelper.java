@@ -29,7 +29,6 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Se ejecuta la sentencia SQL de creaci�n de la tabla
         db.execSQL(sqlCreate);
-
         //Generamos los datos de muestra
         String alias = new String("Albert");
         String fecha = new String("fecha");
@@ -42,7 +41,7 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
 
 
         //Insertamos los datos en la tabla Clientes
-        db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, reultado, bomba) " +
+        db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba) " +
                 "VALUES ('" + alias + "', '" + fecha +"', '" + numeroCasillas + "', '" + numeroCasillasRestantes + "', '" + porCientoMinas + "', '" + tiempo + "', '" + resultado + "', '" + bomba + "')");
     }
 

@@ -30,7 +30,7 @@ public class QueryFrag extends Fragment {
         super.onCreate(savedInstanceState);
 
         UsuariosSQLiteHelper usdbh =
-                new UsuariosSQLiteHelper(getActivity(), "DBPartidas", null, 1);
+                new UsuariosSQLiteHelper(getActivity(), "DBPartidas", null, 2);
         db = usdbh.getReadableDatabase();
 
 
@@ -97,22 +97,28 @@ public class QueryFrag extends Fragment {
             Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
             c.moveToPosition(position); // retorna un boolean
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            int i = 0;
-            try {
+            System.out.println("Comenca el try!!!");
+            int i = 1;
 
                 String alias = c.getString(i); i++;
-                Date fecha = format.parse(c.getString(i)); i++;
+                System.out.println("Alias " + alias);
+                Date fecha = null;i++; //format.parse(c.getString(i)); i++;
+                //System.out.println(fecha.toString());
                 int numeroCasillas = c.getInt(i); i++;
+                System.out.println(numeroCasillas);
                 int numeroCasillasRestantes = c.getInt(i); i++;
+                System.out.println(numeroCasillasRestantes);
                 int porCientoMinas = c.getInt(i); i++;
+                System.out.println(porCientoMinas);
                 int tiempo = c.getInt(i); i++;
+                System.out.println(tiempo);
                 String resultado = c.getString(i); i++;
+                System.out.println(resultado);
                 String bomba = c.getString(i); i++;
+                System.out.println(bomba);
                 return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return null;
+
+
         }
 
 
@@ -125,10 +131,10 @@ public class QueryFrag extends Fragment {
             lblAlias.setText(p.alias);
 
             TextView lblFechaHora = (TextView)item.findViewById(R.id.queryFechaHora);
-            //lblFechaHora.setText(datos[position].getAsunto());
+            //lblFechaHora.setText(p.fecha.toString());
 
-            TextView lblDetalle = (TextView)item.findViewById(R.id.queryFechaHora);
-            //lblDetalle.setText(datos[position].getDetalle());
+            TextView lblDetalle = (TextView)item.findViewById(R.id.queryDetalle);
+            //lblDetalle.setText(p.resultado);
 
 
             return(item);
