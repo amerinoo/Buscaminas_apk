@@ -15,6 +15,8 @@ public class DetalleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+        RegistroFrag registroFrag = (RegistroFrag) getFragmentManager().findFragmentById(R.id.fragmentRegistro);
+        registroFrag.mostrarRegistro(getIntent().getStringExtra(EXTRA_TEXTO));
     }
 
 

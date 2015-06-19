@@ -7,4 +7,12 @@
     tools:context="com.example.especials.buscaminas.DetalleActivity">
 
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.example.especials.buscaminas.RegistroFrag"
+        android:id="@+id/fragmentRegistro"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/registrofrag" />
 </RelativeLayout>
