@@ -88,6 +88,11 @@ public class QueryFrag extends Fragment {
         }
 
         @Override
+        public int getCount() {
+            return db.rawQuery("SELECT * FROM Partidas", null).getCount();
+        }
+
+        @Override
         public Partida getItem(int position) {
             Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
             c.moveToPosition(position); // retorna un boolean
@@ -110,12 +115,14 @@ public class QueryFrag extends Fragment {
             return null;
         }
 
+
+
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = context.getLayoutInflater();
             View item = inflater.inflate(R.layout.listitem_query, null);
-
+            Partida p = getItem(position);
             TextView lblAlias = (TextView)item.findViewById(R.id.queryAlias);
-            //lblAlias.setText(datos[position].getDe());
+            lblAlias.setText(p.alias);
 
             TextView lblFechaHora = (TextView)item.findViewById(R.id.queryFechaHora);
             //lblFechaHora.setText(datos[position].getAsunto());
@@ -132,7 +139,7 @@ public class QueryFrag extends Fragment {
         void onPartidaSeleccionada(Partida c);
     }
 
-    public void setCorreosListener(PartidasListener listener) {
+    public void setPartidasListener(PartidasListener listener) {
 
         this.listener = listener;
     }
