@@ -76,7 +76,24 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         createMineField();
         activarTablero();
         stopTimer();
+        partida = tablero.partida;
+        /*
+            public String alias;
+            public String fecha;
+            public int numeroCasillas;
+            public int numeroCasillasRestantes;
+            public int porCientoMinas;
+            public int tiempo;
+            public String resultado;
+            public String bomba;
+            private String log = "";
+         */
+        partida.alias = alias;
+        partida.numeroCasillas = numCasillas;
+        partida.porCientoMinas = porcientominas;
+
     }
+
 
     private void activarTablero() {
         try {
@@ -268,10 +285,12 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     };
 
     private void log(String text){
+        partida.setToLog(text);
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         if (fglog != null && fglog.isInLayout()) {
-            fglog.log(text);
+            fglog.log(partida.getLog());
         }
+
 
     }
 

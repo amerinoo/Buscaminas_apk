@@ -16,7 +16,8 @@ public class Tablero {
 
     private Tablero(){
         casillas  = new ArrayList<>();
+        partida = new Partida();
     }
 
-    public void clearTablero(){casillas.clear();}
+    public void clearTablero(){casillas.clear(); partida = new Partida();}
 }

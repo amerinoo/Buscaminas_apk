@@ -96,14 +96,13 @@ public class QueryFrag extends Fragment {
         public Partida getItem(int position) {
             Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
             c.moveToPosition(position); // retorna un boolean
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             System.out.println("Comenca el try!!!");
             int i = 1;
 
                 String alias = c.getString(i); i++;
                 System.out.println("Alias " + alias);
-                Date fecha = null;i++; //format.parse(c.getString(i)); i++;
-                //System.out.println(fecha.toString());
+                String fecha = c.getString(i); i++;
+                System.out.println(fecha.toString());
                 int numeroCasillas = c.getInt(i); i++;
                 System.out.println(numeroCasillas);
                 int numeroCasillasRestantes = c.getInt(i); i++;
@@ -131,7 +130,7 @@ public class QueryFrag extends Fragment {
             lblAlias.setText(p.alias);
 
             TextView lblFechaHora = (TextView)item.findViewById(R.id.queryFechaHora);
-            //lblFechaHora.setText(p.fecha.toString());
+            lblFechaHora.setText(p.fecha);
 
             TextView lblDetalle = (TextView)item.findViewById(R.id.queryDetalle);
             lblDetalle.setText(p.resultado);

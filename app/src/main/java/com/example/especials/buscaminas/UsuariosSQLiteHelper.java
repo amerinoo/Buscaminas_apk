@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
 
     //Sentencia SQL para crear la tabla de Usuarios
@@ -29,20 +32,6 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Se ejecuta la sentencia SQL de creaci�n de la tabla
         db.execSQL(sqlCreate);
-        //Generamos los datos de muestra
-        String alias = new String("Albert");
-        String fecha = new String();
-        int numeroCasillas = 20;
-        int numeroCasillasRestantes = 0;
-        int porCientoMinas = 25;
-        int tiempo = 1;
-        String resultado = new String("Victoria");
-        String bomba = null;
-
-
-        //Insertamos los datos en la tabla Clientes
-        db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba) " +
-                "VALUES ('" + alias + "', '" + fecha +"', '" + numeroCasillas + "', '" + numeroCasillasRestantes + "', '" + porCientoMinas + "', '" + tiempo + "', '" + resultado + "', '" + bomba + "')");
     }
 
 

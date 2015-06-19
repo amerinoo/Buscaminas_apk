@@ -6,24 +6,19 @@ import java.util.Date;
  * Created by Especials on 12/06/2015.
  */
 public class Partida {
-    public String alias;
-    public Date fecha;
-    public int numeroCasillas;
-    public int numeroCasillasRestantes;
-    public int porCientoMinas;
-    public int tiempo;
-    public String resultado;
-    public String bomba;
+    public String alias = null;
+    public String fecha = null;
+    public int numeroCasillas = -1;
+    public int numeroCasillasRestantes = -1;
+    public int porCientoMinas = -1;
+    public int tiempo = -1;
+    public String resultado = null;
+    public String bomba = null;
     private String log = "";
 
+    public Partida() {}
 
-    public Partida(String alias, int porCientoMinas, int numeroCasillas) {
-        this.alias = alias;
-        this.porCientoMinas = porCientoMinas;
-        this.numeroCasillas = numeroCasillas;
-    }
-
-    public Partida(String alias, Date fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba) {
+    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba) {
         this.alias = alias;
         this.fecha = fecha;
         this.numeroCasillas = numeroCasillas;
@@ -36,19 +31,31 @@ public class Partida {
 
     }
 
+    public Partida(Partida p){
+        this.alias = p.alias;
+        this.fecha = p.fecha;
+        this.numeroCasillas = p.numeroCasillas;
+        this.numeroCasillasRestantes = p.numeroCasillasRestantes;
+        this.porCientoMinas = p.porCientoMinas;
+        this.tiempo = p.tiempo;
+        this.resultado = p.resultado;
+        this.bomba = p.bomba;
+        this.log = p.getLog();
+    }
+
     private void doLogDB() {
-        setLog("Alias - " + alias + "\n");
-        setLog("Fecha - " + fecha + "\n");
-        setLog("#Casillas - " + numeroCasillas + "\n");
-        setLog("#Casillas restantes" + numeroCasillasRestantes + "\n");
-        setLog("% Minas - " + porCientoMinas + "\n");
-        setLog("Resultado - " + resultado + "\n");
-        setLog("Bomba - " + bomba + "\n");
+        setToLog("Alias - " + alias + "\n");
+        setToLog("Fecha - " + fecha + "\n");
+        setToLog("#Casillas - " + numeroCasillas + "\n");
+        setToLog("#Casillas restantes" + numeroCasillasRestantes + "\n");
+        setToLog("% Minas - " + porCientoMinas + "\n");
+        setToLog("Resultado - " + resultado + "\n");
+        setToLog("Bomba - " + bomba + "\n");
     }
 
     public String getLog(){
         return log;
     }
 
-    public void setLog(String text){log += text;}
+    public void setToLog(String text){log += text;}
 }
