@@ -31,12 +31,12 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(sqlCreate);
         //Generamos los datos de muestra
         String alias = new String("Albert");
-        String fecha = new String("fecha");
+        String fecha = new String();
         int numeroCasillas = 20;
         int numeroCasillasRestantes = 0;
         int porCientoMinas = 25;
         int tiempo = 1;
-        String resultado = new String("victoria");
+        String resultado = new String("Victoria");
         String bomba = null;
 
 

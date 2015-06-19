@@ -134,7 +134,7 @@ public class QueryFrag extends Fragment {
             //lblFechaHora.setText(p.fecha.toString());
 
             TextView lblDetalle = (TextView)item.findViewById(R.id.queryDetalle);
-            //lblDetalle.setText(p.resultado);
+            lblDetalle.setText(p.resultado);
 
 
             return(item);

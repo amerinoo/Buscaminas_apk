@@ -14,7 +14,7 @@ public class Partida {
     public int tiempo;
     public String resultado;
     public String bomba;
-    private String log;
+    private String log = "";
 
 
     public Partida(String alias, int porCientoMinas, int numeroCasillas) {
@@ -32,6 +32,18 @@ public class Partida {
         this.tiempo = tiempo;
         this.resultado = resultado;
         this.bomba = bomba;
+        doLogDB();
+
+    }
+
+    private void doLogDB() {
+        setLog("Alias - " + alias + "\n");
+        setLog("Fecha - " + fecha + "\n");
+        setLog("#Casillas - " + numeroCasillas + "\n");
+        setLog("#Casillas restantes" + numeroCasillasRestantes + "\n");
+        setLog("% Minas - " + porCientoMinas + "\n");
+        setLog("Resultado - " + resultado + "\n");
+        setLog("Bomba - " + bomba + "\n");
     }
 
     public String getLog(){
