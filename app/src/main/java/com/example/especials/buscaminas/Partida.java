@@ -14,6 +14,7 @@ public class Partida {
     public int tiempo;
     public String resultado;
     public String bomba;
+    private String log;
 
 
     public Partida(String alias, int porCientoMinas, int numeroCasillas) {
@@ -34,6 +35,8 @@ public class Partida {
     }
 
     public String getLog(){
-        return null;
+        return log;
     }
+
+    public void setLog(String text){log += text;}
 }

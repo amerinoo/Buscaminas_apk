@@ -22,7 +22,7 @@ public class FragmentLog extends Fragment {
     public void log(String text){
 
         TextView tv = ((TextView) getView().findViewById(R.id.TxtLog));
-        tv.setText(tv.getText().toString() + text);
+        tv.setText(text);
 
     }
 }

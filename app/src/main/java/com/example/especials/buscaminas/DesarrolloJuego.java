@@ -19,6 +19,8 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public int totalNumberOfMines;
     public int numCasillas;
 
+    public Partida partida;
+
 
 
 
@@ -84,6 +86,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             parrilla.setNumColumns(numberOfColumnsInMineField);
             CasillaAdapter adapter = new CasillaAdapter(this, tablero.casillas);
             parrilla.setAdapter(adapter);
+            partida = tablero.partida;
         } catch (NullPointerException n){
             n.printStackTrace();
             throw new NullPointerException();

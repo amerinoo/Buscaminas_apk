@@ -6,6 +6,7 @@ import java.util.List;
 public class Tablero {
     private static Tablero tablero;
     public List<Casilla> casillas;
+    public Partida partida;
     public int numBombes;
 
     public static Tablero getTablero(){
