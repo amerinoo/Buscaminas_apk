@@ -52,7 +52,7 @@ public class QueryFrag extends Fragment {
         super.onActivityCreated(state);
 
         lstListado = (ListView)getView().findViewById(R.id.listViewQueryFrag);
-        adapter = new AdaptadorPartidas(this);
+        adapter = new AdaptadorPartidas(this,"SELECT * FROM " + UsuariosSQLiteHelper.nameTable,null);
         lstListado.setAdapter(adapter);
         lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,21 +83,26 @@ public class QueryFrag extends Fragment {
     class AdaptadorPartidas extends ArrayAdapter<Partida> {
 
         Activity context;
+        String rawQuery;
+        String[] args;
 
-        AdaptadorPartidas(QueryFrag fragmentListado) {
+        AdaptadorPartidas(QueryFrag fragmentListado,String rawQuery, String[] args) {
 
             super(fragmentListado.getActivity(),R.layout.listitem_query);
             this.context = fragmentListado.getActivity();
+            this.rawQuery = rawQuery;
+            this.args = args;
+
         }
 
         @Override
         public int getCount() {
-            return db.rawQuery("SELECT * FROM Partidas", null).getCount();
+            return db.rawQuery(rawQuery, args).getCount();
         }
 
         @Override
         public Partida getItem(int position) {
-            Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
+            Cursor c = db.rawQuery(rawQuery, args);
             c.moveToPosition(position); // retorna un boolean
             int i = 1;
 
@@ -154,6 +159,7 @@ public class QueryFrag extends Fragment {
         contextMenu.setHeaderTitle(title);
         contextMenu.add(0, 0, 0, "Edit");
         contextMenu.add(0, 1, 1, "Delete");
+        contextMenu.add(0, 2, 2, "Show all");
 
     }
     @Override
@@ -162,15 +168,27 @@ public class QueryFrag extends Fragment {
         System.out.println("Menu contextual " + item.getItemId());
         switch (item.getItemId()) {
             case 0:
-                //showAllWithThisAlias(info.targetView,info.position);
                 return true;
             case 1:
                 remove(info.position);
+                return true;
+            case 2:
+                showAllWithThisAlias(info.position);
                 return true;
         }
         return super.onContextItemSelected(item);
     }
 
+    private void showAllWithThisAlias(int position) {
+        System.out.println("Entro al showAll");
+        Partida p = (Partida) lstListado.getAdapter().getItem(position);
+
+        String alias = p.alias;
+        String[] args = new String[]{alias};
+        adapter = new AdaptadorPartidas(this, "SELECT * FROM " + UsuariosSQLiteHelper.nameTable + " WHERE alias=?",args);
+        lstListado.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
 
 
     private void remove(int position) {
