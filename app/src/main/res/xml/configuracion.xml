@@ -3,25 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
         <EditTextPreference
             android:key="alias"
-            android:title="Alias identificativo"
-            android:dialogTitle="Introduce alias"/>
+            android:title="@string/title_preference_aliasIdentificativo"
+            android:dialogTitle="@string/introduceAlias"/>
         <EditTextPreference
             android:key="tamañoParrilla"
-            android:title="Tamaño Parrilla"
+            android:title="@string/title_preference_tamañoParrilla"
             android:inputType="number"
-            android:dialogTitle="Introduce valor" />
+            android:dialogTitle="@string/introduceTamañoParrilla" />
         <CheckBoxPreference
             android:key="controlTiempo"
-            android:title="Control del tiempo" />
+            android:title="@string/title_preference_controlTiempo" />
         <ListPreference
             android:key="%minas"
-            android:title="% Minas"
-            android:dialogTitle="Indicar % minas"
+            android:title="@string/title_preference_porcientoMinas"
+            android:dialogTitle="@string/indicar_porcientoMinas"
             android:entries="@array/porcientominas"
             android:entryValues="@array/valorporcientominas" />
         <EditTextPreference
             android:key="email"
-            android:title="Email"
+            android:title="@string/title_preference_email"
             android:inputType="textEmailAddress"
-            android:dialogTitle="Introduce email" />
+            android:dialogTitle="@string/introduceEmail" />
 </PreferenceScreen>

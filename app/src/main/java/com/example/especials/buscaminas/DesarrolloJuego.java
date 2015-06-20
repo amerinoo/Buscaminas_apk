@@ -43,7 +43,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             isTimerStarted=false;
             secondsPassed = 0;
             startNewGame();
-            log("Alias: " + partida.alias + " Casillas: " + partida.numeroCasillas + " %Minas: " + partida.porCientoMinas + "% Minas: " + partida.numBombas + "\n");
+            log(getString(R.string.log_alias) + " " + partida.alias + " " + getString(R.string.log_casillas) + " " + partida.numeroCasillas + " " + getString(R.string.log_porcientominas) + " " + partida.porCientoMinas + "% " + getString(R.string.log_minas) + " " + partida.numBombas + "\n");
         }else{
             secondsPassed = savedInstanceState.getInt("secondsPassed");
             isFirtsClick = savedInstanceState.getBoolean("isFirtsClick");
@@ -134,8 +134,8 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     private void onClick(Casilla c) {
 
         if(c.isClickable()){
-            String s = "Casilla " + toCoordenate(c.getPosition()) + " abierta";
-            if(useTimer) s += " en el segundo " + secondsPassed;
+            String s = getString(R.string.log_casilla) + " " + toCoordenate(c.getPosition()) + " " + getString(R.string.log_abierta);
+            if(useTimer) s += " " + getString(R.string.log_segundo) + " " + secondsPassed;
             log(s + "\n");
             c.openBlock();
             if (c.isMined())  gameOver(false,c.getPosition());
@@ -163,7 +163,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         Casilla ca;
         tablero.numBombes = numBombs;
         tablero.casillas.get(0).updateBombs();
-        System.out.println("numBombs"+numBombs);
+        System.out.println("numBombs "+numBombs);
         Random randomGenerator = new Random();
         int i =0;
         while (i<numBombs){
@@ -215,15 +215,15 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         partida.numeroBanderasOK = bo;
         partida.tiempo = secondsPassed;
         if(victoria){
-            partida.resultado = "Victoria";
+            partida.resultado = getString(R.string.log_victoria);
             partida.bomba = null;
             partida.numeroCasillasRestantes = partida.numeroCasillas - partida.numeroBanderasOK - n;
             log(partida.resultado + "\n");
         }else{
-            partida.resultado = "Derrota";
+            partida.resultado = getString(R.string.log_derrota);
             partida.bomba = toCoordenate(position);
             partida.numeroCasillasRestantes = 0;
-            log(partida.resultado + " Bomba en casilla " + toCoordenate(position) + "\n");
+            log(partida.resultado + " " + getString(R.string.log_bombaEnCasilla) + " " + toCoordenate(position) + "\n");
         }
 
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
@@ -240,7 +240,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public void startTimer()
     {
         if(secondsPassed==0 && !isFirtsClick && useTimer) {
-            log("Timer engegat\n");
+            log(getString(R.string.log_tiempoON)+"\n");
             timer.removeCallbacks(updateTimeElasped);
             // tell timer to run call back after 1 second
         }
@@ -251,7 +251,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public void stopTimer(){
         // disable call backs
         if(secondsPassed != 0){
-            log("Tiempo usado " + secondsPassed + "\n");
+            log(getString(R.string.log_tiempoOFF) + " " + secondsPassed + "\n");
         }
         timer.removeCallbacks(updateTimeElasped);
     }
@@ -276,9 +276,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     };
 
     private void log(String text){
-        System.out.println("TEXT - " + text);
         partida.setToLog(text);
-        System.out.println("LOG2: " + partida.getLog());
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         if (fglog != null && fglog.isInLayout()) {
             fglog.log(partida.getLog());
@@ -290,7 +288,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         if (fglog != null && fglog.isInLayout()) {
             fglog.log(partida.getLog());
         }
-        System.out.println("LOG: " + partida.getLog());
     }
 
     private String toCoordenate(int position){

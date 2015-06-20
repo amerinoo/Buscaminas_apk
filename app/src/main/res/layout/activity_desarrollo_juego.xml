@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="000"
+        android:text="@string/valueTiempo"
         android:textSize="20dp"
         android:id="@+id/textView6"
         android:layout_below="@+id/linearLayout"
@@ -57,6 +57,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         tools:layout="@layout/fragmentparrilla" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tiempo"
+        android:layout_marginRight="5dp"
+        android:textSize="20dp"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/linearLayout"
+        android:layout_toStartOf="@+id/textView6" />
 
 
 </RelativeLayout>

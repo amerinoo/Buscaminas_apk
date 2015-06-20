@@ -35,12 +35,14 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/linearLayout3">
+        android:layout_below="@+id/linearLayout3"
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:layout_weight="0.30">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -124,20 +126,22 @@
 
             </LinearLayout>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salir"
+                android:drawableLeft="@drawable/salir"
+                android:drawablePadding="10dp"
+                android:id="@+id/button4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:onClick="goSalirResultados"/>
+
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <Button
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/salir"
-                    android:drawableLeft="@drawable/salir"
-                    android:drawablePadding="10dp"
-                    android:id="@+id/button4"
-                    android:layout_centerHorizontal="true"
-                    android:onClick="goSalirResultados"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -148,24 +152,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout4"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="100dp"
             android:layout_alignParentStart="true"
             android:id="@+id/linearLayout6">
 
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/valoresLog"
-                    android:layout_marginLeft="100dp"
-                    android:textSize="20dp"
-                    android:id="@+id/textView4" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/log"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valoresLog"
+                android:textSize="20dp"
+                android:id="@+id/textView4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/log"/>
 
 
         </LinearLayout>

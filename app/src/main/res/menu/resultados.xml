@@ -10,5 +10,5 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
         android:icon="@drawable/email"
-        android:title="@string/enviarEmail"/>
+        android:title="@string/action_send"/>
 </menu>

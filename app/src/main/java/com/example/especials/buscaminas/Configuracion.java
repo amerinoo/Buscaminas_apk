@@ -44,7 +44,7 @@ public class Configuracion extends Activity  implements RadioGroup.OnCheckedChan
             startActivity(in);
             finish();
         }else{
-            showToast("Has de poner un alias para empezar!");
+            showToast(getString(R.string.aliasObligatorio));
         }
 
     }

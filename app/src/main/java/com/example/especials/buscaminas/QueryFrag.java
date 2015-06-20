@@ -164,16 +164,15 @@ public class QueryFrag extends Fragment {
         String title = ((TextView)info.targetView.findViewById(R.id.queryAlias)).getText().toString();
         title += " " + ((TextView)info.targetView.findViewById(R.id.queryFechaHora)).getText().toString();
         contextMenu.setHeaderTitle(title);
-        contextMenu.add(0, 1, 1, "Delete");
-        contextMenu.add(0, 2, 2, "Show All With This Alias");
-        contextMenu.add(0, 3, 3, "Show All Log");
-        contextMenu.add(0, 4, 4, "Send by E-mail");
+        contextMenu.add(0, 1, 1, getString(R.string.action_eliminar));
+        contextMenu.add(0, 2, 2, getString(R.string.action_mostrarTodos));
+        contextMenu.add(0, 3, 3, getString(R.string.action_mostrarLogCompleto));
+        contextMenu.add(0, 4, 4, getString(R.string.action_send));
 
     }
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        System.out.println("Menu contextual " + item.getItemId());
         switch (item.getItemId()) {
             case 1:
                 remove(info.position);
@@ -202,8 +201,8 @@ public class QueryFrag extends Fragment {
             i.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
             i.putExtra(Intent.EXTRA_SUBJECT, "Log - " + p.fecha);
             i.putExtra(Intent.EXTRA_TEXT, p.getAllLog());
-            startActivity(Intent.createChooser(i, "Seleccionar aplicación."));
-        }else showToast("Necesario un email");
+            startActivity(Intent.createChooser(i, getString(R.string.seleccionarAplicacion)));
+        }else showToast(getString(R.string.emailNecesario));
 
     }
 

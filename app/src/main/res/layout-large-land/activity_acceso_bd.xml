@@ -28,7 +28,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Menú principal"
+                android:text="@string/menuPrincipal"
                 android:id="@+id/goMenuPrincipal"
                 android:onClick="goMainActivityBD"
                 android:layout_alignParentBottom="true"

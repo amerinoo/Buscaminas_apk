@@ -16,21 +16,13 @@ public class CasillaAdapter extends BaseAdapter {
     private final Context context;
     private Button firstButton;
 
-
-
-
-
-
     FragmentParrilla fgpar;
 
     public CasillaAdapter(Context context, List<Casilla> casillas) {
         this.casillas = casillas;
         this.context=context;
-
         fgpar = (FragmentParrilla) ((Activity)context).getFragmentManager().findFragmentById(R.id.fragmentParrilla);
         createFirtsButton();
-
-
     }
 
     private void createFirtsButton(){

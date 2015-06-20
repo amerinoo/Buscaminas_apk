@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alias identificativo"
+            android:text="@string/aliasIdentificativo"
             android:id="@+id/textViewAlias" />
 
         <LinearLayout
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Control del tiempo"
+            android:text="@string/controlTiempo"
             android:id="@+id/textViewTiempo" />
 
         <LinearLayout
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="% minas"
+            android:text="@string/porcientoMinas"
             android:id="@+id/textView2" />
 
         <LinearLayout
@@ -140,7 +140,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15"
+                    android:text="@string/radio15"
                     android:id="@+id/radioButton"
                     android:checked="false"
                     android:textSize="@dimen/lletra"/>
@@ -148,7 +148,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25"
+                    android:text="@string/radio25"
                     android:id="@+id/radioButton2"
                     android:checked="true"
                     android:textSize="@dimen/lletra"/>
@@ -156,7 +156,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="35"
+                    android:text="@string/radio35"
                     android:textSize="@dimen/lletra"
                     android:id="@+id/radioButton3"
                     android:checked="false" />
@@ -178,7 +178,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tamaño Parrilla"
+            android:text="@string/tamañoParilla"
             android:id="@+id/textViewTamañoParrilla" />
 
         <LinearLayout
@@ -199,7 +199,7 @@
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/editTextTamañoParrilla"
-                android:text="5"/>
+                android:text="@string/valortamañoParilla"/>
 
         </LinearLayout>
 
@@ -208,7 +208,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empezar"
+        android:text="@string/empezar"
         android:id="@+id/button_empezar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

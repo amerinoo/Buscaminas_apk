@@ -91,7 +91,7 @@ public class Casilla {
                     putCellSurrounding(pos);
 
         }catch (Exception e){
-            System.out.println("he petat mirant la pos ");
+            System.out.println("He petat mirant la pos ");
         }
 
     }

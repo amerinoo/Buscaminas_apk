@@ -39,12 +39,12 @@ public class Resultados extends Activity {
             int bo = b.getInt("banderasOK");
             ((TextView) findViewById(R.id.diaYHora)).setText(fecha);
             if (smartphone) // Smartphone
-                log = "Resultados partida:"
-                        + "\n\tAlias: " + p.alias
-                        + "\n\tCasillas: " + String.valueOf(p.numeroCasillas) + " Abiertas: " + (p.numeroBanderasOK)
-                        + "\n\t% Minas: " + String.valueOf(p.porCientoMinas) + "% Banderas OK: " + bo
-                        + "\n\tTiempo: " + p.tiempoToString()
-                        + "\n\tVictoria? " + p.resultado;
+                log = getString(R.string.log_resultadosPartida)
+                        + "\n\t" + getString(R.string.log_alias) + " " + p.alias
+                        + "\n\t" + getString(R.string.log_casillas)+ " " + String.valueOf(p.numeroCasillas) + " "+ getString(R.string.log_abiertas) +" " + (p.numeroBanderasOK)
+                        + "\n\t" + getString(R.string.log_porcientominas) + " " + String.valueOf(p.porCientoMinas) + "% "+ getString(R.string.log_banderasOK) + " " + bo
+                        + "\n\t" + getString(R.string.log_tiempo) + " " + p.tiempoToString()
+                        + "\n\t" + getString(R.string.log_esVictoria) + " " + p.resultado;
             else log = p.getLog();
             ((TextView) findViewById(R.id.log)).setText(log);
             toDB(); // Només ho s'ha de guardar un cop
@@ -102,9 +102,9 @@ public class Resultados extends Activity {
         try {
             db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba, log) " +
                     "VALUES ('" + p.alias + "', '" + p.fecha + "', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "', '" + p.getLog() + "')");
-            showToast("Partida guardada en BD :D");
+            showToast(getString(R.string.paridaGuardada));
         }catch (Exception e){
-            showToast("Error al guardar partida :(");
+            showToast(getString(R.string.paridaNoGuardada));
         }
         db.close();
     }
@@ -130,8 +130,8 @@ public class Resultados extends Activity {
             i.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
             i.putExtra(Intent.EXTRA_SUBJECT, "Log - " + p.fecha);
             i.putExtra(Intent.EXTRA_TEXT, p.getLog());
-            startActivity(Intent.createChooser(i, "Seleccionar aplicación."));
-        }else showToast("Necesario un email");
+            startActivity(Intent.createChooser(i, getString(R.string.seleccionarAplicacion)));
+        }else showToast(getString(R.string.emailNecesario));
     }
 
     public void goSalirResultados(View v){

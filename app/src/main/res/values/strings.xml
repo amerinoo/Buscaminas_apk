@@ -1,25 +1,114 @@
 <resources>
-    <string name="app_name">Buscaminas</string>
 
-    <string name="titulo_principal">MENÚ PRINCIPAL</string>
-    <string name="titulo_log">RESULTADOS</string>
-    <string name="titulo_configuracion">CONFIGURACION</string>
-    <string name="titulo_juego">JUEGO</string>
-    <string name="titulo_ayuda">AYUDA</string>
+    <!--- Menu principal -->
+    <string name="app_name">Buscaminas</string>
+    <string name="titulo_main">MENÚ PRINCIPAL</string>
     <string name="ayuda">Ayuda</string>
     <string name="empezar_partida">Empezar Partida</string>
-    <string name="salir">Salir</string>
-    <string name="title_activity_ayuda">Ayuda</string>
-    <string name="title_activity_configuracion">EmpezarPartida</string>
-    <string name="texto_ayuda">\t\tBienvendio al juego del BUSCAMINAS!\n\n El juego consiste en despejar todas las casillas de una parrila que no oculten una mina. Algunas casillas tienen el número, este número indica las minas que suman todas las casillas circundantes. Así, si una casilla tiene el número 3, significa que de las ocho casillas que hay alrededor (si no es en una esquina o borde) hay 3 con minas y 5 sin minas. Si se descubre una casilla con una mina SE PIERDE la partida. En otro caso, descubres todas las casilla sin mina, GANAS!! Puedes configurar el nº de filas de la parrila, el porcentage de minas en la misma y si quieres que haya un tiempo máximo para completar el juego.</string>
-    <string name="title_activity_desarrollo_juego">DesarrolloJuego</string>
-    <string name="title_activity_resultados">Resultados</string>
-    <string name="alias">Nombre Usuario</string>
-    <string name="infoBombes">%d bombas restantes</string>
     <string name="consultarPartidas">Consultar Partidas</string>
+
+    <!--- Ayuda -->
+    <string name="title_activity_ayuda">Ayuda</string>
+    <string name="titulo_ayuda">AYUDA</string>
+    <string name="texto_ayuda">\t\tBienvendio al juego del BUSCAMINAS!\n\n El juego consiste en despejar todas las casillas de una parrila que no oculten una mina. Algunas casillas tienen el número, este número indica las minas que suman todas las casillas circundantes. Así, si una casilla tiene el número 3, significa que de las ocho casillas que hay alrededor (si no es en una esquina o borde) hay 3 con minas y 5 sin minas. Si se descubre una casilla con una mina SE PIERDE la partida. En otro caso, descubres todas las casilla sin mina, GANAS!! Puedes configurar el nº de filas de la parrila, el porcentage de minas en la misma y si quieres que haya un tiempo máximo para completar el juego.</string>
+
+
+    <!--- Consultar Partidas -->
     <string name="title_activity_acceso_bd">AccesoBDActivity</string>
 
-    <string name="action_settings">Preferencias</string>
+    <!--- Desarrolo Juego -->
+    <string name="title_activity_desarrollo_juego">DesarrolloJuego</string>
+    <string name="titulo_juego">JUEGO</string>
+
+    <string name="infoBombes">%d bombas restantes</string>
+    <string name="tiempo">Tiempo :</string>
+    <string name="valueTiempo">000</string>
+
+    <string name="log_alias">Alias:</string>
+    <string name="log_casillas">Casillas:</string>
+    <string name="log_abiertas">Abiertas:</string>
+    <string name="log_porcientominas">%Minas:</string>
+    <string name="log_minas">Minas:</string>
+    <string name="log_tiempo">Tiempo:</string>
+    <string name="log_casilla">Casillas</string>
+    <string name="log_abierta">abierta</string>
+    <string name="log_segundo">en el segundo</string>
+    <string name="log_derrota">Derrota</string>
+    <string name="log_victoria">Victoria</string>
+    <string name="log_bombaEnCasilla">Bomba en casilla</string>
+    <string name="log_tiempoON">Tiempo encendido</string>
+    <string name="log_tiempoOFF">Tiempo usado</string>
+
+    <!--- Configuracion -->
+    <string name="title_activity_configuracion">Configuración</string>
+    <string name="titulo_configuracion">CONFIGURACION</string>
+
+    <string name="aliasObligatorio">Has de poner un alias para empezar!</string>
+    <string name="alias">Nombre Usuario</string>
+    <string name="aliasIdentificativo">Alias identificativo</string>
+
+    <string name="tamañoParilla">Tamaño Parrilla</string>
+    <string name="valortamañoParilla">5</string>
+
+    <string name="controlTiempo">Control del tiempo</string>
+
+    <string name="porcientoMinas">% minas</string>
+    <string name="radio15">15</string>
+    <string name="radio25">25</string>
+    <string name="radio35">35</string>
+
+    <string name="empezar">Empezar</string>
+
+
+    <!--- Resultados -->
+    <string name="titulo_log">RESULTADOS</string>
+    <string name="title_activity_resultados">Resultados</string>
+
+    <string name="diaHora">Día y hora</string>
+
+    <string name="emailDestinatario">E-mail destinatario</string>
+    <string name="emailPrueba">emaildeprueba@gmail.com</string>
+
+    <string name="valoresLog">Valores del log</string>
+
+    <string name="nuevaPartida">Nueva partida</string>
+    <string name="enviarEmail">Enviar email</string>
+
+
+    <string name="log_esVictoria">Victoria?</string>
+    <string name="log_resultadosPartida">Resultados partida:</string>
+    <string name="log_banderasOK">Banderas OK:</string>
+
+    <string name="paridaGuardada">Partida guardada en BD :D</string>
+    <string name="paridaNoGuardada">Error al guardar partida :(</string>
+
+    <!--- Preferencias -->
+    <string name="introduceEmail">Introduce email</string>
+    <string name="title_preference_email">Email</string>
+    <string name="title_preference_porcientoMinas">% Minas</string>
+    <string name="title_preference_controlTiempo">Control del tiempo</string>
+    <string name="title_preference_tamañoParrilla">Tamaño Parrilla</string>
+    <string name="title_preference_aliasIdentificativo">Alias identificativo</string>
+    <string name="indicar_porcientoMinas">Indicar % minas</string>
+    <string name="introduceTamañoParrilla">Introduce valor</string>
+    <string name="introduceAlias">Introduce alias</string>
+
+    <!--- Detalle BD -->
     <string name="title_activity_detalle">DetalleActivity</string>
-    <string name="enviarEmail">Enviar por email</string>
+
+    <!--- Acciones menus -->
+    <string name="action_settings">Preferencias</string>
+    <string name="action_send">Enviar email</string>
+    <string name="action_eliminar">Eliminar</string>
+    <string name="action_mostrarTodos">Eliminar</string>
+    <string name="action_mostrarLogCompleto">Eliminar</string>
+
+
+    <!--- Otros -->
+    <string name="salir">Salir</string>
+    <string name="menuPrincipal">Menú principal</string>
+    <string name="seleccionarAplicacion">Seleccionar aplicación</string>
+    <string name="emailNecesario">Necesario un email</string>
+
+
 </resources>
