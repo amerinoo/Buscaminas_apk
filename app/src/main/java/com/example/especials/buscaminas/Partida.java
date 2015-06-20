@@ -31,7 +31,6 @@ public class Partida {
         this.resultado = resultado;
         this.bomba = bomba;
         this.allLog = allLog;
-        System.out.println(allLog);
         doLogDB();
 
     }
@@ -57,9 +56,11 @@ public class Partida {
         setToLog("#Casillas - " + numeroCasillas + "\n");
         setToLog("#Casillas restantes - " + numeroCasillasRestantes + "\n");
         setToLog("% Minas - " + porCientoMinas + "%\n");
+        setToLog("Teimpo - " + tiempoToString() + "\n");
         setToLog("Resultado - " + resultado + "\n");
-        if (bomba != null)
+        if (resultado.equals("Derrota"))
             setToLog("Bomba - " + bomba + "\n");
+
     }
 
     public String getLog(){
