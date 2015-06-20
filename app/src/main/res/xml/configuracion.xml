@@ -19,4 +19,9 @@
             android:dialogTitle="Indicar % minas"
             android:entries="@array/porcientominas"
             android:entryValues="@array/valorporcientominas" />
+        <EditTextPreference
+            android:key="email"
+            android:title="Email"
+            android:inputType="textEmailAddress"
+            android:dialogTitle="Introduce email" />
 </PreferenceScreen>

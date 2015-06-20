@@ -2,8 +2,10 @@ package com.example.especials.buscaminas;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ public class Resultados extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
+        putEmail();
         if(savedInstanceState == null) {
             Tablero tablero = Tablero.getTablero();
             p = new Partida(tablero.partida);
@@ -53,6 +56,13 @@ public class Resultados extends Activity {
         }
 
     }
+
+    private void putEmail() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        ((EditText)findViewById(R.id.editText)).setText(pref.getString("email", "correo@default.com"));
+
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -73,7 +83,7 @@ public class Resultados extends Activity {
                 goPreferencias();
                 return true;
             case R.id.action_send:
-                sendEmail();
+                sendEmail(null);
                 return true;
         }
         return super.onMenuItemSelected(featureId, item);
@@ -111,7 +121,7 @@ public class Resultados extends Activity {
         finish();
     }
 
-    public void sendEmail(){
+    public void sendEmail(View v){
         String email = ((EditText)findViewById(R.id.editText)).getText().toString();
         System.out.println(email);
         if (!email.trim().isEmpty()) {
