@@ -2,8 +2,10 @@ package com.example.especials.buscaminas;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -11,13 +13,8 @@ import java.util.Random;
 
 
 public class DesarrolloJuego extends Activity implements FragmentParrilla.CasillaListener{
-    private Bundle b;
-    public int porcientominas;
-    public String alias;
 
     public int numberOfColumnsInMineField;
-    public int totalNumberOfMines;
-    public int numCasillas;
 
     public Partida partida;
 
@@ -38,21 +35,15 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desarrollo_juego);
         tablero = Tablero.getTablero();
-        b = getIntent().getExtras();
-        porcientominas = b.getInt("minas");
-        numberOfColumnsInMineField = b.getInt("tamañoParrilla");
-        alias = b.getString("alias");
-        useTimer = b.getBoolean("tiempo");
-        numCasillas = numberOfColumnsInMineField * numberOfColumnsInMineField;
-        txtTimer = (TextView) findViewById(R.id.textView6);
-        totalNumberOfMines = (int)((porcientominas / 100.0) * numCasillas);
+        partida = tablero.partida;
+        setPreferencies();
         if(savedInstanceState == null){
             isFirtsClick = true;
             isTimerStarted=false;
             tablero.clearTablero();
             secondsPassed = 0;
             startNewGame();
-            log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
+            log("Alias: " + partida.alias + " Casillas: " + partida.numeroCasillas + " %Minas: " + partida.porCientoMinas + "% Minas: " + partida.numBombas + "\n");
         }else{
             secondsPassed = savedInstanceState.getInt("secondsPassed");
             isFirtsClick = savedInstanceState.getBoolean("isFirtsClick");
@@ -77,12 +68,19 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         createMineField();
         activarTablero();
         stopTimer();
-        partida = tablero.partida;
-        partida.alias = alias;
-        partida.numeroCasillas = numCasillas;
-        partida.porCientoMinas = porcientominas;
-        partida.numBombas = totalNumberOfMines;
 
+    }
+
+    private void setPreferencies() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        System.out.println(pref.getString("alias","DefaultAlias"));
+        partida.alias = pref.getString("alias","DefaultAlias");
+        partida.porCientoMinas = Integer.valueOf(pref.getString("%minas","25"));
+        numberOfColumnsInMineField = Integer.valueOf(pref.getString("tamañoParrilla","5"));
+        useTimer = pref.getBoolean("controlTiempo", false);
+        partida.numeroCasillas = numberOfColumnsInMineField * numberOfColumnsInMineField;
+        txtTimer = (TextView) findViewById(R.id.textView6);
+        partida.numBombas = (int)((partida.porCientoMinas / 100.0) * partida.numeroCasillas);
     }
 
 
@@ -94,7 +92,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             parrilla.setNumColumns(numberOfColumnsInMineField);
             CasillaAdapter adapter = new CasillaAdapter(this, tablero.casillas);
             parrilla.setAdapter(adapter);
-            partida = tablero.partida;
             activateLog();
         } catch (NullPointerException n){
             n.printStackTrace();
@@ -110,8 +107,8 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         if (randomInt == 0) img = R.drawable.bobby_bomb;
         else if (randomInt == 1) img = R.drawable.crazy_bomb;
         else  img = R.drawable.super_troll_bomb;
-        for(int i = 0; i < numCasillas; i++){
-                Casilla c = new Casilla(img,numberOfColumnsInMineField,numCasillas,this);
+        for(int i = 0; i < partida.numeroCasillas; i++){
+                Casilla c = new Casilla(img,numberOfColumnsInMineField,partida.numeroCasillas,this);
                 c.setPosition(i);
                 tablero.casillas.add(c);
         }
@@ -161,7 +158,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     }
 
     private void putBombs(Casilla casilla) {
-        int numBombs = totalNumberOfMines;
+        int numBombs = partida.numBombas;
         Casilla ca;
         tablero.numBombes = numBombs;
         tablero.casillas.get(0).updateBombs();

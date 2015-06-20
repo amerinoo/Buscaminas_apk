@@ -74,7 +74,6 @@ public class Resultados extends Activity {
     private void goPreferencias() {
         Intent in = new Intent(Resultados.this,Preferencias.class);
         startActivity(in);
-        finish();
     }
 
     private void toDB() {
@@ -99,7 +98,7 @@ public class Resultados extends Activity {
     }
 
     public void goNuevaPartida(View v){
-        Intent in = new Intent(Resultados.this,Configuracion.class);
+        Intent in = new Intent(Resultados.this,DesarrolloJuego.class);
         startActivity(in);
         finish();
     }

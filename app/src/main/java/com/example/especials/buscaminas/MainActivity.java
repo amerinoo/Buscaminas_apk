@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
     private void goPreferencias() {
         Intent in = new Intent(MainActivity.this,Preferencias.class);
         startActivity(in);
-        finish();
     }
 
     public void goAyuda(View v){
@@ -47,7 +46,8 @@ public class MainActivity extends Activity {
         finish();
     }
     public void goEmpezarPartida(View v){
-        Intent in = new Intent(MainActivity.this,Configuracion.class);
+        Intent in = new Intent(MainActivity.this,DesarrolloJuego.class);
+        Tablero.getTablero().clearTablero();
         startActivity(in);
         finish();
     }
