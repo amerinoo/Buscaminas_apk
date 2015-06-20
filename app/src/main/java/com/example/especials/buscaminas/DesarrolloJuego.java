@@ -22,10 +22,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public Partida partida;
 
 
-
-
     static TextView textView;
-    public int numBombs;
     private Tablero tablero;
 
 
@@ -77,20 +74,10 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         activarTablero();
         stopTimer();
         partida = tablero.partida;
-        /*
-            public String alias;
-            public String fecha;
-            public int numeroCasillas;
-            public int numeroCasillasRestantes;
-            public int porCientoMinas;
-            public int tiempo;
-            public String resultado;
-            public String bomba;
-            private String log = "";
-         */
         partida.alias = alias;
         partida.numeroCasillas = numCasillas;
         partida.porCientoMinas = porcientominas;
+        partida.numBombas = totalNumberOfMines;
 
     }
 
@@ -104,6 +91,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             CasillaAdapter adapter = new CasillaAdapter(this, tablero.casillas);
             parrilla.setAdapter(adapter);
             partida = tablero.partida;
+            activateLog();
         } catch (NullPointerException n){
             n.printStackTrace();
             throw new NullPointerException();
@@ -146,7 +134,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         if(c.isClickable()){
             String s = "Casilla " + toCoordenate(c.getPosition()) + " abierta";
             if(useTimer) s += " en el segundo " + secondsPassed;
-            log(s+"\n");
+            log(s + "\n");
             c.openBlock();
             if (c.isMined())  gameOver(false,c.getPosition());
             if(checkWin()) gameOver(true,c.getPosition());
@@ -222,15 +210,25 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public void fin(boolean victoria, int n, int bo, int position){
         Intent in = new Intent(this,Resultados.class);
         Bundle b = new Bundle();
-        partida.resultado = (victoria) ? "Has ganado" : "Has perdido." + " Bomba en casilla " + toCoordenate(position);
-        log(partida.resultado + "\n");
+        partida.numeroBanderasOK = bo;
+        partida.tiempo = secondsPassed;
+        if(victoria){
+            partida.resultado = "Victoria";
+            partida.bomba = null;
+            partida.numeroCasillasRestantes = partida.numeroCasillas - partida.numeroBanderasOK - n;
+            log(partida.resultado + "\n");
+        }else{
+            partida.resultado = "Derrota";
+            partida.bomba = toCoordenate(position);
+            partida.numeroCasillasRestantes = 0;
+            log(partida.resultado + " Bomba en casilla " + toCoordenate(position) + "\n");
+        }
+
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
 
         b.putInt("banderasOK", bo);
         b.putBoolean("smartphone",fglog == null);
 
-        partida.numeroCasillasRestantes = n;
-        partida.tiempo = secondsPassed;
 
         in.putExtras(b);
         startActivity(in);
@@ -280,8 +278,13 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         if (fglog != null && fglog.isInLayout()) {
             fglog.log(partida.getLog());
         }
+    }
 
-
+    private void activateLog(){
+        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
+        if (fglog != null && fglog.isInLayout()) {
+            fglog.log(partida.getLog());
+        }
     }
 
     private String toCoordenate(int position){

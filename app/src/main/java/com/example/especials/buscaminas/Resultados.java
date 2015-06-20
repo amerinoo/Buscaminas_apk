@@ -14,8 +14,6 @@ import java.util.Date;
 
 
 public class Resultados extends Activity {
-
-    
     private Partida p;
 
     @Override
@@ -34,45 +32,25 @@ public class Resultados extends Activity {
         if(smartphone) // Smartphone
             log = "Resultados partida:"
                     + "\n\tAlias: " + p.alias
-                    + "\n\tCasillas: " + String.valueOf(p.numeroCasillas) + " Abiertas: " + (p.numeroCasillasRestantes)
+                    + "\n\tCasillas: " + String.valueOf(p.numeroCasillas) + " Abiertas: " + (p.numeroBanderasOK)
                     + "\n\t% Minas: " + String.valueOf(p.porCientoMinas) + "% Banderas OK: " + bo
                     + "\n\tTiempo: " + p.tiempoToString()
                     + "\n\tVictoria? " + p.resultado;
         else log = p.getLog();
         ((TextView) findViewById(R.id.log)).setText(log);
-
         toDB();
 
     }
 
-    /*
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date d = new Date();
-        //Generamos los datos de muestra
-        String alias = new String("Albert");
-        String fecha = format.format(d);
-        int numeroCasillas = 20;
-        int numeroCasillasRestantes = 0;
-        int porCientoMinas = 25;
-        int tiempo = 1;
-        String resultado = new String("Victoria");
-        String bomba = null;
-
-
-        //Insertamos los datos en la tabla Clientes
-        db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba) " +
-                "VALUES ('" + alias + "', '" + fecha +"', '" + numeroCasillas + "', '" + numeroCasillasRestantes + "', '" + porCientoMinas + "', '" + tiempo + "', '" + resultado + "', '" + bomba + "')");
-     */
     private void toDB() {
         UsuariosSQLiteHelper usdbh =
                 new UsuariosSQLiteHelper(this, "DBPartidas", null, 2);
         SQLiteDatabase db = usdbh.getWritableDatabase();
         //Insertamos los datos en la tabla Clientes
 
-        /*db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba) " +
-                "VALUES ('" + alias + "', '" + fecha +"', '" + numeroCasillas + "', '" + numeroCasillasRestantes + "', '" + porCientoMinas + "', '" + tiempo + "', '" + resultado + "', '" + bomba + "')");*/
-
+        db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba) " +
+                "VALUES ('" + p.alias + "', '" + p.fecha +"', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "')");
+        showToast("Partida guardada en BD :D");
         db.close();
     }
 
@@ -107,7 +85,7 @@ public class Resultados extends Activity {
 
 
     private void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
 

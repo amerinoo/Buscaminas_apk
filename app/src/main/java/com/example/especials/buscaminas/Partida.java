@@ -9,12 +9,14 @@ public class Partida {
     public String alias = null;
     public String fecha = null;
     public int numeroCasillas = -1;
-    public int numeroCasillasRestantes = -1;
+    public int numeroBanderasOK = -1;
     public int porCientoMinas = -1;
     public int tiempo = 0;
     public String resultado = null;
     public String bomba = null;
+    public int numBombas = -1;
     private String log = "";
+    public int numeroCasillasRestantes = -1;
 
     public Partida() {}
 
@@ -35,12 +37,14 @@ public class Partida {
         this.alias = p.alias;
         this.fecha = p.fecha;
         this.numeroCasillas = p.numeroCasillas;
-        this.numeroCasillasRestantes = p.numeroCasillasRestantes;
+        this.numeroBanderasOK = p.numeroBanderasOK;
         this.porCientoMinas = p.porCientoMinas;
         this.tiempo = p.tiempo;
         this.resultado = p.resultado;
         this.bomba = p.bomba;
         this.log = p.getLog();
+        this.numBombas = p.numBombas;
+        this.numeroCasillasRestantes = p.numeroCasillasRestantes;
 
     }
 
@@ -48,10 +52,11 @@ public class Partida {
         setToLog("Alias - " + alias + "\n");
         setToLog("Fecha - " + fecha + "\n");
         setToLog("#Casillas - " + numeroCasillas + "\n");
-        setToLog("#Casillas restantes" + numeroCasillasRestantes + "\n");
-        setToLog("% Minas - " + porCientoMinas + "\n");
+        setToLog("#Casillas restantes - " + numeroCasillasRestantes + "\n");
+        setToLog("% Minas - " + porCientoMinas + "%\n");
         setToLog("Resultado - " + resultado + "\n");
-        setToLog("Bomba - " + bomba + "\n");
+        if (bomba != null)
+            setToLog("Bomba - " + bomba + "\n");
     }
 
     public String getLog(){
