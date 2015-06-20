@@ -55,8 +55,10 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             log("Alias: " + alias + " Casillas: " + numCasillas + " %Minas: " + porcientominas + "% Minas: " + totalNumberOfMines + "\n");
         }else{
             secondsPassed = savedInstanceState.getInt("secondsPassed");
+            isFirtsClick = savedInstanceState.getBoolean("isFirtsClick");
+            isTimerStarted = savedInstanceState.getBoolean("isTimerStarted");
             activarTablero();
-            startTimer();
+            if(isTimerStarted) startTimer();
         }
         textView = (TextView) findViewById(R.id.textoMinas);
 
@@ -66,6 +68,8 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("secondsPassed",secondsPassed);
+        outState.putBoolean("isFirtsClick", isFirtsClick);
+        outState.putBoolean("isTimerStarted", isTimerStarted);
     }
 
     private void startNewGame()
@@ -237,12 +241,13 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
 
     public void startTimer()
     {
-        if(secondsPassed==0) {
+        if(secondsPassed==0 && !isFirtsClick && useTimer) {
             log("Timer engegat\n");
             timer.removeCallbacks(updateTimeElasped);
             // tell timer to run call back after 1 second
         }
-        timer.postDelayed(updateTimeElasped, 1000);
+        if(!isFirtsClick && useTimer)
+            timer.postDelayed(updateTimeElasped, 1000);
     }
 
     public void stopTimer(){
