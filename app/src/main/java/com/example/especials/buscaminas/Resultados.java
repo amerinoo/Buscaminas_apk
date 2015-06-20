@@ -44,13 +44,16 @@ public class Resultados extends Activity {
 
     private void toDB() {
         UsuariosSQLiteHelper usdbh =
-                new UsuariosSQLiteHelper(this, "DBPartidas", null, 2);
+                new UsuariosSQLiteHelper(this, "DBPartidas", null, UsuariosSQLiteHelper.version);
         SQLiteDatabase db = usdbh.getWritableDatabase();
         //Insertamos los datos en la tabla Clientes
-
-        db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba) " +
-                "VALUES ('" + p.alias + "', '" + p.fecha +"', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "')");
-        showToast("Partida guardada en BD :D");
+        try {
+            db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba, log) " +
+                    "VALUES ('" + p.alias + "', '" + p.fecha + "', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "', '" + p.getLog() + "')");
+            showToast("Partida guardada en BD :D");
+        }catch (Exception e){
+            showToast("Error al guardar partida :(");
+        }
         db.close();
     }
 

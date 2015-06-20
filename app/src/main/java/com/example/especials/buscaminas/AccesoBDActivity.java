@@ -22,13 +22,25 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
     }
 
     @Override
-    public void onPartidaSeleccionada(Partida c) {
+    public void onPartidaSeleccionada(Partida p) {
         RegistroFrag registroFrag = (RegistroFrag) getFragmentManager().findFragmentById(R.id.fragmentRegistro);
         if (registroFrag != null && registroFrag.isInLayout()){
-            registroFrag.mostrarRegistro(c.getLog());
+            registroFrag.mostrarRegistro(p.getLog());
         }else{
             Intent i = new Intent(this, DetalleActivity.class);
-            i.putExtra(DetalleActivity.EXTRA_TEXTO,c.getLog());
+            i.putExtra(DetalleActivity.EXTRA_TEXTO,p.getLog());
+            startActivity(i);
+        }
+    }
+
+    @Override
+    public void showAllLog(Partida p) {
+        RegistroFrag registroFrag = (RegistroFrag) getFragmentManager().findFragmentById(R.id.fragmentRegistro);
+        if (registroFrag != null && registroFrag.isInLayout()){
+            registroFrag.mostrarRegistro(p.getAllLog());
+        }else{
+            Intent i = new Intent(this, DetalleActivity.class);
+            i.putExtra(DetalleActivity.EXTRA_TEXTO,p.getAllLog());
             startActivity(i);
         }
     }

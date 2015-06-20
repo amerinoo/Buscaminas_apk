@@ -33,7 +33,7 @@ public class QueryFrag extends Fragment {
         super.onCreate(savedInstanceState);
 
         UsuariosSQLiteHelper usdbh =
-                new UsuariosSQLiteHelper(getActivity(), "DBPartidas", null, 2);
+                new UsuariosSQLiteHelper(getActivity(), "DBPartidas", null, UsuariosSQLiteHelper.version);
         db = usdbh.getWritableDatabase();
 
 
@@ -114,7 +114,8 @@ public class QueryFrag extends Fragment {
             int tiempo = c.getInt(i); i++;
             String resultado = c.getString(i); i++;
             String bomba = c.getString(i); i++;
-            return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba);
+            String allLog = c.getString(i);
+            return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba, allLog);
 
 
         }
@@ -140,7 +141,8 @@ public class QueryFrag extends Fragment {
     }
 
     public interface PartidasListener {
-        void onPartidaSeleccionada(Partida c);
+        void onPartidaSeleccionada(Partida p);
+        void showAllLog(Partida p);
     }
 
     public void setPartidasListener(PartidasListener listener) {
@@ -159,7 +161,8 @@ public class QueryFrag extends Fragment {
         contextMenu.setHeaderTitle(title);
         contextMenu.add(0, 0, 0, "Edit");
         contextMenu.add(0, 1, 1, "Delete");
-        contextMenu.add(0, 2, 2, "Show all");
+        contextMenu.add(0, 2, 2, "Show All With This Alias");
+        contextMenu.add(0, 3, 3, "Show All Log");
 
     }
     @Override
@@ -175,8 +178,17 @@ public class QueryFrag extends Fragment {
             case 2:
                 showAllWithThisAlias(info.position);
                 return true;
+            case 3:
+                showAllLog(info.position);
+                return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void showAllLog(int position) {
+        System.out.println("Entro al showAllLog");
+        Partida p = (Partida) lstListado.getAdapter().getItem(position);
+        listener.showAllLog(p);
     }
 
     private void showAllWithThisAlias(int position) {

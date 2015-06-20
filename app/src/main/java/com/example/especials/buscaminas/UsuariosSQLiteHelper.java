@@ -11,6 +11,7 @@ import java.util.Date;
 public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
 
     static String nameTable = "Partidas";
+    public static int version = 3;
     //Sentencia SQL para crear la tabla de Usuarios
 
     String sqlCreate = "CREATE TABLE " + nameTable + "  " +
@@ -22,7 +23,8 @@ public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
             "porCientoMinas INTEGER, "+
             "tiempo INTEGER, "+
             "resultado TEXT, "+
-            "bomba TEXT)";
+            "bomba TEXT, "+
+            "log TEXT)";
 
     public UsuariosSQLiteHelper(Context contexto, String nombre,
                                 CursorFactory factory, int version) {

@@ -17,10 +17,11 @@ public class Partida {
     public int numBombas = -1;
     private String log = "";
     public int numeroCasillasRestantes = -1;
+    public String allLog;
 
     public Partida() {}
 
-    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba) {
+    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba, String allLog) {
         this.alias = alias;
         this.fecha = fecha;
         this.numeroCasillas = numeroCasillas;
@@ -29,6 +30,8 @@ public class Partida {
         this.tiempo = tiempo;
         this.resultado = resultado;
         this.bomba = bomba;
+        this.allLog = allLog;
+        System.out.println(allLog);
         doLogDB();
 
     }
@@ -67,5 +70,9 @@ public class Partida {
 
     public String tiempoToString() {
         return (tiempo == 0) ? "No usado" : String.valueOf(tiempo) + " segundos";
+    }
+
+    public String getAllLog() {
+        return allLog;
     }
 }
