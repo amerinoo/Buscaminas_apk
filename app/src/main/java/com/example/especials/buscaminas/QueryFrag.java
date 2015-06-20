@@ -3,9 +3,11 @@ package com.example.especials.buscaminas;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -162,7 +164,6 @@ public class QueryFrag extends Fragment {
         String title = ((TextView)info.targetView.findViewById(R.id.queryAlias)).getText().toString();
         title += " " + ((TextView)info.targetView.findViewById(R.id.queryFechaHora)).getText().toString();
         contextMenu.setHeaderTitle(title);
-        contextMenu.add(0, 0, 0, "Edit");
         contextMenu.add(0, 1, 1, "Delete");
         contextMenu.add(0, 2, 2, "Show All With This Alias");
         contextMenu.add(0, 3, 3, "Show All Log");
@@ -174,8 +175,6 @@ public class QueryFrag extends Fragment {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         System.out.println("Menu contextual " + item.getItemId());
         switch (item.getItemId()) {
-            case 0:
-                return true;
             case 1:
                 remove(info.position);
                 return true;
@@ -195,7 +194,7 @@ public class QueryFrag extends Fragment {
     private void sendByEmail(int position) {
         System.out.println("Entro al sendByEmail");
         Partida p = (Partida) lstListado.getAdapter().getItem(position);
-        String email = "prova";//((EditText)getActivity().findViewById(R.id.editText)).getText().toString();
+        String email = putEmail();
         System.out.println(email);
         if (!email.trim().isEmpty()) {
             Intent i = new Intent(Intent.ACTION_SEND);
@@ -237,6 +236,11 @@ public class QueryFrag extends Fragment {
         int partides = db.delete(UsuariosSQLiteHelper.nameTable, "alias=? AND fecha=?", new String[]{alias,fecha});
         System.out.println(partides);
         adapter.notifyDataSetChanged();
+    }
+    private String putEmail() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        return pref.getString("email", "correo@default.com");
+
     }
     private void showToast(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
