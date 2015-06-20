@@ -38,7 +38,7 @@ public class Resultados extends Activity {
                     + "\n\tVictoria? " + p.resultado;
         else log = p.getLog();
         ((TextView) findViewById(R.id.log)).setText(log);
-        toDB();
+        if(savedInstanceState == null) toDB(); // Només ho s'ha de guardar un cop
 
     }
 
