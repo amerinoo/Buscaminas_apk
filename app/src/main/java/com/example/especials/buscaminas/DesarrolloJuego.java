@@ -35,12 +35,12 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desarrollo_juego);
         tablero = Tablero.getTablero();
-        partida = tablero.partida;
+        if(savedInstanceState == null)
+            tablero.clearTablero();
         setPreferencies();
         if(savedInstanceState == null){
             isFirtsClick = true;
             isTimerStarted=false;
-            tablero.clearTablero();
             secondsPassed = 0;
             startNewGame();
             log("Alias: " + partida.alias + " Casillas: " + partida.numeroCasillas + " %Minas: " + partida.porCientoMinas + "% Minas: " + partida.numBombas + "\n");
@@ -72,11 +72,12 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     }
 
     private void setPreferencies() {
+
+        partida = tablero.partida;
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        System.out.println(pref.getString("alias","DefaultAlias"));
         partida.alias = pref.getString("alias","DefaultAlias");
-        partida.porCientoMinas = Integer.valueOf(pref.getString("%minas","25"));
-        numberOfColumnsInMineField = Integer.valueOf(pref.getString("tamañoParrilla","5"));
+        partida.porCientoMinas = Integer.valueOf(pref.getString("%minas", "25"));
+        numberOfColumnsInMineField = Integer.valueOf(pref.getString("tamañoParrilla", "5"));
         useTimer = pref.getBoolean("controlTiempo", false);
         partida.numeroCasillas = numberOfColumnsInMineField * numberOfColumnsInMineField;
         txtTimer = (TextView) findViewById(R.id.textView6);
@@ -275,7 +276,9 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     };
 
     private void log(String text){
+        System.out.println("TEXT - " + text);
         partida.setToLog(text);
+        System.out.println("LOG2: " + partida.getLog());
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
         if (fglog != null && fglog.isInLayout()) {
             fglog.log(partida.getLog());
@@ -287,6 +290,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         if (fglog != null && fglog.isInLayout()) {
             fglog.log(partida.getLog());
         }
+        System.out.println("LOG: " + partida.getLog());
     }
 
     private String toCoordenate(int position){

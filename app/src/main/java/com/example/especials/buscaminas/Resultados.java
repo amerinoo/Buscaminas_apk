@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import java.util.Date;
 public class Resultados extends Activity {
     private Partida p;
     private String log;
+    private String fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,11 @@ public class Resultados extends Activity {
             p = new Partida(tablero.partida);
             tablero.clearTablero();
             p.fecha = getFecha();
+            fecha = p.fecha;
             Bundle b = getIntent().getExtras();
             boolean smartphone = b.getBoolean("smartphone");
             int bo = b.getInt("banderasOK");
-            ((TextView) findViewById(R.id.diaYHora)).setText(p.fecha);
+            ((TextView) findViewById(R.id.diaYHora)).setText(fecha);
             if (smartphone) // Smartphone
                 log = "Resultados partida:"
                         + "\n\tAlias: " + p.alias
@@ -45,6 +48,8 @@ public class Resultados extends Activity {
         }else{
             log = savedInstanceState.getString("log");
             ((TextView) findViewById(R.id.log)).setText(log);
+            fecha = savedInstanceState.getString("fecha");
+            ((TextView) findViewById(R.id.diaYHora)).setText(fecha);
         }
 
     }
@@ -52,20 +57,23 @@ public class Resultados extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("log",log);
+        outState.putString("fecha",fecha);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.resultados, menu);
         return true;
     }
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch (featureId){
-            case 0:
+        switch (item.getItemId()){
+            case R.id.action_settings:
                 goPreferencias();
+                return true;
+            case R.id.action_send:
+                sendEmail();
                 return true;
         }
         return super.onMenuItemSelected(featureId, item);
@@ -80,7 +88,7 @@ public class Resultados extends Activity {
         UsuariosSQLiteHelper usdbh =
                 new UsuariosSQLiteHelper(this, "DBPartidas", null, UsuariosSQLiteHelper.version);
         SQLiteDatabase db = usdbh.getWritableDatabase();
-        //Insertamos los datos en la tabla Clientes
+        //Insertamos los datos en la tabla Partidas
         try {
             db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba, log) " +
                     "VALUES ('" + p.alias + "', '" + p.fecha + "', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "', '" + p.getLog() + "')");
@@ -103,7 +111,7 @@ public class Resultados extends Activity {
         finish();
     }
 
-    public void sendEmail(View v){
+    public void sendEmail(){
         String email = ((EditText)findViewById(R.id.editText)).getText().toString();
         System.out.println(email);
         if (!email.trim().isEmpty()) {

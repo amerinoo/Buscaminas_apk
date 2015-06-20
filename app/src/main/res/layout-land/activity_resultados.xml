@@ -107,68 +107,65 @@
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayout4"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentStart="true"
-                android:id="@+id/linearLayout6">
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:orientation="vertical"
+
+                <Button
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="wrap_content"
+                    android:text="Nueva partida"
+                    android:drawableLeft="@drawable/flecha"
+                    android:drawablePadding="10dp"
+                    android:id="@+id/button3"
+                    android:onClick="goNuevaPartida"
+                    android:layout_alignEnd="@+id/linearLayout5" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Valores del log"
-                        android:id="@+id/textView4" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/log"/>
+            </LinearLayout>
 
-                </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Salir"
+                    android:drawableLeft="@drawable/salir"
+                    android:drawablePadding="10dp"
+                    android:id="@+id/button4"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="goSalirResultados"/>
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp">
+            android:layout_below="@+id/linearLayout4"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout6">
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Enviar e-mail"
-                android:drawableLeft="@drawable/email"
-                android:id="@+id/button2"
-                android:onClick="sendEmail"/>
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Nueva partida"
-                android:drawableLeft="@drawable/flecha"
-                android:drawablePadding="10dp"
-                android:id="@+id/button3"
-                android:onClick="goNuevaPartida"
-                android:layout_alignEnd="@+id/linearLayout5" />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Salir"
-                android:drawableLeft="@drawable/salir"
-                android:drawablePadding="10dp"
-                android:id="@+id/button4"
-                android:layout_centerHorizontal="true"
-                android:onClick="goSalirResultados"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Valores del log"
+                    android:id="@+id/textView4" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/log"/>
+
+
         </LinearLayout>
 
     </LinearLayout>

@@ -17,7 +17,7 @@ public class Partida {
     public int numBombas = -1;
     private String log = "";
     public int numeroCasillasRestantes = -1;
-    public String allLog;
+    public String allLog = "";
 
     public Partida() {}
 
@@ -75,5 +75,23 @@ public class Partida {
 
     public String getAllLog() {
         return allLog;
+    }
+
+    @Override
+    public String toString() {
+        return "Partida{" +
+                "alias='" + alias + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", numeroCasillas=" + numeroCasillas +
+                ", numeroBanderasOK=" + numeroBanderasOK +
+                ", porCientoMinas=" + porCientoMinas +
+                ", tiempo=" + tiempo +
+                ", resultado='" + resultado + '\'' +
+                ", bomba='" + bomba + '\'' +
+                ", numBombas=" + numBombas +
+                ", log='" + log + '\'' +
+                ", numeroCasillasRestantes=" + numeroCasillasRestantes +
+                ", allLog='" + allLog + '\'' +
+                '}';
     }
 }
