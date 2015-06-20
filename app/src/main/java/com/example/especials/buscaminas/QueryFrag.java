@@ -2,6 +2,7 @@ package com.example.especials.buscaminas;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -163,6 +166,7 @@ public class QueryFrag extends Fragment {
         contextMenu.add(0, 1, 1, "Delete");
         contextMenu.add(0, 2, 2, "Show All With This Alias");
         contextMenu.add(0, 3, 3, "Show All Log");
+        contextMenu.add(0, 4, 4, "Send by E-mail");
 
     }
     @Override
@@ -181,8 +185,27 @@ public class QueryFrag extends Fragment {
             case 3:
                 showAllLog(info.position);
                 return true;
+            case 4:
+                sendByEmail(info.position);
+                return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void sendByEmail(int position) {
+        System.out.println("Entro al sendByEmail");
+        Partida p = (Partida) lstListado.getAdapter().getItem(position);
+        String email = "prova";//((EditText)getActivity().findViewById(R.id.editText)).getText().toString();
+        System.out.println(email);
+        if (!email.trim().isEmpty()) {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("message/rfc822");
+            i.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
+            i.putExtra(Intent.EXTRA_SUBJECT, "Log - " + p.fecha);
+            i.putExtra(Intent.EXTRA_TEXT, p.getAllLog());
+            startActivity(Intent.createChooser(i, "Seleccionar aplicación."));
+        }else showToast("Necesario un email");
+
     }
 
     private void showAllLog(int position) {
@@ -214,5 +237,8 @@ public class QueryFrag extends Fragment {
         int partides = db.delete(UsuariosSQLiteHelper.nameTable, "alias=? AND fecha=?", new String[]{alias,fecha});
         System.out.println(partides);
         adapter.notifyDataSetChanged();
+    }
+    private void showToast(String text) {
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 }
