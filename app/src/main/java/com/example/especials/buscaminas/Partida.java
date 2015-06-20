@@ -11,7 +11,7 @@ public class Partida {
     public int numeroCasillas = -1;
     public int numeroCasillasRestantes = -1;
     public int porCientoMinas = -1;
-    public int tiempo = -1;
+    public int tiempo = 0;
     public String resultado = null;
     public String bomba = null;
     private String log = "";
@@ -41,6 +41,7 @@ public class Partida {
         this.resultado = p.resultado;
         this.bomba = p.bomba;
         this.log = p.getLog();
+
     }
 
     private void doLogDB() {
@@ -58,4 +59,8 @@ public class Partida {
     }
 
     public void setToLog(String text){log += text;}
+
+    public String tiempoToString() {
+        return (tiempo == 0) ? "No usado" : String.valueOf(tiempo) + " segundos";
+    }
 }

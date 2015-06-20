@@ -200,7 +200,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         stopTimer();
         int n = casillasCovered();
         int b = bombasFlagged();
-        fin(victoria,n,b,position);
+        fin(victoria, n ,b,position);
     }
 
     private int bombasFlagged() {
@@ -222,25 +222,15 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     public void fin(boolean victoria, int n, int bo, int position){
         Intent in = new Intent(this,Resultados.class);
         Bundle b = new Bundle();
-        String s = (victoria) ? "Si, has ganado" : "No, has perdido" ;
+        partida.resultado = (victoria) ? "Has ganado" : "Has perdido." + " Bomba en casilla " + toCoordenate(position);
+        log(partida.resultado + "\n");
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
-        TextView tv;
-        if (fglog != null && fglog.isInLayout()) {
-            s = (victoria) ? "Has ganado" : "Has perdido." + " Bomba en casilla " + toCoordenate(position) ;
-            log(s + "\n");
-            tv = ((TextView) getFragmentManager().findFragmentById(R.id.fragmentLog).getView().findViewById(R.id.TxtLog));
-            b.putString("log", tv.getText().toString());
-        }else {
-            b.putString("alias", alias);
-            b.putInt("bombas", totalNumberOfMines);
-            b.putInt("casillas", numCasillas);
-            b.putInt("bombasTotales", numBombs);
-            b.putInt("porciento", porcientominas);
-            b.putInt("tiempo", secondsPassed);
-            b.putString("resultado", s);
-            b.putInt("casillasRestantes", n);
-            b.putInt("bombasRestantes", bo);
-        }
+
+        b.putInt("banderasOK", bo);
+        b.putBoolean("smartphone",fglog == null);
+
+        partida.numeroCasillasRestantes = n;
+        partida.tiempo = secondsPassed;
 
         in.putExtras(b);
         startActivity(in);

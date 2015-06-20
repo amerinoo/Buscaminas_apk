@@ -15,15 +15,7 @@ import java.util.Date;
 
 public class Resultados extends Activity {
 
-    private String alias;
-    private int casillas;
-    private int porciento;
-    private String log;
-    private String date;
-    private int tiempo;
-    private String resultado;
-    private int n;
-    private int bo;
+    
     private Partida p;
 
     @Override
@@ -33,27 +25,20 @@ public class Resultados extends Activity {
         Tablero tablero = Tablero.getTablero();
         p = new Partida(tablero.partida);
         tablero.clearTablero();
-        Date fecha = new Date();
+        p.fecha = getFecha();
         Bundle b = getIntent().getExtras();
-        log = b.getString("log");
-        System.out.println(log);
-        alias = b.getString("alias");
-        casillas = b.getInt("casillas");
-        porciento = b.getInt("porciento");
-        tiempo = b.getInt("tiempo");
-        resultado = b.getString("resultado");
-        n = b.getInt("casillasRestantes");
-        bo = b.getInt("bombasRestantes");
-        date = fecha.toLocaleString();
-        String t = (tiempo == 0) ? "No usado" : String.valueOf(tiempo) + " segundos";
-        if(log == null)
+        boolean smartphone = b.getBoolean("smartphone");
+        int bo = b.getInt("banderasOK");
+        ((TextView) findViewById(R.id.diaYHora)).setText(p.fecha);
+        String log;
+        if(smartphone) // Smartphone
             log = "Resultados partida:"
-                    + "\n\tAlias: " + alias
-                    + "\n\tCasillas: " + String.valueOf(casillas) + " Abiertas: " + n
-                    + "\n\t% Minas: " + String.valueOf(porciento) + "% Banderas OK: " + bo
-                    + "\n\tTiempo: " + t
-                    + "\n\tVictoria? " + resultado;
-        ((TextView) findViewById(R.id.diaYHora)).setText(date);
+                    + "\n\tAlias: " + p.alias
+                    + "\n\tCasillas: " + String.valueOf(p.numeroCasillas) + " Abiertas: " + (p.numeroCasillasRestantes)
+                    + "\n\t% Minas: " + String.valueOf(p.porCientoMinas) + "% Banderas OK: " + bo
+                    + "\n\tTiempo: " + p.tiempoToString()
+                    + "\n\tVictoria? " + p.resultado;
+        else log = p.getLog();
         ((TextView) findViewById(R.id.log)).setText(log);
 
         toDB();
@@ -110,8 +95,8 @@ public class Resultados extends Activity {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
-            i.putExtra(Intent.EXTRA_SUBJECT, "Log - " + date);
-            i.putExtra(Intent.EXTRA_TEXT, log);
+            i.putExtra(Intent.EXTRA_SUBJECT, "Log - " + p.fecha);
+            i.putExtra(Intent.EXTRA_TEXT, p.getLog());
             startActivity(Intent.createChooser(i, "Seleccionar aplicación."));
         }else showToast("Necesario un email");
     }
