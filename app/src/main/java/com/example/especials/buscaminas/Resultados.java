@@ -15,31 +15,41 @@ import java.util.Date;
 
 public class Resultados extends Activity {
     private Partida p;
+    private String log;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
-        Tablero tablero = Tablero.getTablero();
-        p = new Partida(tablero.partida);
-        tablero.clearTablero();
-        p.fecha = getFecha();
-        Bundle b = getIntent().getExtras();
-        boolean smartphone = b.getBoolean("smartphone");
-        int bo = b.getInt("banderasOK");
-        ((TextView) findViewById(R.id.diaYHora)).setText(p.fecha);
-        String log;
-        if(smartphone) // Smartphone
-            log = "Resultados partida:"
-                    + "\n\tAlias: " + p.alias
-                    + "\n\tCasillas: " + String.valueOf(p.numeroCasillas) + " Abiertas: " + (p.numeroBanderasOK)
-                    + "\n\t% Minas: " + String.valueOf(p.porCientoMinas) + "% Banderas OK: " + bo
-                    + "\n\tTiempo: " + p.tiempoToString()
-                    + "\n\tVictoria? " + p.resultado;
-        else log = p.getLog();
-        ((TextView) findViewById(R.id.log)).setText(log);
-        if(savedInstanceState == null) toDB(); // Només ho s'ha de guardar un cop
+        if(savedInstanceState == null) {
+            Tablero tablero = Tablero.getTablero();
+            p = new Partida(tablero.partida);
+            tablero.clearTablero();
+            p.fecha = getFecha();
+            Bundle b = getIntent().getExtras();
+            boolean smartphone = b.getBoolean("smartphone");
+            int bo = b.getInt("banderasOK");
+            ((TextView) findViewById(R.id.diaYHora)).setText(p.fecha);
+            if (smartphone) // Smartphone
+                log = "Resultados partida:"
+                        + "\n\tAlias: " + p.alias
+                        + "\n\tCasillas: " + String.valueOf(p.numeroCasillas) + " Abiertas: " + (p.numeroBanderasOK)
+                        + "\n\t% Minas: " + String.valueOf(p.porCientoMinas) + "% Banderas OK: " + bo
+                        + "\n\tTiempo: " + p.tiempoToString()
+                        + "\n\tVictoria? " + p.resultado;
+            else log = p.getLog();
+            ((TextView) findViewById(R.id.log)).setText(log);
+            toDB(); // Només ho s'ha de guardar un cop
+        }else{
+            log = savedInstanceState.getString("log");
+            ((TextView) findViewById(R.id.log)).setText(log);
+        }
 
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("log",log);
     }
 
     private void toDB() {
