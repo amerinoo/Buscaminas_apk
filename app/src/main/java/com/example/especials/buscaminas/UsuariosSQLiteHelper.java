@@ -10,18 +10,19 @@ import java.util.Date;
 
 public class UsuariosSQLiteHelper extends SQLiteOpenHelper {
 
+    static String nameTable = "Partidas";
     //Sentencia SQL para crear la tabla de Usuarios
 
-    String sqlCreate = "CREATE TABLE Partidas " +
+    String sqlCreate = "CREATE TABLE " + nameTable + "  " +
             "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " alias TEXT, " +
-            " fecha TEXT, "+
-            " numeroCasillas INTEGER, " +
-            " numeroCasillasRestantes INTEGER, "+
-            " porCientoMinas INTEGER, "+
-            " tiempo INTEGER, "+
-            " resultado TEXT, "+
-            " bomba TEXT)";
+            "alias TEXT, " +
+            "fecha TEXT, "+
+            "numeroCasillas INTEGER, " +
+            "numeroCasillasRestantes INTEGER, "+
+            "porCientoMinas INTEGER, "+
+            "tiempo INTEGER, "+
+            "resultado TEXT, "+
+            "bomba TEXT)";
 
     public UsuariosSQLiteHelper(Context contexto, String nombre,
                                 CursorFactory factory, int version) {

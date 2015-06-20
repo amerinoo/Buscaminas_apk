@@ -5,7 +5,9 @@ import android.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +24,7 @@ public class QueryFrag extends Fragment {
 
     private ListView lstListado;
     private PartidasListener listener;
+    AdaptadorPartidas adapter;
 
     private SQLiteDatabase db;
 
@@ -31,7 +34,7 @@ public class QueryFrag extends Fragment {
 
         UsuariosSQLiteHelper usdbh =
                 new UsuariosSQLiteHelper(getActivity(), "DBPartidas", null, 2);
-        db = usdbh.getReadableDatabase();
+        db = usdbh.getWritableDatabase();
 
 
 
@@ -49,9 +52,8 @@ public class QueryFrag extends Fragment {
         super.onActivityCreated(state);
 
         lstListado = (ListView)getView().findViewById(R.id.listViewQueryFrag);
-
-        lstListado.setAdapter(new AdaptadorPartidas(this));
-
+        adapter = new AdaptadorPartidas(this);
+        lstListado.setAdapter(adapter);
         lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> list, View view, int pos, long id) {
@@ -61,6 +63,7 @@ public class QueryFrag extends Fragment {
             }
 
         });
+        lstListado.setOnCreateContextMenuListener(this);
     }
 
 
@@ -96,26 +99,17 @@ public class QueryFrag extends Fragment {
         public Partida getItem(int position) {
             Cursor c = db.rawQuery("SELECT * FROM Partidas", null);
             c.moveToPosition(position); // retorna un boolean
-            System.out.println("Comenca el try!!!");
             int i = 1;
 
-                String alias = c.getString(i); i++;
-                System.out.println("Alias " + alias);
-                String fecha = c.getString(i); i++;
-                System.out.println(fecha.toString());
-                int numeroCasillas = c.getInt(i); i++;
-                System.out.println(numeroCasillas);
-                int numeroCasillasRestantes = c.getInt(i); i++;
-                System.out.println(numeroCasillasRestantes);
-                int porCientoMinas = c.getInt(i); i++;
-                System.out.println(porCientoMinas);
-                int tiempo = c.getInt(i); i++;
-                System.out.println(tiempo);
-                String resultado = c.getString(i); i++;
-                System.out.println(resultado);
-                String bomba = c.getString(i); i++;
-                System.out.println(bomba);
-                return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba);
+            String alias = c.getString(i); i++;
+            String fecha = c.getString(i); i++;
+            int numeroCasillas = c.getInt(i); i++;
+            int numeroCasillasRestantes = c.getInt(i); i++;
+            int porCientoMinas = c.getInt(i); i++;
+            int tiempo = c.getInt(i); i++;
+            String resultado = c.getString(i); i++;
+            String bomba = c.getString(i); i++;
+            return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba);
 
 
         }
@@ -147,5 +141,48 @@ public class QueryFrag extends Fragment {
     public void setPartidasListener(PartidasListener listener) {
 
         this.listener = listener;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu contextMenu,
+                                    View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+        String title = ((TextView)info.targetView.findViewById(R.id.queryAlias)).getText().toString();
+        title += " " + ((TextView)info.targetView.findViewById(R.id.queryFechaHora)).getText().toString();
+        contextMenu.setHeaderTitle(title);
+        contextMenu.add(0, 0, 0, "Edit");
+        contextMenu.add(0, 1, 1, "Delete");
+
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        System.out.println("Menu contextual " + item.getItemId());
+        switch (item.getItemId()) {
+            case 0:
+                //showAllWithThisAlias(info.targetView,info.position);
+                return true;
+            case 1:
+                remove(info.position);
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
+
+    private void remove(int position) {
+        System.out.println("Entro al remove");
+        Partida p = (Partida) lstListado.getAdapter().getItem(position);
+
+        String alias = p.alias;
+        String fecha = p.fecha;
+        System.out.println(alias + " " + fecha);
+
+        int partides = db.delete(UsuariosSQLiteHelper.nameTable, "alias=? AND fecha=?", new String[]{alias,fecha});
+        System.out.println(partides);
+        adapter.notifyDataSetChanged();
     }
 }

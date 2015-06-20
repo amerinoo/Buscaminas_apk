@@ -11,6 +11,8 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceso_bd);
+        QueryFrag queryFrag = (QueryFrag) getFragmentManager().findFragmentById(R.id.fragmentQuery);
+        queryFrag.setPartidasListener(this);
     }
 
     public void goMainActivityBD(View v){
