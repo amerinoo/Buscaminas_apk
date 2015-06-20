@@ -40,6 +40,9 @@
             android:name=".DetalleActivity"
             android:label="@string/title_activity_detalle" >
         </activity>
+        <activity android:name=".Preferencias"
+            android:label="@string/titulo_configuracion">
+        </activity>
     </application>
 
 </manifest>

@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Categoría 1">
         <EditTextPreference
             android:key="alias"
-            android:title="Alias identificativo" />
+            android:title="Alias identificativo"
+            android:dialogTitle="Introduce alias"/>
         <EditTextPreference
             android:key="tamañoParrilla"
             android:title="Tamaño Parrilla"
             android:inputType="number"
-            android:summary="Descripción de la preferencia 2"
             android:dialogTitle="Introduce valor" />
         <CheckBoxPreference
             android:key="controlTiempo"
-            android:title="Control del tiempo"
-            android:summary="Descripción de la preferencia 2"
-            android:dialogTitle="Introduce valor" />
+            android:title="Control del tiempo" />
         <ListPreference
             android:key="%minas"
-            android:title="% minas"
-            android:dialogTitle="Indicar Pais"
+            android:title="% Minas"
+            android:dialogTitle="Indicar % minas"
             android:entries="@array/porcientominas"
             android:entryValues="@array/valorporcientominas" />
-    </PreferenceCategory>
 </PreferenceScreen>

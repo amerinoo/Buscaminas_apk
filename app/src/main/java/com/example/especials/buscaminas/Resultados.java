@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -50,6 +52,29 @@ public class Resultados extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("log",log);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (featureId){
+            case 0:
+                goPreferencias();
+                return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+
+    private void goPreferencias() {
+        Intent in = new Intent(Resultados.this,Preferencias.class);
+        startActivity(in);
+        finish();
     }
 
     private void toDB() {
