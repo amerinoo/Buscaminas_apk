@@ -100,8 +100,8 @@
     <string name="action_settings">Preferencias</string>
     <string name="action_send">Enviar email</string>
     <string name="action_eliminar">Eliminar</string>
-    <string name="action_mostrarTodos">Eliminar</string>
-    <string name="action_mostrarLogCompleto">Eliminar</string>
+    <string name="action_mostrarTodos">Mostrar todas con este alias</string>
+    <string name="action_mostrarLogCompleto">Mostrar log completo</string>
 
 
     <!--- Otros -->
