@@ -103,6 +103,19 @@
     <string name="action_mostrarTodos">Mostrar todas con este alias</string>
     <string name="action_mostrarLogCompleto">Mostrar log completo</string>
 
+    <!--- Partida -->
+    <string name="log_partida_alias">Alias</string>
+    <string name="log_partida_fecha">Fecha</string>
+    <string name="log_partida_casillas">#Casillas</string>
+    <string name="log_partida_casillasRestantes">#Casillas restantes</string>
+    <string name="log_partida_porcientoMinas">% Minas</string>
+    <string name="log_partida_tiempo">Tiempo</string>
+    <string name="log_partida_resultado">Resultado</string>
+    <string name="log_partida_bomba">Bomba</string>
+    <string name="log_partida_tiempoNoUsado">No usado</string>
+    <string name="log_partida_segundos">segundos</string>
+
+
 
     <!--- Otros -->
     <string name="salir">Salir</string>

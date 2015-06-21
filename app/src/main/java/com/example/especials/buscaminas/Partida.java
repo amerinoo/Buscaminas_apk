@@ -1,5 +1,8 @@
 package com.example.especials.buscaminas;
 
+import android.content.Context;
+import android.content.res.Resources;
+
 import java.util.Date;
 
 /**
@@ -19,9 +22,11 @@ public class Partida {
     public int numeroCasillasRestantes = -1;
     public String allLog = "";
 
+    private Context context;
+
     public Partida() {}
 
-    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba, String allLog) {
+    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba, String allLog, Context context) {
         this.alias = alias;
         this.fecha = fecha;
         this.numeroCasillas = numeroCasillas;
@@ -31,6 +36,7 @@ public class Partida {
         this.resultado = resultado;
         this.bomba = bomba;
         this.allLog = allLog;
+        this.context = context;
         doLogDB();
 
     }
@@ -51,15 +57,16 @@ public class Partida {
     }
 
     private void doLogDB() {
-        setToLog("Alias - " + alias + "\n");
-        setToLog("Fecha - " + fecha + "\n");
-        setToLog("#Casillas - " + numeroCasillas + "\n");
-        setToLog("#Casillas restantes - " + numeroCasillasRestantes + "\n");
-        setToLog("% Minas - " + porCientoMinas + "%\n");
-        setToLog("Teimpo - " + tiempoToString() + "\n");
-        setToLog("Resultado - " + resultado + "\n");
-        if (resultado.equals("Derrota"))
-            setToLog("Bomba - " + bomba + "\n");
+        setToLog(context.getString(R.string.log_partida_alias) + " - " + alias + "\n");
+
+        setToLog(context.getString(R.string.log_partida_fecha) + " - " + fecha + "\n");
+        setToLog(context.getString(R.string.log_partida_casillas) + " - " + numeroCasillas + "\n");
+        setToLog(context.getString(R.string.log_partida_casillasRestantes) + " - " + numeroCasillasRestantes + "\n");
+        setToLog(context.getString(R.string.log_partida_porcientoMinas) + " - " + porCientoMinas + "%\n");
+        setToLog(context.getString(R.string.log_partida_tiempo) + " - " + tiempoToString() + "\n");
+        setToLog(context.getString(R.string.log_partida_resultado) + " - " + resultado + "\n");
+        if (resultado.equals(context.getString(R.string.log_derrota)))
+            setToLog(context.getString(R.string.log_partida_bomba) + " - " + bomba + "\n");
 
     }
 
@@ -70,7 +77,7 @@ public class Partida {
     public void setToLog(String text){log += text;}
 
     public String tiempoToString() {
-        return (tiempo == 0) ? "No usado" : String.valueOf(tiempo) + " segundos";
+        return (tiempo == 0) ? context.getString(R.string.log_partida_tiempoNoUsado) : String.valueOf(tiempo) + " " + context.getString(R.string.log_partida_segundos);
     }
 
     public String getAllLog() {

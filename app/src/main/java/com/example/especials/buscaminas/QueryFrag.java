@@ -120,7 +120,7 @@ public class QueryFrag extends Fragment {
             String resultado = c.getString(i); i++;
             String bomba = c.getString(i); i++;
             String allLog = c.getString(i);
-            return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba, allLog);
+            return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba, allLog,getContext());
 
 
         }
