@@ -84,6 +84,10 @@ public class Partida {
         return allLog;
     }
 
+    public void setContext(Context context){
+        this.context = context;
+    }
+
     @Override
     public String toString() {
         return "Partida{" +

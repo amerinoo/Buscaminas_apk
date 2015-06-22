@@ -31,6 +31,7 @@ public class Resultados extends Activity {
         if(savedInstanceState == null) {
             Tablero tablero = Tablero.getTablero();
             p = new Partida(tablero.partida);
+            p.setContext(this);
             tablero.clearTablero();
             p.fecha = getFecha();
             fecha = p.fecha;

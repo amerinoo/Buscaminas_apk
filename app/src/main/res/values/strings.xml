@@ -14,10 +14,10 @@
 
 
     <!--- Consultar Partidas -->
-    <string name="title_activity_acceso_bd">AccesoBDActivity</string>
+    <string name="title_activity_acceso_bd">Acceso BD</string>
 
     <!--- Desarrolo Juego -->
-    <string name="title_activity_desarrollo_juego">DesarrolloJuego</string>
+    <string name="title_activity_desarrollo_juego">Desarrollo Juego</string>
     <string name="titulo_juego">JUEGO</string>
 
     <string name="infoBombes">%d bombas restantes</string>
@@ -94,7 +94,7 @@
     <string name="introduceAlias">Introduce alias</string>
 
     <!--- Detalle BD -->
-    <string name="title_activity_detalle">DetalleActivity</string>
+    <string name="title_activity_detalle">Detalle Activity</string>
 
     <!--- Acciones menus -->
     <string name="action_settings">Preferencias</string>

@@ -1,125 +1,125 @@
 
 <resources>
     <!--- Menu principal -->
-    <string name="app_name">Buscaminas</string>
+    <string name="app_name">Buscamines</string>
     <string name="titulo_main">MENÚ PRINCIPAL</string>
-    <string name="ayuda">Ayuda</string>
-    <string name="empezar_partida">Empezar Partida</string>
-    <string name="consultarPartidas">Consultar Partidas</string>
+    <string name="ayuda">Ajuda</string>
+    <string name="empezar_partida">Començar Partida</string>
+    <string name="consultarPartidas">Consultar Partides</string>
 
     <!--- Ayuda -->
-    <string name="title_activity_ayuda">Ayuda</string>
-    <string name="titulo_ayuda">AYUDA</string>
+    <string name="title_activity_ayuda">Ajuda</string>
+    <string name="titulo_ayuda">AJUDA</string>
     <string name="texto_ayuda">\t\tBienvendio al juego del BUSCAMINAS!\n\n El juego consiste en despejar todas las casillas de una parrila que no oculten una mina. Algunas casillas tienen el número, este número indica las minas que suman todas las casillas circundantes. Así, si una casilla tiene el número 3, significa que de las ocho casillas que hay alrededor (si no es en una esquina o borde) hay 3 con minas y 5 sin minas. Si se descubre una casilla con una mina SE PIERDE la partida. En otro caso, descubres todas las casilla sin mina, GANAS!! Puedes configurar el nº de filas de la parrila, el porcentage de minas en la misma y si quieres que haya un tiempo máximo para completar el juego.</string>
 
 
     <!--- Consultar Partidas -->
-    <string name="title_activity_acceso_bd">AccesoBDActivity</string>
+    <string name="title_activity_acceso_bd">Accès BD</string>
 
     <!--- Desarrolo Juego -->
-    <string name="title_activity_desarrollo_juego">DesarrolloJuego</string>
-    <string name="titulo_juego">JUEGO</string>
+    <string name="title_activity_desarrollo_juego">Desenvolupament Joc</string>
+    <string name="titulo_juego">JOC</string>
 
-    <string name="infoBombes">%d bombas restantes</string>
-    <string name="tiempo">Tiempo :</string>
+    <string name="infoBombes">%d bombes restants</string>
+    <string name="tiempo">Temps :</string>
     <string name="valueTiempo">000</string>
 
-    <string name="log_alias">Alias:</string>
-    <string name="log_casillas">Casillas:</string>
-    <string name="log_abiertas">Abiertas:</string>
-    <string name="log_porcientominas">%Minas:</string>
-    <string name="log_minas">Minas:</string>
-    <string name="log_tiempo">Tiempo:</string>
-    <string name="log_casilla">Casillas</string>
-    <string name="log_abierta">abierta</string>
-    <string name="log_segundo">en el segundo</string>
+    <string name="log_alias">Àlies:</string>
+    <string name="log_casillas">Caselles:</string>
+    <string name="log_abiertas">Obertes:</string>
+    <string name="log_porcientominas">%Mines:</string>
+    <string name="log_minas">Mines:</string>
+    <string name="log_tiempo">Temps:</string>
+    <string name="log_casilla">Casilles</string>
+    <string name="log_abierta">oberta</string>
+    <string name="log_segundo">en el segon</string>
     <string name="log_derrota">Derrota</string>
-    <string name="log_victoria">Victoria</string>
-    <string name="log_bombaEnCasilla">Bomba en casilla</string>
-    <string name="log_tiempoON">Tiempo encendido</string>
-    <string name="log_tiempoOFF">Tiempo usado</string>
+    <string name="log_victoria">Victòria</string>
+    <string name="log_bombaEnCasilla">Bomba en casella</string>
+    <string name="log_tiempoON">Temps encès</string>
+    <string name="log_tiempoOFF">Temps usat</string>
 
     <!--- Configuracion -->
-    <string name="title_activity_configuracion">Configuración</string>
-    <string name="titulo_configuracion">CONFIGURACION</string>
+    <string name="title_activity_configuracion">Configuració</string>
+    <string name="titulo_configuracion">CONFIGURACIÓ</string>
 
-    <string name="aliasObligatorio">Has de poner un alias para empezar!</string>
+    <string name="aliasObligatorio">Has de posar un àlies per començar!</string>
     <string name="alias">Nombre Usuario</string>
     <string name="aliasIdentificativo">Alias identificativo</string>
 
-    <string name="tamañoParilla">Tamaño Parrilla</string>
+    <string name="tamañoParilla">Tamany Graella</string>
     <string name="valortamañoParilla">5</string>
 
-    <string name="controlTiempo">Control del tiempo</string>
+    <string name="controlTiempo">Control del temps</string>
 
-    <string name="porcientoMinas">% minas</string>
+    <string name="porcientoMinas">% mines</string>
     <string name="radio15">15</string>
     <string name="radio25">25</string>
     <string name="radio35">35</string>
 
-    <string name="empezar">Empezar</string>
+    <string name="empezar">Començar</string>
 
 
     <!--- Resultados -->
-    <string name="titulo_log">RESULTADOS</string>
-    <string name="title_activity_resultados">Resultados</string>
+    <string name="titulo_log">RESULTATS</string>
+    <string name="title_activity_resultados">Resultats</string>
 
-    <string name="diaHora">Día y hora</string>
+    <string name="diaHora">Dia i hora</string>
 
-    <string name="emailDestinatario">E-mail destinatario</string>
-    <string name="emailPrueba">emaildeprueba@gmail.com</string>
+    <string name="emailDestinatario">E-mail destinatari</string>
+    <string name="emailPrueba">emaildeprova@gmail.com</string>
 
-    <string name="valoresLog">Valores del log</string>
+    <string name="valoresLog">Valors del log</string>
 
-    <string name="nuevaPartida">Nueva partida</string>
+    <string name="nuevaPartida">Nova partida</string>
     <string name="enviarEmail">Enviar email</string>
 
 
-    <string name="log_esVictoria">Victoria?</string>
-    <string name="log_resultadosPartida">Resultados partida:</string>
-    <string name="log_banderasOK">Banderas OK:</string>
+    <string name="log_esVictoria">Victòria?</string>
+    <string name="log_resultadosPartida">Resultats partida:</string>
+    <string name="log_banderasOK">Banderes OK:</string>
 
     <string name="paridaGuardada">Partida guardada en BD :D</string>
     <string name="paridaNoGuardada">Error al guardar partida :(</string>
 
     <!--- Preferencias -->
-    <string name="introduceEmail">Introduce email</string>
+    <string name="introduceEmail">Introdueix email</string>
     <string name="title_preference_email">Email</string>
-    <string name="title_preference_porcientoMinas">% Minas</string>
-    <string name="title_preference_controlTiempo">Control del tiempo</string>
-    <string name="title_preference_tamañoParrilla">Tamaño Parrilla</string>
-    <string name="title_preference_aliasIdentificativo">Alias identificativo</string>
+    <string name="title_preference_porcientoMinas">% Mines</string>
+    <string name="title_preference_controlTiempo">Control del temps</string>
+    <string name="title_preference_tamañoParrilla">Tamany Graella</string>
+    <string name="title_preference_aliasIdentificativo">Àlies identificatiu</string>
     <string name="indicar_porcientoMinas">Indicar % minas</string>
-    <string name="introduceTamañoParrilla">Introduce valor</string>
-    <string name="introduceAlias">Introduce alias</string>
+    <string name="introduceTamañoParrilla">Introduir valor</string>
+    <string name="introduceAlias">Introduir alias</string>
 
     <!--- Detalle BD -->
-    <string name="title_activity_detalle">DetalleActivity</string>
+    <string name="title_activity_detalle">Detall Activity</string>
 
     <!--- Acciones menus -->
-    <string name="action_settings">Preferencias</string>
+    <string name="action_settings">Preferències</string>
     <string name="action_send">Enviar email</string>
     <string name="action_eliminar">Eliminar</string>
-    <string name="action_mostrarTodos">Mostrar todas con este alias</string>
-    <string name="action_mostrarLogCompleto">Mostrar log completo</string>
+    <string name="action_mostrarTodos">Mostrar tots amb aquest àlies</string>
+    <string name="action_mostrarLogCompleto">Mostrar log complet</string>
 
     <!--- Partida -->
-    <string name="log_partida_alias">Alias</string>
-    <string name="log_partida_fecha">Fecha</string>
-    <string name="log_partida_casillas">#Casillas</string>
-    <string name="log_partida_casillasRestantes">#Casillas restantes</string>
-    <string name="log_partida_porcientoMinas">% Minas</string>
-    <string name="log_partida_tiempo">Tiempo</string>
-    <string name="log_partida_resultado">Resultado</string>
+    <string name="log_partida_alias">Àlies</string>
+    <string name="log_partida_fecha">Data</string>
+    <string name="log_partida_casillas">#Caselles</string>
+    <string name="log_partida_casillasRestantes">#Caselles restants</string>
+    <string name="log_partida_porcientoMinas">% Mines</string>
+    <string name="log_partida_tiempo">Temps</string>
+    <string name="log_partida_resultado">Resultat</string>
     <string name="log_partida_bomba">Bomba</string>
-    <string name="log_partida_tiempoNoUsado">No usado</string>
-    <string name="log_partida_segundos">segundos</string>
+    <string name="log_partida_tiempoNoUsado">No usat</string>
+    <string name="log_partida_segundos">segons</string>
 
 
 
     <!--- Otros -->
     <string name="salir">Salir</string>
     <string name="menuPrincipal">Menú principal</string>
-    <string name="seleccionarAplicacion">Seleccionar aplicación</string>
-    <string name="emailNecesario">Necesario un email</string>
+    <string name="seleccionarAplicacion">Seleccionar aplicació</string>
+    <string name="emailNecesario">Necessari un email</string>
 </resources>
