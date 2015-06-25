@@ -21,13 +21,25 @@ class AdaptadorPartidas extends ArrayAdapter<Partida> {
 
     AdaptadorPartidas(QueryFrag fragmentListado,String rawQuery, String[] args, SQLiteDatabase db) {
 
-        super(fragmentListado.getActivity(),R.layout.listitem_query);
-        this.db = db;
+        super(fragmentListado.getActivity(), R.layout.listitem_query);
+        inicialize(rawQuery,args,db);
         this.context = fragmentListado.getActivity();
-        this.rawQuery = rawQuery;
-        this.args = args;
 
     }
+    AdaptadorPartidas(AccesoBDActivity context,String rawQuery, String[] args, SQLiteDatabase db) {
+
+        super(context, R.layout.listitem_query);
+        inicialize(rawQuery,args,db);
+        this.context = context;
+
+    }
+
+    private void inicialize(String rawQuery, String[] args, SQLiteDatabase db) {
+        this.rawQuery = rawQuery;
+        this.args = args;
+        this.db = db;
+    }
+
 
     @Override
     public int getCount() {

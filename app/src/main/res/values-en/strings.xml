@@ -124,4 +124,5 @@
     <string name="seleccionarAplicacion">Seleccionar aplicación</string>
     <string name="emailNecesario">Necesario un email</string>
     <string name="partidasBorradas">Se han eliminado %d partidas</string>
+    <string name="errorEliminarElementos">Error al eliminar</string>
 </resources>

@@ -173,7 +173,9 @@ public class QueryFrag extends Fragment {
         System.out.println(alias + " " + fecha);
 
         int partides = db.delete(UsuariosSQLiteHelper.nameTable, "alias=? AND fecha=?", new String[]{alias,fecha});
-        System.out.println(partides);
+        String text = String.format(getString(R.string.partidasBorradas),partides);
+        if(partides > 0) showToast(text);
+        else showToast(getString(R.string.errorEliminarElementos));
         adapter.notifyDataSetChanged();
     }
     private String putEmail() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
@@ -43,7 +44,17 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
 
         int a = db.delete(UsuariosSQLiteHelper.nameTable, null, null);
         String text = String.format(getString(R.string.partidasBorradas),a);
-        showToast(text);
+        if(a > 0) showToast(text);
+        else showToast(getString(R.string.errorEliminarElementos));
+        updateList(db);
+    }
+
+    private void updateList(SQLiteDatabase db) {
+        AdaptadorPartidas adapter = new AdaptadorPartidas(this, "SELECT * FROM " + UsuariosSQLiteHelper.nameTable, null, db);
+        ListView lstListado = (ListView) findViewById(R.id.listViewQueryFrag);
+        lstListado.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
     }
 
     public void goMainActivityBD(View v){
