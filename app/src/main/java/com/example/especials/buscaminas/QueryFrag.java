@@ -57,7 +57,7 @@ public class QueryFrag extends Fragment {
         super.onActivityCreated(state);
 
         lstListado = (ListView)getView().findViewById(R.id.listViewQueryFrag);
-        adapter = new AdaptadorPartidas(this,"SELECT * FROM " + UsuariosSQLiteHelper.nameTable,null);
+        adapter = new AdaptadorPartidas(this,"SELECT * FROM " + UsuariosSQLiteHelper.nameTable,null,db);
         lstListado.setAdapter(adapter);
         lstListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,66 +84,6 @@ public class QueryFrag extends Fragment {
         }
     }
 
-
-    class AdaptadorPartidas extends ArrayAdapter<Partida> {
-
-        Activity context;
-        String rawQuery;
-        String[] args;
-
-        AdaptadorPartidas(QueryFrag fragmentListado,String rawQuery, String[] args) {
-
-            super(fragmentListado.getActivity(),R.layout.listitem_query);
-            this.context = fragmentListado.getActivity();
-            this.rawQuery = rawQuery;
-            this.args = args;
-
-        }
-
-        @Override
-        public int getCount() {
-            return db.rawQuery(rawQuery, args).getCount();
-        }
-
-        @Override
-        public Partida getItem(int position) {
-            Cursor c = db.rawQuery(rawQuery, args);
-            c.moveToPosition(position); // retorna un boolean
-            int i = 1;
-
-            String alias = c.getString(i); i++;
-            String fecha = c.getString(i); i++;
-            int numeroCasillas = c.getInt(i); i++;
-            int numeroCasillasRestantes = c.getInt(i); i++;
-            int porCientoMinas = c.getInt(i); i++;
-            int tiempo = c.getInt(i); i++;
-            String resultado = c.getString(i); i++;
-            String bomba = c.getString(i); i++;
-            String allLog = c.getString(i);
-            return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba, allLog,getContext());
-
-
-        }
-
-
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = context.getLayoutInflater();
-            View item = inflater.inflate(R.layout.listitem_query, null);
-            Partida p = getItem(position);
-            TextView lblAlias = (TextView)item.findViewById(R.id.queryAlias);
-            lblAlias.setText(p.alias);
-
-            TextView lblFechaHora = (TextView)item.findViewById(R.id.queryFechaHora);
-            lblFechaHora.setText(p.fecha);
-
-            TextView lblDetalle = (TextView)item.findViewById(R.id.queryDetalle);
-            lblDetalle.setText(p.resultado);
-
-
-            return(item);
-        }
-    }
 
     public interface PartidasListener {
         void onPartidaSeleccionada(Partida p);
@@ -218,7 +158,7 @@ public class QueryFrag extends Fragment {
 
         String alias = p.alias;
         String[] args = new String[]{alias};
-        adapter = new AdaptadorPartidas(this, "SELECT * FROM " + UsuariosSQLiteHelper.nameTable + " WHERE alias=?",args);
+        adapter = new AdaptadorPartidas(this, "SELECT * FROM " + UsuariosSQLiteHelper.nameTable + " WHERE alias=?",args,db);
         lstListado.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
