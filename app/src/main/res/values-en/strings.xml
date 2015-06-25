@@ -102,6 +102,7 @@
     <string name="action_eliminar">Eliminar</string>
     <string name="action_mostrarTodos">Mostrar todas con este alias</string>
     <string name="action_mostrarLogCompleto">Mostrar log completo</string>
+    <string name="action_limpiarBD">Borrar todas las partidas</string>
 
     <!--- Partida -->
     <string name="log_partida_alias">Alias</string>
@@ -122,4 +123,5 @@
     <string name="menuPrincipal">Menú principal</string>
     <string name="seleccionarAplicacion">Seleccionar aplicación</string>
     <string name="emailNecesario">Necesario un email</string>
+    <string name="partidasBorradas">Se han eliminado %d partidas</string>
 </resources>

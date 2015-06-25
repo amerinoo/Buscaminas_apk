@@ -102,6 +102,7 @@
     <string name="action_eliminar">Eliminar</string>
     <string name="action_mostrarTodos">Mostrar tots amb aquest àlies</string>
     <string name="action_mostrarLogCompleto">Mostrar log complet</string>
+    <string name="action_limpiarBD">Borrar todas las partidas</string>
 
     <!--- Partida -->
     <string name="log_partida_alias">Àlies</string>
@@ -122,4 +123,5 @@
     <string name="menuPrincipal">Menú principal</string>
     <string name="seleccionarAplicacion">Seleccionar aplicació</string>
     <string name="emailNecesario">Necessari un email</string>
+    <string name="partidasBorradas">Se han eliminado %d partidas</string>
 </resources>
