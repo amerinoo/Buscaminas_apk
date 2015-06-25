@@ -53,7 +53,8 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
         AdaptadorPartidas adapter = new AdaptadorPartidas(this, "SELECT * FROM " + UsuariosSQLiteHelper.nameTable, null, db);
         ListView lstListado = (ListView) findViewById(R.id.listViewQueryFrag);
         lstListado.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+        removeDetail();
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -84,6 +85,14 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
             Intent i = new Intent(this, DetalleActivity.class);
             i.putExtra(DetalleActivity.EXTRA_TEXTO,p.getAllLog());
             startActivity(i);
+        }
+    }
+
+    @Override
+    public void removeDetail() {
+        RegistroFrag registroFrag = (RegistroFrag) getFragmentManager().findFragmentById(R.id.fragmentRegistro);
+        if (registroFrag != null && registroFrag.isInLayout()) {
+            registroFrag.mostrarRegistro("");
         }
     }
 

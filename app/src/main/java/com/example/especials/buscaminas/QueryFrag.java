@@ -88,6 +88,7 @@ public class QueryFrag extends Fragment {
     public interface PartidasListener {
         void onPartidaSeleccionada(Partida p);
         void showAllLog(Partida p);
+        void removeDetail();
     }
 
     public void setPartidasListener(PartidasListener listener) {
@@ -174,8 +175,10 @@ public class QueryFrag extends Fragment {
 
         int partides = db.delete(UsuariosSQLiteHelper.nameTable, "alias=? AND fecha=?", new String[]{alias,fecha});
         String text = String.format(getString(R.string.partidasBorradas),partides);
-        if(partides > 0) showToast(text);
-        else showToast(getString(R.string.errorEliminarElementos));
+        if(partides > 0) {
+            listener.removeDetail();
+            showToast(text);
+        }else showToast(getString(R.string.errorEliminarElementos));
         adapter.notifyDataSetChanged();
     }
     private String putEmail() {
