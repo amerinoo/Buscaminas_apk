@@ -10,8 +10,14 @@
     <!--- Ayuda -->
     <string name="title_activity_ayuda">Ajuda</string>
     <string name="titulo_ayuda">AJUDA</string>
-    <string name="texto_ayuda">\t\tBienvendio al juego del BUSCAMINAS!\n\n El juego consiste en despejar todas las casillas de una parrila que no oculten una mina. Algunas casillas tienen el número, este número indica las minas que suman todas las casillas circundantes. Así, si una casilla tiene el número 3, significa que de las ocho casillas que hay alrededor (si no es en una esquina o borde) hay 3 con minas y 5 sin minas. Si se descubre una casilla con una mina SE PIERDE la partida. En otro caso, descubres todas las casilla sin mina, GANAS!! Puedes configurar el nº de filas de la parrila, el porcentage de minas en la misma y si quieres que haya un tiempo máximo para completar el juego.</string>
-
+    <string name="texto_ayuda">\t\tBenvingut al joc del BUSCAMINES!\n\n El joc consisteix en
+        aclarir totes les caselles de una graella que no ocultin una mina. Algunes caselles tenen
+        un nombre, aquest nombre indica les mines que sumen totes las caselles circumdants. Així, si
+        una casella té el nombre 3, significa que de les vuit caselles que hi ha al voltant (si no
+        és en una cantonada o vora) hi han 3 amb mines i 5 sense mines. Si es descobreix una casilla amb una
+        mina ES PERD la partida. Per altra banda, si descobreixes totes les caselles sense mina, GUANYES!!
+        Pots configurar el nº de filas de la graella, el percentatge de mines en la aquesta i si
+        vols que hi hagi un control del temps en completar el juego.</string>
 
     <!--- Consultar Partidas -->
     <string name="title_activity_acceso_bd">Accès BD</string>
@@ -119,7 +125,7 @@
 
 
     <!--- Otros -->
-    <string name="salir">Salir</string>
+    <string name="salir">Sortir</string>
     <string name="menuPrincipal">Menú principal</string>
     <string name="seleccionarAplicacion">Seleccionar aplicació</string>
     <string name="emailNecesario">Necessari un email</string>

@@ -10,7 +10,14 @@
     <!--- Ayuda -->
     <string name="title_activity_ayuda">Ayuda</string>
     <string name="titulo_ayuda">AYUDA</string>
-    <string name="texto_ayuda">\t\tBienvendio al juego del BUSCAMINAS!\n\n El juego consiste en despejar todas las casillas de una parrila que no oculten una mina. Algunas casillas tienen el número, este número indica las minas que suman todas las casillas circundantes. Así, si una casilla tiene el número 3, significa que de las ocho casillas que hay alrededor (si no es en una esquina o borde) hay 3 con minas y 5 sin minas. Si se descubre una casilla con una mina SE PIERDE la partida. En otro caso, descubres todas las casilla sin mina, GANAS!! Puedes configurar el nº de filas de la parrila, el porcentage de minas en la misma y si quieres que haya un tiempo máximo para completar el juego.</string>
+    <string name="texto_ayuda">\t\tBienvendio al juego del BUSCAMINAS!\n\n El juego consiste en
+        despejar todas las casillas de una parrila que no oculten una mina. Algunas casillas tienen
+        un número, este número indica las minas que suman todas las casillas circundantes. Así, si
+        una casilla tiene el número 3, significa que de las ocho casillas que hay alrededor (si no
+        es en una esquina o borde) hay 3 con minas y 5 sin minas. Si se descubre una casilla con una
+        mina SE PIERDE la partida. En otro caso, si descubres todas las casilla sin mina, GANAS!!
+        Puedes configurar el nº de filas de la parrila, el porcentage de minas en la misma y si
+        quieres que haya un control del tiempo en completar el juego.</string>
 
 
     <!--- Consultar Partidas -->
