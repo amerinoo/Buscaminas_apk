@@ -30,6 +30,7 @@ public class CasillaAdapter extends BaseAdapter {
         firstButton = new Button(context);
         firstButton.setPadding(8, 8, 8, 8);
         c.setButton(firstButton);
+        c.setContexto(new Contexto(firstButton));
         c.setPosition(0);
         c.setBlockAsDisabled(false);
         firstButton.setOnClickListener(new OnClickListenerCasilla(c));
@@ -97,6 +98,7 @@ public class CasillaAdapter extends BaseAdapter {
             btn.setPadding(8, 8, 8, 8);
 
             c.setButton(btn);
+            c.setContexto(new Contexto(btn));
             c.setPosition(position);
             c.setBlockAsDisabled(false);
             btn.setOnClickListener(new OnClickListenerCasilla(c));

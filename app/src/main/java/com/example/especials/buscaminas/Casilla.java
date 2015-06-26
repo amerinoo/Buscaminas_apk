@@ -23,6 +23,7 @@ public class Casilla {
     private List<Casilla> minesInSurrounding;
     private int position=-1;
     private Button imThis;
+    private Contexto contexto;
 
     private int numberOfColumnsInMineField;
     private int numCasillas;
@@ -239,6 +240,14 @@ public class Casilla {
     }
 
     public void setButton(Button b){imThis = b;}
+
+    public Contexto getContexto() {
+        return contexto;
+    }
+
+    public void setContexto(Contexto contexto) {
+        this.contexto = contexto;
+    }
 
     @Override
     public String toString() {
