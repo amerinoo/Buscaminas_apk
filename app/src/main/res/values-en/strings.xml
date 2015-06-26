@@ -132,5 +132,6 @@
     <string name="menuPrincipal">Menú principal</string>
     <string name="seleccionarAplicacion">Seleccionar aplicación</string>
     <string name="emailNecesario">Necesario un email</string>
+    <string name="action_showReview">Ver tablero partida</string>
 
 </resources>

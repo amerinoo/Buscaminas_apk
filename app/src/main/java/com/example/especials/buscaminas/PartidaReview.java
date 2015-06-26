@@ -25,7 +25,7 @@ public class PartidaReview implements Review {
         System.out.println(review);
     }
 
-    public void showReview(Partida p){
+    public void showReview(){
         Tablero.getTablero().partida = p;
         PartidaBuilder builder = new ReviewPartidaBuilder();
         new PartidaParser(builder).parse("");

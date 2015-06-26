@@ -104,6 +104,7 @@ public class QueryFrag extends Fragment {
         contextMenu.add(0, 2, 2, getString(R.string.action_mostrarTodos));
         contextMenu.add(0, 3, 3, getString(R.string.action_mostrarLogCompleto));
         contextMenu.add(0, 4, 4, getString(R.string.action_send));
+        contextMenu.add(0, 5, 5, getString(R.string.action_showReview));
 
     }
     @Override
@@ -122,8 +123,16 @@ public class QueryFrag extends Fragment {
             case 4:
                 sendByEmail(info.position);
                 return true;
+            case 5:
+                showReview(info.position);
+                return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void showReview(int position) {
+        Partida p = (Partida) lstListado.getAdapter().getItem(position);
+        listener.showReview(p);
     }
 
     private void sendByEmail(int position) {

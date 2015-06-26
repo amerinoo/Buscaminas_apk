@@ -5,5 +5,5 @@ package com.example.especials.buscaminas;
  */
 public interface Review {
     public void makeReview();
-    public void showReview(Partida p);
+    public void showReview();
 }

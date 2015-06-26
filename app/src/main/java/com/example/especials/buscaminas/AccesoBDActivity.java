@@ -104,6 +104,12 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
 
     @Override
     public void showReview(Partida p) {
+        PartidaReview partidaReview = new PartidaReview(p);
+        partidaReview.showReview();
+        goReviwActivate(null);
+    }
+
+    private void goReviwActivate(View view) {
 
     }
 
