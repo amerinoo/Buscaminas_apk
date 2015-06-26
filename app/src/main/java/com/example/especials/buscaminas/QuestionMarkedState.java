@@ -5,7 +5,7 @@ package com.example.especials.buscaminas;
  */
 public class QuestionMarkedState implements State {
     @Override
-    public void doAction() {
+    public void doAction(Contexto contexto) {
 
     }
 

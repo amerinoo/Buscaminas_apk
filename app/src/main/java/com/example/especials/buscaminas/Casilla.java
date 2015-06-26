@@ -191,13 +191,13 @@ public class Casilla {
     }
 
     public void putFlag(){
-        imThis.setBackgroundResource(R.drawable.prova);
-        if (!isFlagged)tablero.numBombes-=1;
+        changeState(flagState);
+        if (!isFlagged)tablero.numBombes -=1;
         setFlagged(true);
-        imThis.setClickable(false);
 
         updateBombs();
     }
+
 
     public void putQuestionMarked(){
         setBlockAsDisabled(false);
@@ -207,6 +207,10 @@ public class Casilla {
         setQuestionMarked(true);
 
         updateBombs();
+    }
+
+    private void changeState(State state) {
+        state.doAction(contexto);
     }
 
     public boolean isCovered() {

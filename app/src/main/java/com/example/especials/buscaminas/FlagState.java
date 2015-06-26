@@ -6,12 +6,14 @@ package com.example.especials.buscaminas;
 public class FlagState implements State {
 
     @Override
-    public void doAction() {
-
+    public void doAction(Contexto contexto) {
+        contexto.imThis.setBackgroundResource(R.drawable.prova);
+        contexto.imThis.setClickable(false);
+        contexto.setState(this);
     }
 
     @Override
     public String toReviewString() {
-        return null;
+        return "f";
     }
 }

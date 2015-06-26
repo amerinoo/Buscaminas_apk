@@ -5,7 +5,7 @@ package com.example.especials.buscaminas;
  */
 public class BlankState implements State{
     @Override
-    public void doAction() {
+    public void doAction(Contexto contexto) {
 
     }
 
