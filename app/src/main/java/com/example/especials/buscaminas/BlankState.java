@@ -6,11 +6,12 @@ package com.example.especials.buscaminas;
 public class BlankState implements State{
     @Override
     public void doAction(Contexto contexto) {
-
+        contexto.imThis.setText("");
+        contexto.setState(this);
     }
 
     @Override
     public String toReviewString() {
-        return null;
+        return "-";
     }
 }

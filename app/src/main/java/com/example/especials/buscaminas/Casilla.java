@@ -184,7 +184,7 @@ public class Casilla {
     }
 
     public void clean(){
-        imThis.setText("");
+        changeState(blankState);
         setQuestionMarked(false);
         imThis.setClickable(true);
 
