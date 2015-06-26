@@ -3,6 +3,7 @@ package com.example.especials.buscaminas;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,6 +28,23 @@ public class Configuracion extends Activity  implements RadioGroup.OnCheckedChan
         minas = Integer.parseInt(((RadioButton)findViewById( radioGroup.getCheckedRadioButtonId())).getText().toString());
         radioGroup.setOnCheckedChangeListener(this);
     }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                goMainActivityBD(null);
+                return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+
+    public void goMainActivityBD(View v){
+        Intent in = new Intent(Configuracion.this,MainActivity.class);
+        startActivity(in);
+        finish();
+    }
+
     public void goDesarroloJuego(View v){
         editText = (EditText) findViewById(R.id.editTextAlias);
         if(!editText.getText().toString().trim().isEmpty()) {
