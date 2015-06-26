@@ -26,6 +26,7 @@ public class PartidaReview implements Review {
     }
 
     public void showReview(){
+        PartidaBuilder builder = new ReviewPartidaBuilder();
 
     }
 
