@@ -5,5 +5,5 @@ package com.example.especials.buscaminas;
  */
 public interface State {
     public void doAction();
-    public String toString();
+    public String toReviewString();
 }

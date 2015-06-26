@@ -28,6 +28,11 @@ public class Casilla {
     private int numberOfColumnsInMineField;
     private int numCasillas;
 
+    private QuestionMarkedState questionMarkedState;
+    private BlankState blankState;
+    private BombState bombState;
+    private FlagState flagState;
+
 
     public Casilla(int bombStyle, int numberOfColumnsInMineField, int numCasillas, Context context) {
         this.isMined = false;
@@ -49,6 +54,11 @@ public class Casilla {
         isFlagged = false;
         isQuestionMarked = false;
         isClickable = true;
+        questionMarkedState = new QuestionMarkedState();
+        blankState = new BlankState();
+        bombState = new BombState();
+        flagState = new FlagState();
+
     }
 
     public void calculateCellsSurrounding() {
