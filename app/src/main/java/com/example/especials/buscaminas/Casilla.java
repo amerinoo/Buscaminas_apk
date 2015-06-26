@@ -201,7 +201,7 @@ public class Casilla {
 
     public void putQuestionMarked(){
         setBlockAsDisabled(false);
-        imThis.setText("?");
+        changeState(questionMarkedState);
         if ((tablero.numBombes > 0 || isFlagged) && !isQuestionMarked) tablero.numBombes+=1;
         setFlagged(false);
         setQuestionMarked(true);
