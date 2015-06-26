@@ -138,7 +138,10 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             if(useTimer) s += " " + getString(R.string.log_segundo) + " " + secondsPassed;
             log(s + "\n");
             c.openBlock();
-            if (c.isMined())  gameOver(false,c.getPosition());
+            if (c.isMined()) {
+                c.setBomb();
+                gameOver(false, c.getPosition());
+            }
             if(checkWin()) gameOver(true,c.getPosition());
         }else{
             System.out.println("No es clicable");

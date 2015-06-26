@@ -208,6 +208,9 @@ public class Casilla {
 
         updateBombs();
     }
+    public void setBomb() {
+        changeState(bombState);
+    }
 
     private void changeState(State state) {
         state.doAction(contexto);
@@ -303,5 +306,4 @@ public class Casilla {
         return !(minesInSurrounding != null ? !minesInSurrounding.equals(casilla.minesInSurrounding) : casilla.minesInSurrounding != null);
 
     }
-
 }

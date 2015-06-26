@@ -6,11 +6,11 @@ package com.example.especials.buscaminas;
 public class BombState implements State {
     @Override
     public void doAction(Contexto contexto) {
-
+        contexto.setState(this);
     }
 
     @Override
     public String toReviewString() {
-        return null;
+        return "b";
     }
 }
