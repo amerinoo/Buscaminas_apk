@@ -83,6 +83,7 @@ public class QueryFrag extends Fragment {
         void onPartidaSeleccionada(Partida p);
         void showAllLog(Partida p);
         void removeDetail();
+        void showReview(Partida p);
     }
 
     public void setPartidasListener(PartidasListener listener) {
