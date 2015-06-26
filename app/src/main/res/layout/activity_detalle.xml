@@ -23,5 +23,6 @@
         android:id="@+id/button5"
         android:layout_gravity="right"
         android:layout_below="@+id/fragmentRegistro"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="goAccesoBD"/>
 </RelativeLayout>
