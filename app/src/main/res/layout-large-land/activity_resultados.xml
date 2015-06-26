@@ -148,7 +148,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="294dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout4"
             android:layout_marginTop="10dp"

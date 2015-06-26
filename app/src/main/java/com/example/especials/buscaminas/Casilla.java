@@ -245,6 +245,10 @@ public class Casilla {
         this.numberOfMinesInSurrounding += 1;
     }
 
+    public int getMinesInSurrounding() {
+        return numberOfMinesInSurrounding;
+    }
+
     public int getPosition() {
         return position;
     }
@@ -261,6 +265,7 @@ public class Casilla {
 
     public void setContexto(Contexto contexto) {
         this.contexto = contexto;
+        changeState(blankState);
     }
 
     @Override

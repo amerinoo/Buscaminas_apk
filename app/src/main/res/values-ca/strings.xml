@@ -38,7 +38,7 @@
     <string name="log_porcientominas">%Mines:</string>
     <string name="log_minas">Mines:</string>
     <string name="log_tiempo">Temps:</string>
-    <string name="log_casilla">Casilles</string>
+    <string name="log_casilla">Casella</string>
     <string name="log_abierta">oberta</string>
     <string name="log_segundo">en el segon</string>
     <string name="log_derrota">Derrota</string>

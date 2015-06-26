@@ -18,10 +18,11 @@ public class PartidaReview implements Review {
         review += "allLog : " + p.allLog + ";\n";
         for(Casilla casilla : Tablero.getTablero().casillas){
             int covered = (casilla.isCovered()) ? 0 : 1;
-            String state = casilla.getContexto().getState().toString();
-            review += "casilla : " + casilla.getPosition() + " " + covered + " " + state + ";\n";
+            String state = casilla.getContexto().getState().toReviewString();
+            review += "casilla : " + casilla.getPosition() + " " + covered + " " + state + " " + casilla.getMinesInSurrounding()+ ";\n";
         }
         p.review = review;
+        System.out.println(review);
     }
 
     public void showReview(){

@@ -217,13 +217,14 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         if(victoria){
             partida.resultado = getString(R.string.log_victoria);
             partida.bomba = null;
-            partida.numeroCasillasRestantes = partida.numeroCasillas - partida.numeroBanderasOK - n;
+            partida.numeroCasillasRestantes = 0;
             log(partida.resultado + "\n");
-        }else{
+        } else {
             partida.resultado = getString(R.string.log_derrota);
             partida.bomba = toCoordenate(position);
-            partida.numeroCasillasRestantes = 0;
+            partida.numeroCasillasRestantes = partida.numeroCasillas - partida.numeroBanderasOK - n;
             log(partida.resultado + " " + getString(R.string.log_bombaEnCasilla) + " " + toCoordenate(position) + "\n");
+
         }
 
         FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
