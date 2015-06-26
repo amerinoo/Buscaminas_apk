@@ -21,6 +21,7 @@ public class Partida {
     private String log = "";
     public int numeroCasillasRestantes = -1;
     public String allLog = "";
+    public String review;
 
     private Context context;
 

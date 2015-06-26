@@ -32,7 +32,8 @@ public class Resultados extends Activity {
             Tablero tablero = Tablero.getTablero();
             p = new Partida(tablero.partida);
             p.setContext(this);
-            tablero.clearTablero();
+            PartidaReview partidaReview = new PartidaReview(p);
+            partidaReview.makeReview();
             p.fecha = getFecha();
             fecha = p.fecha;
             Bundle b = getIntent().getExtras();
@@ -49,6 +50,7 @@ public class Resultados extends Activity {
             else log = p.getLog();
             ((TextView) findViewById(R.id.log)).setText(log);
             toDB(); // Només ho s'ha de guardar un cop
+            tablero.clearTablero();
         }else{
             log = savedInstanceState.getString("log");
             ((TextView) findViewById(R.id.log)).setText(log);
