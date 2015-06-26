@@ -9,10 +9,19 @@
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="420dp"
         android:name="com.example.especials.buscaminas.RegistroFrag"
         android:id="@+id/fragmentRegistro"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        tools:layout="@layout/registrofrag" />
+        tools:layout="@layout/registrofrag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="false" />
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/visualizarLista"
+        android:id="@+id/button5"
+        android:layout_gravity="right"
+        android:layout_below="@+id/fragmentRegistro"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

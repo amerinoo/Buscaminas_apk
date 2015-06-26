@@ -12,7 +12,7 @@ import android.widget.TextView;
 /**
  * Created by pestomerdes on 6/25/15.
  */
-class AdaptadorPartidas extends ArrayAdapter<Partida> {
+public class AdaptadorPartidas extends ArrayAdapter<Partida> {
 
     Activity context;
     String rawQuery;

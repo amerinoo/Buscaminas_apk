@@ -11,16 +11,18 @@
     <string name="title_activity_ayuda">Ajuda</string>
     <string name="titulo_ayuda">AJUDA</string>
     <string name="texto_ayuda">\t\tBenvingut al joc del BUSCAMINES!\n\n El joc consisteix en
-        aclarir totes les caselles de una graella que no ocultin una mina. Algunes caselles tenen
+        aclarir totes les caselles d\'una graella que no ocultin una mina. Algunes caselles tenen
         un nombre, aquest nombre indica les mines que sumen totes las caselles circumdants. Així, si
         una casella té el nombre 3, significa que de les vuit caselles que hi ha al voltant (si no
-        és en una cantonada o vora) hi han 3 amb mines i 5 sense mines. Si es descobreix una casilla amb una
+        és en una cantonada o vora) hi han 3 amb mines i 5 sense mines. Si es descobreix una casella amb una
         mina ES PERD la partida. Per altra banda, si descobreixes totes les caselles sense mina, GUANYES!!
-        Pots configurar el nº de filas de la graella, el percentatge de mines en la aquesta i si
+        Pots configurar el nº de filas de la graella, el percentatge de mines en aquesta i si
         vols que hi hagi un control del temps en completar el juego.</string>
 
     <!--- Consultar Partidas -->
     <string name="title_activity_acceso_bd">Accès BD</string>
+    <string name="partidasBorradas">S\'han eliminat %d partides</string>
+    <string name="errorEliminarElementos">Error al eliminar</string>
 
     <!--- Desarrolo Juego -->
     <string name="title_activity_desarrollo_juego">Desenvolupament Joc</string>
@@ -51,7 +53,7 @@
 
     <string name="aliasObligatorio">Has de posar un àlies per començar!</string>
     <string name="alias">Nombre Usuario</string>
-    <string name="aliasIdentificativo">Alias identificativo</string>
+    <string name="aliasIdentificativo">Àlies identificatiu</string>
 
     <string name="tamañoParilla">Tamany Graella</string>
     <string name="valortamañoParilla">5</string>
@@ -97,18 +99,19 @@
     <string name="title_preference_aliasIdentificativo">Àlies identificatiu</string>
     <string name="indicar_porcientoMinas">Indicar % minas</string>
     <string name="introduceTamañoParrilla">Introduir valor</string>
-    <string name="introduceAlias">Introduir alias</string>
+    <string name="introduceAlias">Introduir àlies</string>
 
     <!--- Detalle BD -->
     <string name="title_activity_detalle">Detall Activity</string>
+    <string name="visualizarLista">Visualitzar Llista</string>
 
     <!--- Acciones menus -->
     <string name="action_settings">Preferències</string>
-    <string name="action_send">Enviar email</string>
+    <string name="action_send">Enviar e-mail</string>
     <string name="action_eliminar">Eliminar</string>
     <string name="action_mostrarTodos">Mostrar tots amb aquest àlies</string>
     <string name="action_mostrarLogCompleto">Mostrar log complet</string>
-    <string name="action_limpiarBD">Borrar todas las partidas</string>
+    <string name="action_limpiarBD">Borrar totes les partides</string>
 
     <!--- Partida -->
     <string name="log_partida_alias">Àlies</string>
@@ -129,6 +132,4 @@
     <string name="menuPrincipal">Menú principal</string>
     <string name="seleccionarAplicacion">Seleccionar aplicació</string>
     <string name="emailNecesario">Necessari un email</string>
-    <string name="partidasBorradas">Se han eliminado %d partidas</string>
-    <string name="errorEliminarElementos">Error al eliminar</string>
 </resources>

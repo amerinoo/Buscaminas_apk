@@ -18,7 +18,10 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
         setContentView(R.layout.activity_acceso_bd);
         QueryFrag queryFrag = (QueryFrag) getFragmentManager().findFragmentById(R.id.fragmentQuery);
         queryFrag.setPartidasListener(this);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,6 +35,9 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
         switch (item.getItemId()){
             case R.id.action_limpiarBD:
                 removeAllGames();
+                return true;
+            case android.R.id.home:
+                goMainActivityBD(null);
                 return true;
         }
         return super.onMenuItemSelected(featureId, item);

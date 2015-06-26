@@ -22,6 +22,8 @@
 
     <!--- Consultar Partidas -->
     <string name="title_activity_acceso_bd">Acceso BD</string>
+    <string name="partidasBorradas">Se han eliminado %d partidas</string>
+    <string name="errorEliminarElementos">Error al eliminar</string>
 
     <!--- Desarrolo Juego -->
     <string name="title_activity_desarrollo_juego">Desarrollo Juego</string>
@@ -102,6 +104,7 @@
 
     <!--- Detalle BD -->
     <string name="title_activity_detalle">Detalle Activity</string>
+    <string name="visualizarLista">Visualizar Lista</string>
 
     <!--- Acciones menus -->
     <string name="action_settings">Preferencias</string>
@@ -130,8 +133,6 @@
     <string name="menuPrincipal">Menú principal</string>
     <string name="seleccionarAplicacion">Seleccionar aplicación</string>
     <string name="emailNecesario">Necesario un email</string>
-    <string name="partidasBorradas">Se han eliminado %d partidas</string>
-    <string name="errorEliminarElementos">Error al eliminar</string>
 
 
 </resources>
