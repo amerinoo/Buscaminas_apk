@@ -12,6 +12,6 @@ public class AllLogOpcion implements ReviewOption {
 
     @Override
     public void toBuilder(PartidaBuilder partidaBuilder) {
-
+        partidaBuilder.setAllLog(toParse);
     }
 }
