@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Casilla {
 
-    private final int bombStyle;
-    private final Tablero tablero;
-    private final Context context;
+    private int bombStyle;
+    private Tablero tablero;
+    private Context context;
     private boolean isCovered; // is block covered yet
     private boolean isMined; // does the block has a mine underneath
     private boolean isFlagged; // is block flagged as a potential mine
@@ -26,6 +26,8 @@ public class Casilla {
     private Contexto contexto;
 
     private int numberOfColumnsInMineField;
+    public String state;
+    private int numBombs;
     private int numCasillas;
 
     private QuestionMarkedState questionMarkedState;
@@ -45,6 +47,13 @@ public class Casilla {
         minesInSurrounding = new ArrayList<>();
         setDefaults();
 
+    }
+    public Casilla(int position,boolean isCovered, String state, int numBombs) {
+
+        this.position = position;
+        this.isCovered = isCovered;
+        this.state = state;
+        this.numBombs = numBombs;
     }
 
     // set default properties for the block

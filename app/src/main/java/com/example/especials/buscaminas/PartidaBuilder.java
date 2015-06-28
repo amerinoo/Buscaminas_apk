@@ -1,5 +1,6 @@
 package com.example.especials.buscaminas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ public abstract class PartidaBuilder {
     public int numeroCasillas;
     public int numeroCasillasRestantes;
     public int tiempo;
-    public List<Casilla> casillas;
+    public List<Casilla> casillas = new ArrayList<>();
     public int numBombes;
 
     public abstract void build();
