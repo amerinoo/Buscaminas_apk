@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.lang.reflect.AccessibleObject;
 
@@ -29,6 +30,20 @@ public class ReviewActivity extends Activity implements FragmentParrilla.Casilla
         tablero = Tablero.getTablero();
         numberOfColumnsInMineField = (int)Math.sqrt(tablero.casillas.size());
         activarTablero();
+        putTime();
+
+    }
+
+    private void putTime() {
+        int tiempo = tablero.partida.tiempo;
+        String stiempo;
+        TextView txtTimer = (TextView) findViewById(R.id.textView6);
+        if (tiempo < 10) stiempo = "00"+tiempo;
+        else if (tiempo < 100) stiempo = "0"+tiempo;
+        else stiempo = ""+tiempo;
+
+        txtTimer.setText(stiempo);
+
     }
 
 

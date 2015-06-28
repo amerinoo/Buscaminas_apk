@@ -32,6 +32,7 @@ public class PartidaReview implements Review {
                 "casilla&1 0 b 0;" +
                 "casilla&2 0 ? 0;" +
                 "casilla&3 0 f 0;";
+        //String s = p.review;
         Tablero.getTablero().partida = p;
         PartidaBuilder builder = new ReviewPartidaBuilder();
         new PartidaParser(builder).parse(s);

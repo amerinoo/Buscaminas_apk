@@ -1,8 +1,10 @@
 package com.example.especials.buscaminas;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class Casilla {
 
         minesInSurrounding = new ArrayList<>();
         setDefaults();
+        updateBombs();
 
     }
     public Casilla(int position,boolean isCovered, String state, int numBombs) {
@@ -54,6 +57,7 @@ public class Casilla {
         this.isCovered = isCovered;
         this.state = state;
         this.numberOfMinesInSurrounding = numBombs;
+        tablero = Tablero.getTablero();
         inicialiceStates();
     }
 
@@ -177,8 +181,9 @@ public class Casilla {
 
 
     public void updateBombs() {
+        TextView textView = (TextView) ((Activity) context).findViewById(R.id.textoMinas);
         String message = String.format(context.getString(R.string.infoBombes), tablero.numBombes);
-        DesarrolloJuego.textView.setText(message);
+        textView.setText(message);
     }
     private void destaparCeldasSinBombas() {
         if(numberOfMinesInSurrounding == 0 && !isMined && !isFlagged){
@@ -207,7 +212,6 @@ public class Casilla {
         changeState(flagState);
         if (!isFlagged)tablero.numBombes -=1;
         setFlagged(true);
-
         updateBombs();
     }
 
@@ -286,6 +290,10 @@ public class Casilla {
     public void setContexto(Contexto contexto,State state) {
         this.contexto = contexto;
         changeState(state);
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     @Override

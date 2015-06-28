@@ -34,8 +34,9 @@ public class ReviewAdapter extends BaseAdapter {
         c.setButton(firstButton);
         c.setBlockAsDisabled(false);
         c.setContexto(new Contexto(firstButton),getState(c.state));
+        c.setContext(context);
         c.setPosition(0);
-
+        c.updateBombs();
     }
     /**
      * How many items are in the data set represented by this Adapter.
@@ -101,6 +102,7 @@ public class ReviewAdapter extends BaseAdapter {
             c.setBlockAsDisabled(false);
             c.setContexto(new Contexto(btn), getState(c.state));
             c.setPosition(position);
+            c.setContext(context);
         }else if(position == 0){ btn = firstButton;}
         else {
             btn = (Button) view;

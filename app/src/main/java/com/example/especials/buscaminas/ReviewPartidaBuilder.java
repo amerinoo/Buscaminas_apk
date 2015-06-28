@@ -13,5 +13,6 @@ public class ReviewPartidaBuilder extends PartidaBuilder {
         p.allLog = getAllLog();
         p.numBombas = getNumBombes();
         Tablero.getTablero().casillas = getCasillas();
+        Tablero.getTablero().numBombes = getNumBombes();
     }
 }

@@ -5,7 +5,6 @@ package com.example.especials.buscaminas;
  */
 public class StateFactoryMethod {
     public State getState(String state){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!"+state+"!!!!!!!!!!!!!!!!!!!!!!");
         if (state.equals("-")) return new BlankState();
         else if (state.equals("?")) return new QuestionMarkedState();
         else if (state.equals("b")) return new BombState();
