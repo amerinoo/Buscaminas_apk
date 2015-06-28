@@ -17,7 +17,8 @@ public class PartidaParser {
         System.out.println("Tokens:");
         String[] tokens = split(s, ";&");
         for (int i = 0; i < tokens.length; i+=2){
-            System.out.println(tokens[i] + " : " + tokens[i+1]);
+            ReviewOption reviewOption = new ReviewFactoryMethod().getInstance(tokens[i],tokens[i+1]);
+            reviewOption.toBuilder(builder);
         }
     }
     private String[] split(String string, String delimiters){
