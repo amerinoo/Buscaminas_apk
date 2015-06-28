@@ -12,6 +12,6 @@ public class TiempoOpcion implements ReviewOption {
 
     @Override
     public void toBuilder(PartidaBuilder partidaBuilder) {
-
+        partidaBuilder.setTiempo(Integer.valueOf(toParse));
     }
 }
