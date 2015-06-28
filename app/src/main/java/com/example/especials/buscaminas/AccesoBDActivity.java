@@ -110,7 +110,8 @@ public class AccesoBDActivity extends Activity implements QueryFrag.PartidasList
     }
 
     private void goReviwActivate(View view) {
-
+        Intent in = new Intent(AccesoBDActivity.this,ReviewActivity.class);
+        startActivity(in);
     }
 
     private void showToast(String text) {

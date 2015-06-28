@@ -3,6 +3,7 @@ package com.example.especials.buscaminas;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,14 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import java.lang.reflect.AccessibleObject;
 
-public class ReviewActivity extends Activity {
+
+public class ReviewActivity extends Activity implements FragmentParrilla.CasillaListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desarrollo_juego);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -37,10 +40,20 @@ public class ReviewActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case android.R.id.home:
+                goAccesoBDActivity(null);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+    public void goAccesoBDActivity(View v){
+        Intent in = new Intent(ReviewActivity.this,AccesoBDActivity.class);
+        startActivity(in);
+        finish();
+    }
+
+    @Override
+    public void onCasillaSeleccionada(Casilla c, boolean longClick) {}
 }
