@@ -283,6 +283,10 @@ public class Casilla {
         this.contexto = contexto;
         changeState(blankState);
     }
+    public void setContexto(Contexto contexto,State state) {
+        this.contexto = contexto;
+        changeState(state);
+    }
 
     @Override
     public String toString() {

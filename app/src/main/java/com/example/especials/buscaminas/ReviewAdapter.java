@@ -32,10 +32,10 @@ public class ReviewAdapter extends BaseAdapter {
         firstButton = new Button(context);
         firstButton.setPadding(8, 8, 8, 8);
         c.setButton(firstButton);
-        c.setContexto(new Contexto(firstButton));
-        c.setPosition(0);
         c.setBlockAsDisabled(false);
-        reload(c);
+        c.setContexto(new Contexto(firstButton),getState(c.state));
+        c.setPosition(0);
+
     }
     /**
      * How many items are in the data set represented by this Adapter.
@@ -98,10 +98,9 @@ public class ReviewAdapter extends BaseAdapter {
             btn.setPadding(8, 8, 8, 8);
 
             c.setButton(btn);
-            c.setContexto(new Contexto(btn));
-            c.setPosition(position);
             c.setBlockAsDisabled(false);
-            reload(c);
+            c.setContexto(new Contexto(btn), getState(c.state));
+            c.setPosition(position);
         }else if(position == 0){ btn = firstButton;}
         else {
             btn = (Button) view;
@@ -110,12 +109,9 @@ public class ReviewAdapter extends BaseAdapter {
         return btn;
     }
 
-    private void reload(Casilla c){
-        if(c.isFlagged()) c.putFlag();
-        else if (c.isQuestionMarked()) c.putQuestionMarked();
-        else if (!c.isCovered()) c.putMinesInSurrounding();
+    private State getState(String state) {
+        return new StateFactoryMethod().getState(state);
     }
-
 
 
 }
