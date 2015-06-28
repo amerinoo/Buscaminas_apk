@@ -7,6 +7,7 @@ import java.util.List;
  */
 public abstract class PartidaBuilder {
     public String allLog;
+    public int numeroCasillas;
     public int numeroCasillasRestantes;
     public int tiempo;
     public List<Casilla> casillas;
@@ -18,6 +19,10 @@ public abstract class PartidaBuilder {
 
     public String getAllLog() {
         return allLog;
+    }
+
+    public int getNumeroCasillas() {
+        return numeroCasillas;
     }
 
     public int getNumeroCasillasRestantes() {
@@ -41,6 +46,10 @@ public abstract class PartidaBuilder {
 
     public void setAllLog(String allLog) {
         this.allLog = allLog;
+    }
+
+    public void setNumeroCasillas(int numeroCasillas) {
+        this.numeroCasillas = numeroCasillas;
     }
 
     public void setNumeroCasillasRestantes(int numeroCasillasRestantes) {
