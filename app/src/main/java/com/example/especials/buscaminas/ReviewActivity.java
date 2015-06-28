@@ -11,17 +11,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.GridView;
 
 import java.lang.reflect.AccessibleObject;
 
 
 public class ReviewActivity extends Activity implements FragmentParrilla.CasillaListener{
 
+    private Tablero tablero;
+    private int numberOfColumnsInMineField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desarrollo_juego);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        tablero = Tablero.getTablero();
+        numberOfColumnsInMineField = (int)Math.sqrt(tablero.casillas.size());
+        activarTablero();
     }
 
 
@@ -56,4 +63,19 @@ public class ReviewActivity extends Activity implements FragmentParrilla.Casilla
 
     @Override
     public void onCasillaSeleccionada(Casilla c, boolean longClick) {}
+
+    private void activarTablero() {
+        try {
+            GridView parrilla;
+            FragmentParrilla fgpar = (FragmentParrilla) getFragmentManager().findFragmentById(R.id.fragmentParrilla);
+            parrilla = (GridView) fgpar.getView().findViewById(R.id.tablero);
+            parrilla.setNumColumns(numberOfColumnsInMineField);
+            ReviewAdapter adapter = new ReviewAdapter(this, tablero.casillas);
+            parrilla.setAdapter(adapter);
+        } catch (NullPointerException n){
+            n.printStackTrace();
+            throw new NullPointerException();
+        }
+
+    }
 }

@@ -54,6 +54,7 @@ public class Casilla {
         this.isCovered = isCovered;
         this.state = state;
         this.numberOfMinesInSurrounding = numBombs;
+        inicialiceStates();
     }
 
     // set default properties for the block
@@ -63,11 +64,14 @@ public class Casilla {
         isFlagged = false;
         isQuestionMarked = false;
         isClickable = true;
+        inicialiceStates();
+
+    }
+    private void inicialiceStates() {
         questionMarkedState = new QuestionMarkedState();
         blankState = new BlankState();
         bombState = new BombState();
         flagState = new FlagState();
-
     }
 
     public void calculateCellsSurrounding() {
