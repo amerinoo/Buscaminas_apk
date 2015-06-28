@@ -146,7 +146,6 @@ public class Casilla {
         if (isMined){
             showToast("BUUUUUUUUUUUUUM");
         }
-        setBlockAsDisabled(true);
         imThis.setClickable(false);
         setCovered(false);
         if(isMined()) imThis.setBackgroundResource(bombStyle);
@@ -162,6 +161,7 @@ public class Casilla {
     public void updateBombs() {
         String message = String.format(context.getString(R.string.infoBombes), tablero.numBombes);
         tablero.textView.setText(message);
+        tablero.partida.numBombasRestantes = tablero.numBombes;
     }
     private void destaparCeldasSinBombas() {
         if(numberOfMinesInSurrounding == 0 && !isMined && !isFlagged){
@@ -243,9 +243,6 @@ public class Casilla {
         this.numberOfMinesInSurrounding += 1;
     }
 
-    public void setNumberOfMinesInSurrounding(int numberOfMinesInSurrounding) {
-        this.numberOfMinesInSurrounding = numberOfMinesInSurrounding;
-    }
 
     public int getMinesInSurrounding() {
         return numberOfMinesInSurrounding;

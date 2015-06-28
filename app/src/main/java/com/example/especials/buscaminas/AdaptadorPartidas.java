@@ -60,8 +60,9 @@ public class AdaptadorPartidas extends ArrayAdapter<Partida> {
         int tiempo = c.getInt(i); i++;
         String resultado = c.getString(i); i++;
         String bomba = c.getString(i); i++;
-        String allLog = c.getString(i);
-        return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba, allLog,getContext());
+        String allLog = c.getString(i); i++;
+        String review = c.getString(i);
+        return new Partida(alias, fecha, numeroCasillas, numeroCasillasRestantes, porCientoMinas, tiempo, resultado, bomba, allLog, review,getContext());
 
 
     }

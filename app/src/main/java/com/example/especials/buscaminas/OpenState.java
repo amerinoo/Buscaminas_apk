@@ -9,6 +9,7 @@ import android.widget.Button;
 public class OpenState implements State {
     @Override
     public void doAction(Contexto contexto) {
+        contexto.casilla.setBlockAsDisabled(true);
         setTextMinasSurrounding(contexto.casilla.getMinesInSurrounding(),contexto.casilla.imThis);
         contexto.setState(this);
     }

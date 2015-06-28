@@ -22,12 +22,13 @@ public class Partida {
     public int numeroCasillasRestantes = -1;
     public String allLog = "";
     public String review;
+    public int numBombasRestantes = -1;
 
     private Context context;
 
     public Partida() {}
 
-    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba, String allLog, Context context) {
+    public Partida(String alias, String fecha, int numeroCasillas, int numeroCasillasRestantes, int porCientoMinas, int tiempo, String resultado, String bomba, String allLog, String review, Context context) {
         this.alias = alias;
         this.fecha = fecha;
         this.numeroCasillas = numeroCasillas;
@@ -37,6 +38,7 @@ public class Partida {
         this.resultado = resultado;
         this.bomba = bomba;
         this.allLog = allLog;
+        this.review = review;
         this.context = context;
         doLogDB();
 
@@ -54,6 +56,7 @@ public class Partida {
         this.log = p.getLog();
         this.numBombas = p.numBombas;
         this.numeroCasillasRestantes = p.numeroCasillasRestantes;
+        this.numBombasRestantes = p.numBombasRestantes;
 
     }
 

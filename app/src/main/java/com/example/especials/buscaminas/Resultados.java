@@ -102,8 +102,8 @@ public class Resultados extends Activity {
         SQLiteDatabase db = usdbh.getWritableDatabase();
         //Insertamos los datos en la tabla Partidas
         try {
-            db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba, log) " +
-                    "VALUES ('" + p.alias + "', '" + p.fecha + "', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "', '" + p.getLog() + "')");
+            db.execSQL("INSERT INTO Partidas (alias, fecha, numeroCasillas, numeroCasillasRestantes,porCientoMinas, tiempo, resultado, bomba, log, review) " +
+                    "VALUES ('" + p.alias + "', '" + p.fecha + "', '" + p.numeroCasillas + "', '" + p.numeroCasillasRestantes + "', '" + p.porCientoMinas + "', '" + p.tiempo + "', '" + p.resultado + "', '" + p.bomba + "', '" + p.getLog() + "', '" + p.review+ "')");
             showToast(getString(R.string.paridaGuardada));
         }catch (Exception e){
             showToast(getString(R.string.paridaNoGuardada));
