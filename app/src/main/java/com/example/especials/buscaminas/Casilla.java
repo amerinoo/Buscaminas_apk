@@ -33,6 +33,7 @@ public class Casilla {
     private BlankState blankState;
     private BombState bombState;
     private FlagState flagState;
+    private OpenState openState;
 
 
     public Casilla(int bombStyle, int numberOfColumnsInMineField, int numCasillas, Context context) {
@@ -72,6 +73,7 @@ public class Casilla {
         blankState = new BlankState();
         bombState = new BombState();
         flagState = new FlagState();
+        openState = new OpenState();
     }
 
     public void calculateCellsSurrounding() {
@@ -148,32 +150,13 @@ public class Casilla {
         imThis.setClickable(false);
         setCovered(false);
         if(isMined()) imThis.setBackgroundResource(bombStyle);
-        else setTextMinasSurrounding(numberOfMinesInSurrounding);
+        else changeState(openState);
         destaparCeldasSinBombas();
-
         System.out.println("He obert el block de la posicio: " + position + " " + numberOfMinesInSurrounding);
 
     }
 
-    private void setTextMinasSurrounding(int minas) {
-        if(minas!=0)imThis.setText(String.valueOf(numberOfMinesInSurrounding));
-        imThis.setTextSize(30);
-        switch (minas){
-            case 1:
-                imThis.setTextColor(Color.CYAN);
-                break;
-            case 2:
-                imThis.setTextColor(Color.GREEN);
-                break;
-            case 3:
-                imThis.setTextColor(Color.RED);
-                break;
-            case 4:
-                imThis.setTextColor(Color.BLUE);
-                break;
 
-        }
-    }
 
 
     public void updateBombs() {
@@ -193,7 +176,7 @@ public class Casilla {
     }
     public void putMinesInSurrounding(){
        setBlockAsDisabled(true);
-       setTextMinasSurrounding(numberOfMinesInSurrounding);
+       changeState(openState);
     }
 
     public void clean(){
