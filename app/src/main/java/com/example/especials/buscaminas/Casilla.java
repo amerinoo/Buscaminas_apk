@@ -1,10 +1,8 @@
 package com.example.especials.buscaminas;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,7 +27,6 @@ public class Casilla {
 
     private int numberOfColumnsInMineField;
     public String state;
-    private int numBombs;
     private int numCasillas;
 
     private QuestionMarkedState questionMarkedState;
@@ -48,7 +45,6 @@ public class Casilla {
 
         minesInSurrounding = new ArrayList<>();
         setDefaults();
-        updateBombs();
 
     }
     public Casilla(int position,boolean isCovered, String state, int numBombs) {
@@ -181,10 +177,8 @@ public class Casilla {
 
 
     public void updateBombs() {
-        TextView textView = (TextView) ((Activity) context).findViewById(R.id.textoMinas);
         String message = String.format(context.getString(R.string.infoBombes), tablero.numBombes);
-        System.out.println(message);
-        textView.setText(message);
+        tablero.textView.setText(message);
     }
     private void destaparCeldasSinBombas() {
         if(numberOfMinesInSurrounding == 0 && !isMined && !isFlagged){

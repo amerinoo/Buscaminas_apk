@@ -1,20 +1,13 @@
 package com.example.especials.buscaminas;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.GridView;
 import android.widget.TextView;
-
-import java.lang.reflect.AccessibleObject;
 
 
 public class ReviewActivity extends Activity implements FragmentParrilla.CasillaListener{
@@ -28,6 +21,7 @@ public class ReviewActivity extends Activity implements FragmentParrilla.Casilla
         setContentView(R.layout.activity_desarrollo_juego);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         tablero = Tablero.getTablero();
+        tablero.textView = (TextView) findViewById(R.id.textoMinas);
         numberOfColumnsInMineField = (int)Math.sqrt(tablero.casillas.size());
         activarTablero();
         putTime();

@@ -47,7 +47,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             isFirtsClick = savedInstanceState.getBoolean("isFirtsClick");
             isTimerStarted = savedInstanceState.getBoolean("isTimerStarted");
             activarTablero();
-            tablero.casillas.get(0).updateBombs();
             if(isTimerStarted) startTimer();
         }
 
@@ -80,6 +79,7 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
         partida.numeroCasillas = numberOfColumnsInMineField * numberOfColumnsInMineField;
         txtTimer = (TextView) findViewById(R.id.textView6);
         partida.numBombas = (int)((partida.porCientoMinas / 100.0) * partida.numeroCasillas);
+        tablero.textView = (TextView) findViewById(R.id.textoMinas);
     }
 
 
@@ -130,7 +130,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
     }
 
     private void onClick(Casilla c) {
-
         if(c.isClickable()){
             String s = getString(R.string.log_casilla) + " " + toCoordenate(c.getPosition()) + " " + getString(R.string.log_abierta);
             if(useTimer) s += " " + getString(R.string.log_segundo) + " " + secondsPassed;

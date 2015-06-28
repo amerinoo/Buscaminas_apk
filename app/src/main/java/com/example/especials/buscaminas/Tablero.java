@@ -1,6 +1,7 @@
 package com.example.especials.buscaminas;
 
 import android.content.Context;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class Tablero {
     public List<Casilla> casillas;
     public Partida partida;
     public int numBombes;
+    public TextView textView;
 
     public static Tablero getTablero(){
         if(tablero == null) tablero = new Tablero();
@@ -19,6 +21,7 @@ public class Tablero {
     private Tablero(){
         casillas  = new ArrayList<>();
         partida = new Partida();
+        numBombes = 0;
     }
 
     public void clearTablero(){casillas.clear(); partida = new Partida();numBombes = 0;}

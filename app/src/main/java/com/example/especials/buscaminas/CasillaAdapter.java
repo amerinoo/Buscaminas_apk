@@ -35,6 +35,7 @@ public class CasillaAdapter extends BaseAdapter {
         c.setBlockAsDisabled(false);
         firstButton.setOnClickListener(new OnClickListenerCasilla(c));
         firstButton.setOnLongClickListener(new OnLongClickListener(c));
+        c.updateBombs();
         reload(c);
     }
     /**
