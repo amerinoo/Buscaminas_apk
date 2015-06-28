@@ -12,6 +12,6 @@ public class NumeroCasillasRestanteOpcion implements ReviewOption {
 
     @Override
     public void toBuilder(PartidaBuilder partidaBuilder) {
-
+        partidaBuilder.setNumeroCasillasRestantes(Integer.valueOf(toParse));
     }
 }
