@@ -26,9 +26,13 @@ public class PartidaReview implements Review {
     }
 
     public void showReview(){
+        String s = "nc&4;nncr&4;t&0;allLog&Alias patata Casillas: 25 %Minas: 25% Minas: 6\nCasilla (0, 0) abierta\nDerrota;casilla&0 0 - 0;" +
+                "casilla&1 0 - 0;" +
+                "casilla&2 0 - 0;" +
+                "casilla&3 0 - 0;";
         Tablero.getTablero().partida = p;
         PartidaBuilder builder = new ReviewPartidaBuilder();
-        new PartidaParser(builder).parse("");
+        new PartidaParser(builder).parse(s);
         builder.build();
     }
 
