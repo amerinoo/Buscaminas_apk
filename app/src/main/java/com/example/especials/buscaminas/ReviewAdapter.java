@@ -33,7 +33,7 @@ public class ReviewAdapter extends BaseAdapter {
         firstButton.setPadding(8, 8, 8, 8);
         c.setButton(firstButton);
         c.setBlockAsDisabled(false);
-        c.setContexto(new Contexto(firstButton),getState(c.state));
+        c.setContexto(new Contexto(c),getState(c.state));
         c.setContext(context);
         c.setPosition(0);
         c.updateBombs();
@@ -100,7 +100,7 @@ public class ReviewAdapter extends BaseAdapter {
 
             c.setButton(btn);
             c.setBlockAsDisabled(false);
-            c.setContexto(new Contexto(btn), getState(c.state));
+            c.setContexto(new Contexto(c), getState(c.state));
             c.setPosition(position);
             c.setContext(context);
         }else if(position == 0){ btn = firstButton;}

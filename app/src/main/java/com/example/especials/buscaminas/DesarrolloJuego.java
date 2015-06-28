@@ -18,8 +18,6 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
 
     public Partida partida;
 
-
-    static TextView textView;
     private Tablero tablero;
 
 
@@ -49,9 +47,9 @@ public class DesarrolloJuego extends Activity implements FragmentParrilla.Casill
             isFirtsClick = savedInstanceState.getBoolean("isFirtsClick");
             isTimerStarted = savedInstanceState.getBoolean("isTimerStarted");
             activarTablero();
+            tablero.casillas.get(0).updateBombs();
             if(isTimerStarted) startTimer();
         }
-        textView = (TextView) findViewById(R.id.textoMinas);
 
     }
 

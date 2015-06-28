@@ -6,7 +6,7 @@ package com.example.especials.buscaminas;
 public class BlankState implements State{
     @Override
     public void doAction(Contexto contexto) {
-        contexto.imThis.setText("");
+        contexto.casilla.imThis.setText("");
         contexto.setState(this);
     }
 

@@ -29,7 +29,7 @@ public class PartidaReview implements Review {
 
     public void showReview(){
         String s = "nc&4;ncr&4;nbr&2;t&0;allLog&Alias patata Casillas: 25 %Minas: 25% Minas: 6\nCasilla (0, 0) abierta\nDerrota;casilla&0 0 f 0;" +
-                "casilla&1 0 b 0;" +
+                "casilla&1 1 o 3;" +
                 "casilla&2 0 ? 0;" +
                 "casilla&3 0 f 0;";
         //String s = p.review;

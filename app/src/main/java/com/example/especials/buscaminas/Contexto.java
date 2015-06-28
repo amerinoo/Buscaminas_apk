@@ -7,11 +7,11 @@ import android.widget.Button;
  */
 public class Contexto {
     State state;
-    Button imThis;
+    Casilla casilla;
 
-    public Contexto(Button button){
+    public Contexto(Casilla casilla){
         state = null;
-        imThis = button;
+        this.casilla = casilla;
     }
 
     public State getState() {

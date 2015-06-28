@@ -9,6 +9,7 @@ public class StateFactoryMethod {
         else if (state.equals("?")) return new QuestionMarkedState();
         else if (state.equals("b")) return new BombState();
         else if (state.equals("f")) return new FlagState();
+        else if (state.equals("o")) return new OpenState();
         return null;
     }
 }

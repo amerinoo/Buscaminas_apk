@@ -6,7 +6,7 @@ package com.example.especials.buscaminas;
 public class BombState implements State {
     @Override
     public void doAction(Contexto contexto) {
-        contexto.imThis.setBackgroundResource(R.drawable.crazy_bomb);
+        contexto.casilla.imThis.setBackgroundResource(R.drawable.crazy_bomb);
         contexto.setState(this);
     }
 

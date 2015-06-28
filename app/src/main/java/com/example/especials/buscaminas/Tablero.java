@@ -21,5 +21,5 @@ public class Tablero {
         partida = new Partida();
     }
 
-    public void clearTablero(){casillas.clear(); partida = new Partida();}
+    public void clearTablero(){casillas.clear(); partida = new Partida();numBombes = 0;}
 }

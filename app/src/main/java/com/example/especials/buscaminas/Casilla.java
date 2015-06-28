@@ -24,7 +24,7 @@ public class Casilla {
     private int numberOfMinesInSurrounding; // number of mines in nearby blocks
     private List<Casilla> minesInSurrounding;
     private int position=-1;
-    private Button imThis;
+    public Button imThis;
     private Contexto contexto;
 
     private int numberOfColumnsInMineField;
@@ -183,6 +183,7 @@ public class Casilla {
     public void updateBombs() {
         TextView textView = (TextView) ((Activity) context).findViewById(R.id.textoMinas);
         String message = String.format(context.getString(R.string.infoBombes), tablero.numBombes);
+        System.out.println(message);
         textView.setText(message);
     }
     private void destaparCeldasSinBombas() {
@@ -197,7 +198,7 @@ public class Casilla {
         }
     }
     public void putMinesInSurrounding(){
-        setBlockAsDisabled(true);
+       setBlockAsDisabled(true);
        setTextMinasSurrounding(numberOfMinesInSurrounding);
     }
 
@@ -263,6 +264,10 @@ public class Casilla {
 
     public void addMineInSurrounding() {
         this.numberOfMinesInSurrounding += 1;
+    }
+
+    public void setNumberOfMinesInSurrounding(int numberOfMinesInSurrounding) {
+        this.numberOfMinesInSurrounding = numberOfMinesInSurrounding;
     }
 
     public int getMinesInSurrounding() {

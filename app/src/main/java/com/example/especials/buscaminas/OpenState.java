@@ -1,17 +1,17 @@
 package com.example.especials.buscaminas;
 
 /**
- * Created by pestomerdes on 6/26/15.
+ * Created by Gary on 28/06/2015.
  */
-public class QuestionMarkedState implements State {
+public class OpenState implements State {
     @Override
     public void doAction(Contexto contexto) {
-        contexto.casilla.imThis.setText("?");
+        contexto.casilla.imThis.setText(String.valueOf(contexto.casilla.getMinesInSurrounding()));
         contexto.setState(this);
     }
 
     @Override
     public String toReviewString() {
-        return "?";
+        return "o";
     }
 }

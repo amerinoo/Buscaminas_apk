@@ -7,8 +7,8 @@ public class FlagState implements State {
 
     @Override
     public void doAction(Contexto contexto) {
-        contexto.imThis.setBackgroundResource(R.drawable.prova);
-        contexto.imThis.setClickable(false);
+        contexto.casilla.imThis.setBackgroundResource(R.drawable.prova);
+        contexto.casilla.imThis.setClickable(false);
         contexto.setState(this);
     }
 
