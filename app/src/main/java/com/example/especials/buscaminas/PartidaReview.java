@@ -1,5 +1,7 @@
 package com.example.especials.buscaminas;
 
+import java.util.List;
+
 /**
  * Created by pestomerdes on 6/26/15.
  */
@@ -36,7 +38,4 @@ public class PartidaReview implements Review {
         builder.build();
     }
 
-    private void putBombs(){
-
-    }
 }

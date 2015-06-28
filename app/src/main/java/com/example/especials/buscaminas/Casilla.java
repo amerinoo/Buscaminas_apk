@@ -53,7 +53,7 @@ public class Casilla {
         this.position = position;
         this.isCovered = isCovered;
         this.state = state;
-        this.numBombs = numBombs;
+        this.numberOfMinesInSurrounding = numBombs;
     }
 
     // set default properties for the block

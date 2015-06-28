@@ -40,8 +40,13 @@
             android:name=".DetalleActivity"
             android:label="@string/title_activity_detalle" >
         </activity>
-        <activity android:name=".Preferencias"
-            android:label="@string/titulo_configuracion">
+        <activity
+            android:name=".Preferencias"
+            android:label="@string/titulo_configuracion" >
+        </activity>
+        <activity
+            android:name=".ReviewActivity"
+            android:label="@string/title_activity_review" >
         </activity>
     </application>
 

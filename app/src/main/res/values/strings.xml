@@ -134,6 +134,8 @@
     <string name="seleccionarAplicacion">Seleccionar aplicación</string>
     <string name="emailNecesario">Necesario un email</string>
     <string name="action_showReview">Ver tablero partida</string>
+    <string name="title_activity_review">ReviewActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 
 </resources>
