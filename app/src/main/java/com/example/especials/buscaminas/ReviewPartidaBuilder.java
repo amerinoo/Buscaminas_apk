@@ -11,8 +11,8 @@ public class ReviewPartidaBuilder extends PartidaBuilder {
         p.tiempo = getTiempo();
         p.numeroCasillasRestantes = getNumeroCasillasRestantes();
         p.allLog = getAllLog();
-        p.numBombas = getNumBombes();
+        p.numBombas = getNumeroBombasRestantes();
         Tablero.getTablero().casillas = getCasillas();
-        Tablero.getTablero().numBombes = getNumBombes();
+        Tablero.getTablero().numBombes = getNumeroBombasRestantes();
     }
 }

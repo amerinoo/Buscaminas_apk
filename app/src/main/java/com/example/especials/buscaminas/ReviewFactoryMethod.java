@@ -8,8 +8,10 @@ public class ReviewFactoryMethod {
     public ReviewOption getInstance(String type, String toParse){
         if(type.equals("nc")){
             return new NumeroCasillasOpcion(toParse);
-        }else if(type.equals("ncr")){
+        }else if(type.equals("ncr")) {
             return new NumeroCasillasRestanteOpcion(toParse);
+        }else if(type.equals("nbr")){
+            return new NumeroBombasRestanteOpcion(toParse);
         }else if(type.equals("t")){
             return new TiempoOpcion(toParse);
         }else if(type.equals("allLog")){

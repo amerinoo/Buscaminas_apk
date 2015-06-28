@@ -10,9 +10,9 @@ public abstract class PartidaBuilder {
     public String allLog;
     public int numeroCasillas;
     public int numeroCasillasRestantes;
+    public int numeroBombasRestantes;
     public int tiempo;
     public List<Casilla> casillas = new ArrayList<>();
-    public int numBombes;
 
     public abstract void build();
 
@@ -30,6 +30,10 @@ public abstract class PartidaBuilder {
         return numeroCasillasRestantes;
     }
 
+    public int getNumeroBombasRestantes() {
+        return numeroBombasRestantes;
+    }
+
     public int getTiempo() {
         return tiempo;
     }
@@ -37,11 +41,6 @@ public abstract class PartidaBuilder {
     public List<Casilla> getCasillas() {
         return casillas;
     }
-
-    public int getNumBombes() {
-        return numBombes;
-    }
-
 
     //Setters
 
@@ -57,15 +56,15 @@ public abstract class PartidaBuilder {
         this.numeroCasillasRestantes = numeroCasillasRestantes;
     }
 
+    public void setNumeroBombasRestantes(int numeroBombasRestantes) {
+        this.numeroBombasRestantes = numeroBombasRestantes;
+    }
+
     public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
 
     public void setCasillas(List<Casilla> casillas) {
         this.casillas = casillas;
-    }
-
-    public void setNumBombes(int numBombes) {
-        this.numBombes = numBombes;
     }
 }
