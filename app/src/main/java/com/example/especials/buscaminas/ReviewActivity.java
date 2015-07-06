@@ -24,8 +24,14 @@ public class ReviewActivity extends Activity implements FragmentParrilla.Casilla
         tablero.textView = (TextView) findViewById(R.id.textoMinas);
         numberOfColumnsInMineField = (int)Math.sqrt(tablero.casillas.size());
         activarTablero();
+        putLog();
         putTime();
 
+    }
+
+    private void putLog() {
+        FragmentLog fglog = (FragmentLog) getFragmentManager().findFragmentById(R.id.fragmentLog);
+        if(fglog != null && fglog.isInLayout()) fglog.log(tablero.partida.allLog);
     }
 
     private void putTime() {
